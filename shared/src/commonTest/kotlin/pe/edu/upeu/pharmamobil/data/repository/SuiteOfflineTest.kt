@@ -66,7 +66,7 @@ class SuiteOfflineTest {
         )
         val base = baseEnMemoria()
         val local = ProductoLocal(base)
-        val repo = ProductoRepositorioOffline(local, ProductoRemoto(ProductoApi(cliente), 1L), MarcaDeSincronizacion(base)) { RELOJ }
+        val repo = ProductoRepositorioOffline(local, ProductoRemoto(ProductoApi(cliente), 1L), MarcaDeSincronizacion(base), reloj = { RELOJ })
         return Montaje(repo, local, peticiones)
     }
 

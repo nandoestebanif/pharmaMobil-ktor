@@ -2,6 +2,7 @@ package pe.edu.upeu.pharmamobil.domain.repository
 
 import kotlinx.coroutines.flow.Flow
 import pe.edu.upeu.pharmamobil.domain.model.Producto
+import pe.edu.upeu.pharmamobil.domain.sync.ResumenSync
 
 /**
  * Contrato del inventario. Vive en el dominio; la implementacion offline-first
@@ -24,8 +25,14 @@ interface ProductoRepository {
      */
     fun ultimaSincronizacion(): Flow<Long?>
 
-    /** Sube lo pendiente y luego trae la lista del servidor. En ese orden. */
-    suspend fun sincronizar()
+    /**
+     * Sube lo pendiente y luego trae la lista del servidor. En ese orden.
+     * Sesion 13: devuelve cuantas filas se enviaron y cuantas quedaron fallidas.
+     */
+    suspend fun sincronizar(): ResumenSync
+
+    /** Sesion 13: las filas fallidas vuelven a la cola (intentos en cero) y se sincroniza. */
+    suspend fun reintentarFallidas(): ResumenSync
 
     /** Trae un producto por su id; falla con NoEncontrado si ya no existe. */
     suspend fun obtener(id: Long): Producto

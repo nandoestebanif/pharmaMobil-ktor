@@ -5,6 +5,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.flowOf
+import pe.edu.upeu.pharmamobil.domain.sync.ResumenSync
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
@@ -35,7 +36,9 @@ class ProductoRepositorioEnMemoria : ProductoRepository {
     override fun ultimaSincronizacion(): Flow<Long?> = flowOf(null)
 
     /** No hay servidor: la memoria ya es la fuente de verdad. */
-    override suspend fun sincronizar() = Unit
+    override suspend fun sincronizar() = ResumenSync(0, 0, 0, 0)
+
+    override suspend fun reintentarFallidas() = ResumenSync(0, 0, 0, 0)
 
     override suspend fun registrar(producto: Producto): Producto {
         delay(RETARDO_REGISTRO_MS)

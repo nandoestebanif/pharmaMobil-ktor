@@ -8,6 +8,7 @@ import kotlinx.coroutines.flow.update
 import pe.edu.upeu.pharmamobil.domain.error.ErrorApi
 import pe.edu.upeu.pharmamobil.domain.error.ErrorApiException
 import pe.edu.upeu.pharmamobil.domain.model.Producto
+import pe.edu.upeu.pharmamobil.domain.sync.ResumenSync
 import pe.edu.upeu.pharmamobil.domain.repository.ProductoRepository
 
 /**
@@ -62,12 +63,22 @@ class FakeProductoRepository(
 
     override fun ultimaSincronizacion(): Flow<Long?> = ultima.asStateFlow()
 
-    override suspend fun sincronizar() {
+    /** Sesion 13: lo que devuelve sincronizar() cuando termina bien. */
+    var resumen = ResumenSync(0, 0, 0, 0)
+    var reintentos = 0
+
+    override suspend fun sincronizar(): ResumenSync {
         sincronizaciones++
         compuertaAlSincronizar?.await()
         fallaAlSincronizar?.let { throw it }
         local.value = enServidor.toList()
         ultima.value = reloj
+        return resumen
+    }
+
+    override suspend fun reintentarFallidas(): ResumenSync {
+        reintentos++
+        return sincronizar()
     }
 
     override suspend fun registrar(producto: Producto): Producto {

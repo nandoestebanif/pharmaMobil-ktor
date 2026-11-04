@@ -151,13 +151,14 @@ class ProductoRepositorioOfflineTest {
         e.repo.registrar(Producto(0, "Paracetamol 500mg", 3.5, 10))
 
         hayRed = true
-        val fallo = assertFailsWith<ErrorApiException> { e.repo.sincronizar() }
+        // Sesion 13: el rechazo ya no se lanza como excepcion; la fila queda fallida y visible.
+        val resumen = e.repo.sincronizar()
 
-        assertTrue(fallo.error is ErrorApi.Conflicto)
+        assertEquals(1L, resumen.fallidas)
         // La lista del servidor llego igual y el rechazado sigue en el dispositivo (editable).
         val lista = e.repo.observar().first()
         assertEquals(2, lista.size)
-        assertEquals(1, lista.count { it.pendiente })
+        assertEquals(1, lista.count { it.pendiente && it.envioFallido })
     }
 
     @Test
