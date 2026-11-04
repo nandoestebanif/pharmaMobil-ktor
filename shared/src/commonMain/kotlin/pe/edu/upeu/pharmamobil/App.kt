@@ -64,7 +64,9 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import kotlinx.coroutines.launch
 import org.koin.compose.KoinContext
+import org.koin.compose.koinInject
 import org.koin.compose.viewmodel.koinViewModel
+import pe.edu.upeu.pharmamobil.domain.port.Telemetria
 import pe.edu.upeu.pharmamobil.presentation.permiso.TarjetaDeAvisos
 
 import pe.edu.upeu.pharmamobil.domain.model.Permiso
@@ -452,8 +454,16 @@ private fun AppConSesion(
                                     modifier = Modifier.align(Alignment.Center)
                                 )
 
-                            Screen.AcercaDe ->
-                                AcercaDeScreen()
+                            Screen.AcercaDe -> {
+                                // Sesion 13: el boton de diagnostico no sabe que detras esta Firebase.
+                                val telemetria = koinInject<Telemetria>()
+                                AcercaDeScreen(onProbarTelemetria = {
+                                    telemetria.registrarError(
+                                        IllegalStateException("Error de prueba de PharmaMobil (sesion 13)"),
+                                        mapOf("pantalla" to "acerca", "operacion" to "prueba")
+                                    )
+                                })
+                            }
                         }
                     }
                 }

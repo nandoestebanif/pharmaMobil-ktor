@@ -24,6 +24,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -41,7 +45,9 @@ import pe.edu.upeu.pharmamobil.presentation.components.Tarjeta
 @Composable
 fun AcercaDeScreen(
     modifier: Modifier = Modifier,
-    datos: AcercaDeUi = remember { InfoDispositivo().aUi() }
+    datos: AcercaDeUi = remember { InfoDispositivo().aUi() },
+    // Sesion 13: envia un error de prueba a la telemetria (Firebase Crashlytics en Android).
+    onProbarTelemetria: (() -> Unit)? = null
 ) {
 
     Column(
@@ -93,6 +99,28 @@ fun AcercaDeScreen(
             Dato(Icons.Default.SpaceBar, "Entre S/ y el monto", datos.separador)
             Separador()
             Dato(Icons.Default.SettingsSuggest, "Configuración regional", "es-PE")
+        }
+
+        if (onProbarTelemetria != null) {
+            var enviado by remember { mutableStateOf(false) }
+            Seccion(titulo = "Diagnóstico") {
+                Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                    Text(
+                        text = "Los errores de la app se registran en Firebase Crashlytics, sin datos personales ni el token de sesión.",
+                        style = MaterialTheme.typography.bodyMedium
+                    )
+                    OutlinedButton(onClick = { onProbarTelemetria(); enviado = true }) {
+                        Text("Enviar error de prueba")
+                    }
+                    if (enviado) {
+                        Text(
+                            text = "Registrado. Cierra y vuelve a abrir la app para que llegue a la consola.",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    }
+                }
+            }
         }
 
         Text(
