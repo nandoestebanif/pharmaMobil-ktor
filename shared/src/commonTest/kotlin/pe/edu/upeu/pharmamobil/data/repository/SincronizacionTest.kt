@@ -224,4 +224,15 @@ class SincronizacionTest {
         assertEquals(2, lista.size, "la bajada trajo Paracetamol y no borro el pendiente")
         assertTrue(lista.any { it.id == pendiente.id && it.pendiente })
     }
+
+    @Test
+    fun registrarConElServidorFallandoNoPierdeElProducto() = runTest {
+        val m = montaje(alPost = { error(HttpStatusCode.ServiceUnavailable, "Servicio no disponible") })
+
+        val guardado = m.repo.registrar(omeprazol)
+
+        val fila = m.fila(guardado.id)
+        assertTrue(fila.pendiente, "un 503 es pasajero: el producto se queda en el dispositivo")
+        assertEquals(1, fila.intentos)
+    }
 }

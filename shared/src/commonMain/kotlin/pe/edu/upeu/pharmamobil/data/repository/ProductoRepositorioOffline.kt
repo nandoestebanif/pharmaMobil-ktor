@@ -57,14 +57,21 @@ class ProductoRepositorioOffline(
         } catch (cancelacion: CancellationException) {
             throw cancelacion
         } catch (e: ErrorApiException) {
-            if (e.error.esFaltaDeRed()) {
-                // Sin red no pasa nada: queda pendiente y se sube al sincronizar.
-                guardado
-            } else {
+            when (val r = e.aResultado()) {
+                // Sin red (o sesion vencida) no pasa nada: queda pendiente y se sube al sincronizar.
+                is ResultadoEnvio.Detener -> guardado
+                // Sesion 13: un 5xx o un tiempo agotado tambien es pasajero: queda pendiente y
+                // ese primer envio cuenta como intento.
+                is ResultadoEnvio.Transitorio -> {
+                    local.sumarIntento(guardado.id, r.motivo)
+                    guardado.copy(intentos = 1, ultimoError = r.motivo)
+                }
                 // El servidor lo rechazo (nombre duplicado, datos invalidos...): no se guarda,
                 // igual que antes de la sesion 11, y el formulario muestra el error.
-                local.borrar(guardado.id)
-                throw e
+                else -> {
+                    local.borrar(guardado.id)
+                    throw e
+                }
             }
         }
     }
