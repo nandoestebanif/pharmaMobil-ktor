@@ -30,7 +30,14 @@ data class ProductoUiState(
 
     /** Sesion 11: productos creados sin red que aun no llegan al servidor. */
     val pendientes: Int
-        get() = ((fase as? Fase.ConProductos)?.productos.orEmpty() + dadosDeBaja).count { it.pendiente }
+        get() = todos.count { it.pendiente && !it.fallido }
+
+    /** Sesion 13: pendientes que ya no se reintentan solos (el servidor los rechazo o se agotaron). */
+    val fallidas: Int
+        get() = todos.count { it.fallido }
+
+    private val todos: List<ProductoUi>
+        get() = (fase as? Fase.ConProductos)?.productos.orEmpty() + dadosDeBaja
 
     /** true mientras hay una operacion contra el servidor: los botones se deshabilitan. */
     val operando: Boolean

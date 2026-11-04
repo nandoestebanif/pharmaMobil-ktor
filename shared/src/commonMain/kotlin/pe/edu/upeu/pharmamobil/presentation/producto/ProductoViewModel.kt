@@ -111,6 +111,16 @@ class ProductoViewModel(
     /** Boton Reintentar de la fase Error. */
     fun cargarProductos() = sincronizar()
 
+    /** Sesion 13: «Reintentar envio» de la barra: las fallidas vuelven a la cola. */
+    fun reintentarFallidas() {
+        if (_uiState.value.sincronizando) return
+        viewModelScope.launch {
+            _uiState.update { it.copy(sincronizando = true) }
+            val fallo = sincronizarProductos.reintentarFallidas().exceptionOrNull()
+            _uiState.update { it.copy(sincronizando = false, avisoRed = fallo?.let(::avisoDeSincronizacion)) }
+        }
+    }
+
     private fun avisoDeSincronizacion(fallo: Throwable): String =
         if (esFaltaDeRed(fallo)) AVISO_SIN_CONEXION else mensajeDe(fallo)
 

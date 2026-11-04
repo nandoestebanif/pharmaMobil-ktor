@@ -11,7 +11,11 @@ data class ProductoUi(
     val stock: String,
     val requiereReposicion: Boolean,
     /** Sesion 11: creado sin red; todavia no esta en PharmaSoft. */
-    val pendiente: Boolean = false
+    val pendiente: Boolean = false,
+    /** Sesion 13: pendiente que agoto sus intentos; espera que el usuario lo revise. */
+    val fallido: Boolean = false,
+    /** Sesion 13: por que no se envio (lo que respondio el servidor). */
+    val motivoFallo: String? = null
 )
 
 /**
@@ -25,5 +29,7 @@ fun Producto.aUi(): ProductoUi = ProductoUi(
     precio = formatearSoles(precio),
     stock = "$stock u.",
     requiereReposicion = requiereReposicion,
-    pendiente = pendiente
+    pendiente = pendiente,
+    fallido = envioFallido,
+    motivoFallo = if (envioFallido) ultimoError else null
 )

@@ -105,8 +105,10 @@ fun ProductoScreen(
                     sincronizando = uiState.sincronizando,
                     avisoRed = uiState.avisoRed,
                     pendientes = uiState.pendientes,
+                    fallidas = uiState.fallidas,
                     ultimaSincronizacion = uiState.ultimaSincronizacion,
-                    onSincronizar = viewModel::sincronizar
+                    onSincronizar = viewModel::sincronizar,
+                    onReintentarFallidas = viewModel::reintentarFallidas
                 )
             }
 
@@ -232,8 +234,10 @@ private fun BarraSincronizacion(
     sincronizando: Boolean,
     avisoRed: String?,
     pendientes: Int,
+    fallidas: Int,
     ultimaSincronizacion: Long?,
-    onSincronizar: () -> Unit
+    onSincronizar: () -> Unit,
+    onReintentarFallidas: () -> Unit
 ) {
 
     val esquema = MaterialTheme.colorScheme
@@ -290,6 +294,19 @@ private fun BarraSincronizacion(
                                else "$pendientes productos pendientes de enviar",
                         style = MaterialTheme.typography.labelMedium
                     )
+                }
+                // Sesion 13: lo que el servidor rechazo no se reintenta solo; se dice y se ofrece una accion.
+                if (fallidas > 0) {
+                    Text(
+                        text = if (fallidas == 1) "1 cambio no se pudo enviar" else "$fallidas cambios no se pudieron enviar",
+                        style = MaterialTheme.typography.labelMedium,
+                        color = esquema.error
+                    )
+                    TextButton(
+                        onClick = onReintentarFallidas,
+                        enabled = !sincronizando,
+                        contentPadding = PaddingValues(horizontal = 0.dp, vertical = 0.dp)
+                    ) { Text("Reintentar envío", style = MaterialTheme.typography.labelLarge) }
                 }
             }
 
@@ -430,13 +447,28 @@ private fun ProductoItem(
                     }
 
                     // Sesion 11: creado sin red, todavia no esta en PharmaSoft.
-                    if (producto.pendiente) {
+                    if (producto.fallido) {
+                        // Sesion 13: el servidor lo rechazo o se agotaron los intentos.
+                        Etiqueta(
+                            texto = "No se envió",
+                            fondo = esquema.errorContainer,
+                            color = esquema.onErrorContainer
+                        )
+                    } else if (producto.pendiente) {
                         Etiqueta(
                             texto = "Pendiente",
                             fondo = esquema.tertiaryContainer,
                             color = esquema.onTertiaryContainer
                         )
                     }
+                }
+
+                producto.motivoFallo?.let {
+                    Text(
+                        text = "$it. Edítalo o elimínalo.",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = esquema.error
+                    )
                 }
             }
 
