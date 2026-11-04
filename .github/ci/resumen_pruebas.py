@@ -14,12 +14,14 @@ EXTRA_S11 = ("sinConexionMuestraLaListaGuardadaConElAvisoDeRed", "registrarNoVue
              "abreLaBaseLocalConElDriverRegistrado")
 # Actividad autonoma: la suite de 6 pruebas y lo nuevo de "Actualizado hace..." / primera apertura sin red
 CLASES_AUTONOMA = ("SuiteOfflineTest", "AntiguedadTest")
+CLASES_S13 = ("SincronizacionTest", "PermisosYAvisosTest")
 EXTRA_AUTONOMA = ("primeraAperturaSinRedEsUnEstadoVacioInformativoYNoUnError",
                   "laPantallaRecibeLaHoraDeLaUltimaSincronizacionCorrecta")
 
 total = fallos = 0
 lineas = []
 autonoma = []
+s13 = []
 for archivo in sorted(glob.glob(sys.argv[1] + "/*.xml")):
     raiz = ET.parse(archivo).getroot()
     for caso in raiz.iter("testcase"):
@@ -33,6 +35,8 @@ for archivo in sorted(glob.glob(sys.argv[1] + "/*.xml")):
             lineas.append(linea)
         if clase in CLASES_AUTONOMA or nombre in EXTRA_AUTONOMA:
             autonoma.append(linea)
+        if clase in CLASES_S13:
+            s13.append(linea)
 
 with open(sys.argv[2], "w", encoding="utf-8") as salida:
     salida.write(f"$ ./gradlew :shared:testAndroidHostTest\n")
@@ -40,4 +44,6 @@ with open(sys.argv[2], "w", encoding="utf-8") as salida:
     salida.write("\n".join(lineas) + "\n")
     salida.write("\nActividad autonoma (suite offline, antiguedad, primera apertura):\n")
     salida.write("\n".join(sorted(autonoma, key=lambda l: ("SuiteOffline" not in l, l))) + "\n")
+    salida.write("\nSesion 13 (sincronizacion refinada, permisos y avisos):\n")
+    salida.write("\n".join(sorted(s13)) + "\n")
 print(open(sys.argv[2], encoding="utf-8").read())

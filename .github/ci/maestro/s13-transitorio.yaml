@@ -1,0 +1,13 @@
+# Sesion 13: PharmaSoft responde 503 (fallo transitorio). El registro queda pendiente con un
+# intento; al sincronizar suma otro y la app avisa que el servidor tuvo un problema.
+appId: ${APP_ID}
+---
+- runFlow:
+    file: s13-registro.yaml
+    env: { NOMBRE: "Ranitidina 150mg", PRECIO: "2.30", STOCK: "15" }
+- tapOn: "Sincronizar"
+- extendedWaitUntil:
+    visible: ".*servidor tuvo un problema.*"
+    timeout: 60000
+- assertVisible: "1 producto pendiente de enviar"
+- takeScreenshot: c04-fallo-transitorio

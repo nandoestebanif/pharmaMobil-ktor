@@ -1,0 +1,18 @@
+# Sesion 13: en modo avion se registran dos productos: uno valido y uno cuyo nombre ya
+# existe en PharmaSoft (el servidor lo rechazara con 409 al sincronizar).
+appId: ${APP_ID}
+---
+- tapOn: ".*Inventario, precios y stock.*"
+- extendedWaitUntil:
+    visible: "Sin conexión: mostrando datos guardados"
+    timeout: 60000
+- runFlow:
+    file: s13-registro.yaml
+    env: { NOMBRE: "Omeprazol 20mg", PRECIO: "4.50", STOCK: "40" }
+- runFlow:
+    file: s13-registro.yaml
+    env: { NOMBRE: "Paracetamol 500mg", PRECIO: "3.50", STOCK: "10" }
+- extendedWaitUntil:
+    visible: "2 productos pendientes de enviar"
+    timeout: 20000
+- takeScreenshot: c01-dos-pendientes-sin-red

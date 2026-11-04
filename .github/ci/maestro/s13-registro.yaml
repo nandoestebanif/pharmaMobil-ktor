@@ -1,0 +1,15 @@
+# Sesion 13: registra NOMBRE con PRECIO y STOCK desde la lista de productos.
+appId: ${APP_ID}
+---
+- tapOn: "Nuevo producto"
+- tapOn: "Nombre"
+- inputText: ${NOMBRE}
+- tapOn: "Precio"
+- inputText: ${PRECIO}
+- tapOn: "Stock"
+- inputText: ${STOCK}
+- hideKeyboard
+- tapOn: "Registrar producto"
+- extendedWaitUntil:
+    visible: "${NOMBRE}.*"
+    timeout: 30000

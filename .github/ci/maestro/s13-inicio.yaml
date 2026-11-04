@@ -1,0 +1,17 @@
+# Sesion 13: instalacion limpia, login y portada. El permiso de notificaciones nunca se pidio:
+# la tarjeta explica para que sirve ANTES de pedirlo.
+appId: ${APP_ID}
+---
+- launchApp:
+    clearState: true
+    stopApp: true
+- runFlow:
+    file: login.yaml
+    env:
+      USUARIO: admin
+      CLAVE: Admin123
+- extendedWaitUntil:
+    visible: "Avisos de sincronización"
+    timeout: 30000
+- assertVisible: "Activar avisos"
+- takeScreenshot: b01-permiso-sin-pedir

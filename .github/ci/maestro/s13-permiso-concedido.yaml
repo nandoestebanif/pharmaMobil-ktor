@@ -1,0 +1,12 @@
+# Sesion 13: el permiso se activo en Ajustes; al volver, la tarjeta se actualiza sola.
+appId: ${APP_ID}
+---
+- back
+- extendedWaitUntil:
+    visible: "Avisos activados"
+    timeout: 20000
+- takeScreenshot: b07-permiso-concedido
+- tapOn: "Enviar aviso de prueba"
+- extendedWaitUntil:
+    visible: "Aviso de prueba enviado"
+    timeout: 10000

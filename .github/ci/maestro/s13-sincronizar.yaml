@@ -1,0 +1,12 @@
+# Sesion 13: vuelve la red. Omeprazol se envia; Paracetamol (nombre repetido) es un fallo
+# permanente: queda «No se envió» con el motivo del servidor y la accion de reintentar.
+appId: ${APP_ID}
+---
+- tapOn: "Sincronizar"
+- extendedWaitUntil:
+    visible: "1 cambio no se pudo enviar"
+    timeout: 60000
+- assertVisible: "No se envió"
+- assertVisible: ".*Ya existe.*"
+- assertVisible: "Reintentar envío"
+- takeScreenshot: c02-una-fila-fallida

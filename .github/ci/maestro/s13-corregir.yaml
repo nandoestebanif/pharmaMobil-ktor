@@ -1,0 +1,22 @@
+# Sesion 13: el usuario corrige la fila fallida (otro nombre): vuelve a la cola y se envia.
+appId: ${APP_ID}
+---
+- tapOn: "Paracetamol 500mg"
+- extendedWaitUntil:
+    visible: "Editar"
+    timeout: 20000
+- tapOn: "Editar"
+- tapOn: "Paracetamol 500mg"
+- eraseText: 30
+- inputText: "Paracetamol 1g"
+- hideKeyboard
+- tapOn: "Guardar cambios"
+- extendedWaitUntil:
+    visible: "Paracetamol 1g.*"
+    timeout: 30000
+- tapOn: "Sincronizar"
+- extendedWaitUntil:
+    visible: "Inventario al día"
+    timeout: 60000
+- assertNotVisible: "No se envió"
+- takeScreenshot: c06-corregido-y-enviado
