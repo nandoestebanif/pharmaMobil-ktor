@@ -35,6 +35,30 @@ class ProductoLocal(base: PharmaDb) {
         consultas.listarPendientes().executeAsList().map { it.aDominio() }
     }
 
+    /** Sesion 13: la cola de envio; deja fuera las filas que agotaron sus intentos. */
+    suspend fun porEnviar(maxIntentos: Int): List<Producto> = enDisco {
+        consultas.pendientesPorEnviar(maxIntentos.toLong()).executeAsList().map { it.aDominio() }
+    }
+
+    suspend fun contarPendientes(maxIntentos: Int): Long = enDisco {
+        consultas.contarPendientes(maxIntentos.toLong()).executeAsOne()
+    }
+
+    suspend fun contarFallidas(maxIntentos: Int): Long = enDisco {
+        consultas.contarFallidas(maxIntentos.toLong()).executeAsOne()
+    }
+
+    /** Fallo pasajero: un intento mas y el motivo, para mostrarlo si se agota. */
+    suspend fun sumarIntento(id: Long, motivo: String) { enDisco { consultas.sumarIntento(motivo, id) } }
+
+    /** Fallo permanente: la fila queda fallida de una vez, con el motivo del servidor. */
+    suspend fun marcarFallida(id: Long, motivo: String, maxIntentos: Int) {
+        enDisco { consultas.marcarFallida(maxIntentos.toLong(), motivo, id) }
+    }
+
+    /** «Reintentar»: las fallidas vuelven a la cola con los intentos en cero. */
+    suspend fun reintentarFallidas(maxIntentos: Int) { enDisco { consultas.reintentarFallidas(maxIntentos.toLong()) } }
+
     suspend fun obtener(id: Long): Producto? = enDisco {
         consultas.obtenerPorId(id).executeAsOneOrNull()?.aDominio()
     }
@@ -46,15 +70,18 @@ class ProductoLocal(base: PharmaDb) {
     suspend fun guardarPendiente(producto: Producto): Producto = enDisco {
         consultas.transactionWithResult {
             val menor = consultas.siguienteIdLocal().executeAsOne()
-            val local = producto.copy(id = minOf(menor, 0L) - 1L, pendiente = true)
+            val local = producto.copy(id = minOf(menor, 0L) - 1L, pendiente = true, intentos = 0, ultimoError = null)
             insertar(local)
             local
         }
     }
 
-    /** Cambia un producto que todavia no llego al servidor: sigue pendiente y con su id local. */
+    /**
+     * Cambia un producto que todavia no llego al servidor: sigue pendiente y con su id local.
+     * Sesion 13: si estaba fallido, corregirlo lo devuelve a la cola con los intentos en cero.
+     */
     suspend fun actualizarPendiente(producto: Producto): Producto = enDisco {
-        val local = producto.copy(pendiente = true)
+        val local = producto.copy(pendiente = true, intentos = 0, ultimoError = null)
         insertar(local)
         local
     }
@@ -67,7 +94,7 @@ class ProductoLocal(base: PharmaDb) {
     suspend fun reemplazarSincronizados(productos: List<Producto>) = enDisco {
         consultas.transaction {
             consultas.borrarSincronizados()
-            productos.forEach { insertar(it.copy(pendiente = false)) }
+            productos.forEach { insertar(it.copy(pendiente = false, intentos = 0, ultimoError = null)) }
         }
     }
 
@@ -75,13 +102,13 @@ class ProductoLocal(base: PharmaDb) {
     suspend fun confirmarSubida(idLocal: Long, delServidor: Producto) = enDisco {
         consultas.transaction {
             consultas.borrarPorId(idLocal)
-            insertar(delServidor.copy(pendiente = false))
+            insertar(delServidor.copy(pendiente = false, intentos = 0, ultimoError = null))
         }
     }
 
     /** Guarda la version que devolvio el servidor tras editar o reactivar. */
     suspend fun guardarSincronizado(producto: Producto) = enDisco {
-        insertar(producto.copy(pendiente = false))
+        insertar(producto.copy(pendiente = false, intentos = 0, ultimoError = null))
     }
 
     /** PharmaSoft no borra: desactiva. Se refleja igual en la copia local. */
@@ -93,7 +120,8 @@ class ProductoLocal(base: PharmaDb) {
     private fun insertar(p: Producto) {
         consultas.insertar(
             p.id, p.nombre, p.precio, p.stock.toLong(), p.categoriaId,
-            if (p.activo) 1L else 0L, if (p.pendiente) 1L else 0L
+            if (p.activo) 1L else 0L, if (p.pendiente) 1L else 0L,
+            p.intentos.toLong(), p.ultimoError
         )
     }
 
@@ -107,5 +135,7 @@ private fun FilaProducto.aDominio() = Producto(
     stock = stock.toInt(),
     categoriaId = categoria_id,
     activo = activo == 1L,
-    pendiente = pendiente == 1L
+    pendiente = pendiente == 1L,
+    intentos = intentos.toInt(),
+    ultimoError = ultimo_error
 )

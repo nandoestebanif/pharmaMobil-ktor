@@ -10,7 +10,11 @@ CREATE TABLE producto (
     categoria_id INTEGER,
     activo       INTEGER NOT NULL DEFAULT 1,
     -- 1 = creado o modificado en el dispositivo y el servidor todavia no lo conoce.
-    pendiente    INTEGER NOT NULL DEFAULT 0
+    pendiente    INTEGER NOT NULL DEFAULT 0,
+    -- Sesion 13: cuantas veces se intento enviar la fila y que fallo la ultima vez.
+    -- Con intentos >= maxIntentos la fila queda «fallida»: no se reintenta sola.
+    intentos     INTEGER NOT NULL DEFAULT 0,
+    ultimo_error TEXT
 );
 
 listarTodos:
@@ -22,12 +26,33 @@ listarPendientes:
 -- Los ids locales bajan (-1, -2, ...): DESC los entrega en el orden en que se crearon.
 SELECT * FROM producto WHERE pendiente = 1 ORDER BY id DESC;
 
+pendientesPorEnviar:
+-- Sesion 13: solo las que todavia tienen intentos; las fallidas esperan al usuario.
+SELECT * FROM producto WHERE pendiente = 1 AND intentos < :maxIntentos ORDER BY id DESC;
+
+contarPendientes:
+SELECT COUNT(*) FROM producto WHERE pendiente = 1 AND intentos < :maxIntentos;
+
+contarFallidas:
+SELECT COUNT(*) FROM producto WHERE pendiente = 1 AND intentos >= :maxIntentos;
+
+sumarIntento:
+UPDATE producto SET intentos = intentos + 1, ultimo_error = :error WHERE id = :id;
+
+marcarFallida:
+-- Fallo permanente (validacion, conflicto...): se agotan los intentos de una vez.
+UPDATE producto SET intentos = :maxIntentos, ultimo_error = :error WHERE id = :id;
+
+reintentarFallidas:
+-- El usuario pide «Reintentar»: las fallidas vuelven a la cola con sus intentos en cero.
+UPDATE producto SET intentos = 0, ultimo_error = NULL WHERE pendiente = 1 AND intentos >= :maxIntentos;
+
 obtenerPorId:
 SELECT * FROM producto WHERE id = ?;
 
 insertar:
-INSERT OR REPLACE INTO producto
-VALUES (?, ?, ?, ?, ?, ?, ?);
+INSERT OR REPLACE INTO producto (id, nombre, precio, stock, categoria_id, activo, pendiente, intentos, ultimo_error)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
 
 borrarSincronizados:
 DELETE FROM producto WHERE pendiente = 0;
