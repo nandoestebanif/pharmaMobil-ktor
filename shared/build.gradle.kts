@@ -62,6 +62,10 @@ kotlin {
             implementation(libs.ktor.client.okhttp)
             // Sesion 11: driver de SQLite de Android
             implementation(libs.sqldelight.android)
+            // Sesion 13: Firebase Crashlytics con el SDK multiplataforma de GitLive. Va en androidMain
+            // y no en commonMain: en iOS el SDK necesita las librerias nativas de Firebase enlazadas
+            // desde Xcode (CocoaPods o SPM), y sin una Mac no se pueden agregar ni probar.
+            implementation("dev.gitlive:firebase-crashlytics:2.7.0")
             // OkHttp 5.5.0 (transitiva de Ktor) pide compileSdk 37; se fija 5.4.0 (ver libs.versions.toml).
             implementation("com.squareup.okhttp3:okhttp") {
                 version { strictly(libs.versions.okhttp.get()) }

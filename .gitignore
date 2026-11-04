@@ -17,3 +17,6 @@ captures
 !*.xcworkspace/contents.xcworkspacedata
 **/xcshareddata/WorkspaceSettings.xcsettings
 node_modules/
+
+# Sesion 13: configuracion de Firebase con la clave del proyecto (queda solo en la PC)
+google-services.json

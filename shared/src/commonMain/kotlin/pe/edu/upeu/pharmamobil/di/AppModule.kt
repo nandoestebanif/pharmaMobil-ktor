@@ -63,7 +63,8 @@ val dataModule = module {
     single { ProductoRemoto(get(), CATEGORIA_POR_DEFECTO) }
     // Actividad autonoma 11: con la marca de la ultima sincronizacion correcta.
     single { MarcaDeSincronizacion(get()) }
-    single<ProductoRepository> { ProductoRepositorioOffline(get(), get(), get()) }
+    // Sesion 13: con la telemetria (Firebase en Android) que aporta el platformModule.
+    single<ProductoRepository> { ProductoRepositorioOffline(get(), get(), get(), telemetria = get()) }
     single<ClienteRepository> { ClienteRepositorioEnMemoria() }
 }
 

@@ -13,8 +13,10 @@ import pe.edu.upeu.pharmamobil.data.local.CreadorDeDriverAndroid
 import pe.edu.upeu.pharmamobil.data.remote.ConfiguracionApi
 import pe.edu.upeu.pharmamobil.data.remote.EscenarioPrueba
 import pe.edu.upeu.pharmamobil.domain.platform.Compartidor
+import pe.edu.upeu.pharmamobil.data.firebase.TelemetriaFirebase
 import pe.edu.upeu.pharmamobil.domain.permiso.GestorPermisos
 import pe.edu.upeu.pharmamobil.domain.port.Notificador
+import pe.edu.upeu.pharmamobil.domain.port.Telemetria
 import pe.edu.upeu.pharmamobil.permiso.GestorPermisosAndroid
 import pe.edu.upeu.pharmamobil.platform.CompartidorAndroid
 import pe.edu.upeu.pharmamobil.platform.NotificadorAndroid
@@ -47,4 +49,6 @@ actual val platformModule: Module = module {
     single<GestorPermisos> { get<GestorPermisosAndroid>() }
     // Sesion 13: notificaciones del sistema (solo si el usuario concedio el permiso).
     single<Notificador> { NotificadorAndroid(androidContext()) }
+    // Sesion 13: Firebase Crashlytics detras de la interfaz del dominio.
+    single<Telemetria> { TelemetriaFirebase(androidContext()) }
 }
