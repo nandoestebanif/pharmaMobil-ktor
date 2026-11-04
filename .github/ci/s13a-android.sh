@@ -21,9 +21,18 @@ adb shell getprop ro.build.version.release > android-version.txt
 adb shell getprop ro.product.model >> android-version.txt
 adb install -r "$APK" > adb-install.log 2>&1 || echo "::warning title=adb install::$(tail -3 adb-install.log | tr '\n' ' ')"
 
+# El emulador del runner a veces muestra «Pixel Launcher isn't responding» justo despues de
+# arrancar y ese dialogo tapa la app en todos los flujos. Se ocultan los dialogos de error y,
+# antes de cada flujo, se cierran los que hayan quedado abiertos.
+adb shell settings put global hide_error_dialogs 1 || true
+sin_dialogos() { adb shell am broadcast -a android.intent.action.CLOSE_SYSTEM_DIALOGS > /dev/null 2>&1 || true; }
+sleep 20
+sin_dialogos
+
 correr() {
   local flujo="$1" intentos="${2:-1}"; shift 2 2>/dev/null || shift $#
   for intento in $(seq 1 "$intentos"); do
+    sin_dialogos
     if maestro test -e APP_ID="$APP" -e PLATAFORMA=android "$@" "$FLUJOS/$flujo.yaml" > "maestro-$flujo-$intento.log" 2>&1; then
       echo "::notice title=Maestro::$flujo completado"
       marca "flujo $flujo: completado"
