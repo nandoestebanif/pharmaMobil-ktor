@@ -21,7 +21,8 @@ concurrency:
 
 jobs:
   android:
-    runs-on: ubuntu-latest
+    # Ubuntu 26 (ubuntu-latest desde oct-2026) rompe herramientas del CI: se fija 24.04.
+    runs-on: ubuntu-24.04
     timeout-minutes: 90
     env:
       EVID: ${{ github.workspace }}/evidencias
@@ -76,13 +77,10 @@ jobs:
           test -n "$APK" || { echo "::error title=Sin APK::assembleDebug no genero el apk"; exit 1; }
           echo "APK=$PWD/$APK" >> "$GITHUB_ENV"
 
-      - name: Instalar Maestro y Playwright
+      - name: Instalar Maestro
         run: |
           curl -fsSL "https://get.maestro.mobile.dev" | bash > "$EVID/maestro-instalacion.log" 2>&1
           "$HOME/.maestro/bin/maestro" --version | tee -a "$EVID/maestro-instalacion.log"
-          python3 -m venv /tmp/pw
-          /tmp/pw/bin/pip install --quiet playwright==1.56.0 > "$EVID/playwright-instalacion.log" 2>&1
-          /tmp/pw/bin/python -m playwright install --with-deps chromium >> "$EVID/playwright-instalacion.log" 2>&1
 
       - name: Emulador (permisos y sincronizacion)
         continue-on-error: true
