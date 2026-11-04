@@ -29,6 +29,12 @@ import pe.edu.upeu.pharmamobil.db.PharmaDb
 import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
 import org.koin.dsl.module
+import pe.edu.upeu.pharmamobil.domain.permiso.GestorPermisos
+import pe.edu.upeu.pharmamobil.domain.port.Notificador
+import pe.edu.upeu.pharmamobil.domain.port.Telemetria
+import pe.edu.upeu.pharmamobil.permiso.GestorPermisosFalso
+import pe.edu.upeu.pharmamobil.permiso.NotificadorFalso
+import pe.edu.upeu.pharmamobil.permiso.TelemetriaFalsa
 import pe.edu.upeu.pharmamobil.data.repository.ClienteRepositorioEnMemoria
 import pe.edu.upeu.pharmamobil.data.repository.ProductoRepositorioOffline
 import pe.edu.upeu.pharmamobil.domain.platform.Compartidor
@@ -108,6 +114,10 @@ class AppModuleTest {
         single<AlmacenSeguro> { AlmacenEnMemoria() }
         // Sesion 11: la base local en memoria (el driver real necesita un Context o iOS).
         single<CreadorDeDriver> { CreadorDeDriverEnMemoria() }
+        // Sesion 13: permisos, avisos y telemetria reales necesitan Context / Activity / Firebase.
+        single<GestorPermisos> { GestorPermisosFalso() }
+        single<Notificador> { NotificadorFalso() }
+        single<Telemetria> { TelemetriaFalsa() }
         // La configuracion de Android consulta el Context para saber si es depuracion.
         single { ConfiguracionApi(urlBase = "http://localhost:8080/api/v1/") }
         single<HttpClientEngine> {

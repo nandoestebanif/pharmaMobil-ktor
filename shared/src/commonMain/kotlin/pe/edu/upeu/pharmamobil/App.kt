@@ -65,6 +65,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import kotlinx.coroutines.launch
 import org.koin.compose.KoinContext
 import org.koin.compose.viewmodel.koinViewModel
+import pe.edu.upeu.pharmamobil.presentation.permiso.TarjetaDeAvisos
 
 import pe.edu.upeu.pharmamobil.domain.model.Permiso
 import pe.edu.upeu.pharmamobil.domain.model.Sesion
@@ -389,7 +390,8 @@ private fun AppConSesion(
                                     },
                                     nombreUsuario = sesion.nombreCompleto,
                                     rol = sesion.roles.firstOrNull()?.let(::nombreDelRol),
-                                    puedeVer = puedeVer
+                                    puedeVer = puedeVer,
+                                    avisos = { TarjetaDeAvisos(koinViewModel()) }
                                 )
 
                             Screen.Productos -> {

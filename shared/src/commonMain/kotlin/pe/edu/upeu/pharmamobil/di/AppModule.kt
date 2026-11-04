@@ -38,6 +38,7 @@ import pe.edu.upeu.pharmamobil.presentation.cliente.ClienteViewModel
 import pe.edu.upeu.pharmamobil.presentation.detalle.DetalleProductoViewModel
 import pe.edu.upeu.pharmamobil.presentation.producto.ProductoViewModel
 import pe.edu.upeu.pharmamobil.presentation.sesion.SesionViewModel
+import pe.edu.upeu.pharmamobil.presentation.permiso.AvisosViewModel
 
 
 /**
@@ -68,7 +69,8 @@ val dataModule = module {
 
 val domainModule = module {
     factory { ObservarProductosUseCase(get()) }
-    factory { SincronizarProductosUseCase(get()) }
+    // Sesion 13: avisa con una notificacion cuando alguna fila queda fallida.
+    factory { SincronizarProductosUseCase(get(), get()) }
     factory { ObservarUltimaSincronizacionUseCase(get()) }
     factory { ObtenerProductoUseCase(get()) }
     factory { RegistrarProductoUseCase(get()) }
@@ -91,6 +93,8 @@ val presentationModule = module {
     viewModel { DetalleProductoViewModel(get(), get()) }
     // Sesion 10: decide si se muestra el login o la app.
     viewModel { SesionViewModel(get(), get(), get(), get()) }
+    // Sesion 13: permiso de notificaciones (GestorPermisos y Notificador los aporta cada plataforma).
+    viewModel { AvisosViewModel(get(), get()) }
 }
 
 

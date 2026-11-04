@@ -11,6 +11,10 @@ import pe.edu.upeu.pharmamobil.data.local.CreadorDeDriverIos
 import pe.edu.upeu.pharmamobil.data.remote.ConfiguracionApi
 import pe.edu.upeu.pharmamobil.domain.platform.Compartidor
 import pe.edu.upeu.pharmamobil.platform.CompartidorIos
+import pe.edu.upeu.pharmamobil.domain.permiso.GestorPermisos
+import pe.edu.upeu.pharmamobil.domain.port.Notificador
+import pe.edu.upeu.pharmamobil.platform.GestorPermisosIos
+import pe.edu.upeu.pharmamobil.platform.NotificadorIos
 import platform.Foundation.NSBundle
 import kotlin.experimental.ExperimentalNativeApi
 
@@ -25,6 +29,9 @@ actual val platformModule: Module = module {
     single<AlmacenSeguro> { AlmacenSeguroIos() }
     // Sesion 11: base local con el driver nativo de SQLite.
     single<CreadorDeDriver> { CreadorDeDriverIos() }
+    // Sesion 13: permisos y avisos (version minima en iOS, ver AvisosIos.kt).
+    single<GestorPermisos> { GestorPermisosIos() }
+    single<Notificador> { NotificadorIos() }
 }
 
 @OptIn(ExperimentalNativeApi::class)

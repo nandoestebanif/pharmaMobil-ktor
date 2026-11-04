@@ -76,7 +76,9 @@ fun InicioScreen(
     // Sesion 10: saludo con el nombre del usuario y solo los modulos que su rol puede ver.
     nombreUsuario: String? = null,
     rol: String? = null,
-    puedeVer: (Screen) -> Boolean = { true }
+    puedeVer: (Screen) -> Boolean = { true },
+    // Sesion 13: tarjeta del permiso de notificaciones (la arma App con su ViewModel).
+    avisos: @Composable () -> Unit = {}
 ) {
 
     Column(
@@ -88,6 +90,8 @@ fun InicioScreen(
     ) {
 
         Portada(nombreUsuario = nombreUsuario, rol = rol)
+
+        avisos()
 
         Text(
             text = "Módulos",

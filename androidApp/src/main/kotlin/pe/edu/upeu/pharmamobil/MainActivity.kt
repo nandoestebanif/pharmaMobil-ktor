@@ -10,8 +10,19 @@ import androidx.compose.ui.tooling.preview.Preview
 import org.koin.mp.KoinPlatform
 import pe.edu.upeu.pharmamobil.data.local.AlmacenSeguro
 import pe.edu.upeu.pharmamobil.navigation.pantallaPorNombre
+import pe.edu.upeu.pharmamobil.permiso.GestorPermisosAndroid
+import pe.edu.upeu.pharmamobil.permiso.PuentePermisos
 
 class MainActivity : ComponentActivity() {
+
+    private val gestorPermisos: GestorPermisosAndroid by lazy { KoinPlatform.getKoin().get() }
+
+    override fun onDestroy() {
+        // Al rotar o cerrar, la Activity vieja no debe quedar retenida por el gestor (single).
+        if (gestorPermisos.puente?.actividad === this) gestorPermisos.puente = null
+        super.onDestroy()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
@@ -30,6 +41,10 @@ class MainActivity : ComponentActivity() {
         if (esDepuracion && intent?.getStringExtra("token") == "alterado") {
             alterarTokenGuardado(KoinPlatform.getKoin().get<AlmacenSeguro>())
         }
+
+        // Sesion 13: el gestor de permisos necesita el lanzador del dialogo del sistema, que
+        // solo se puede registrar aqui, en onCreate.
+        gestorPermisos.puente = PuentePermisos(this)
 
         setContent {
             App(pantallaInicial = pantallaInicial, mostrarAccionesSinPermiso = mostrarAccionesSinPermiso)
