@@ -1,0 +1,44 @@
+# Sesion 10: la interfaz oculta lo que el rol no puede hacer.
+appId: ${APP_ID}
+---
+- launchApp:
+    stopApp: true
+# almacen: escribe en el catalogo, pero no ve clientes ni pedidos.
+- runFlow:
+    file: login.yaml
+    env:
+      USUARIO: almacen
+      CLAVE: Almacen123
+- assertNotVisible: ".*Datos de contacto para la boleta.*"
+- takeScreenshot: b01-${PLATAFORMA}-inicio-almacen
+- tapOn: "Abrir menú"
+- takeScreenshot: b02-${PLATAFORMA}-menu-almacen
+- tapOn: "Inicio"
+- tapOn: ".*Inventario, precios y stock.*"
+- extendedWaitUntil:
+    visible: ".*Paracetamol 500mg.*"
+    timeout: 60000
+- assertVisible: "Nuevo producto"
+- takeScreenshot: b03-${PLATAFORMA}-productos-almacen
+- tapOn: "Volver"
+# vendedor: catalogo solo lectura.
+- runFlow:
+    file: login.yaml
+    env:
+      USUARIO: vendedor
+      CLAVE: Vendedor123
+- takeScreenshot: b04-${PLATAFORMA}-inicio-vendedor
+- tapOn: ".*Inventario, precios y stock.*"
+- extendedWaitUntil:
+    visible: ".*Paracetamol 500mg.*"
+    timeout: 60000
+- assertNotVisible: "Nuevo producto"
+- takeScreenshot: b05-${PLATAFORMA}-productos-vendedor
+- tapOn: ".*Paracetamol 500mg.*"
+- extendedWaitUntil:
+    visible: "Compartir"
+    timeout: 60000
+- assertNotVisible: "Editar"
+- takeScreenshot: b06-${PLATAFORMA}-detalle-vendedor
+- tapOn: "Volver"
+- tapOn: "Volver"

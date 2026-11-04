@@ -1,0 +1,8 @@
+# Sesion 13: con red se abre el inventario una vez (primera sincronizacion) y se vuelve.
+appId: ${APP_ID}
+---
+- tapOn: ".*Inventario, precios y stock.*"
+- extendedWaitUntil:
+    visible: "Inventario al día"
+    timeout: 60000
+- assertVisible: ".*Amoxicilina 500mg.*"

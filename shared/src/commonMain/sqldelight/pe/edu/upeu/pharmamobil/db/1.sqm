@@ -1,0 +1,7 @@
+-- Migracion 1 -> 2 (actividad autonoma 11): la base de la practica (version 1) no tiene la
+-- tabla sincronizacion. Sin esta migracion, quien ya tenia pharma.db de la practica abriria
+-- la app con una base sin la tabla y fallaria al leerla.
+CREATE TABLE sincronizacion (
+    id     INTEGER NOT NULL PRIMARY KEY CHECK (id = 1),
+    ultima INTEGER NOT NULL
+);

@@ -1,0 +1,10 @@
+# Sesion 13: PharmaSoft vuelve. La fila con fallo transitorio se envia; la fallida espera.
+appId: ${APP_ID}
+---
+- tapOn: "Sincronizar"
+- extendedWaitUntil:
+    visible: "Inventario al día"
+    timeout: 60000
+- assertNotVisible: "1 producto pendiente de enviar"
+- assertVisible: "1 cambio no se pudo enviar"
+- takeScreenshot: c05-transitorio-enviado

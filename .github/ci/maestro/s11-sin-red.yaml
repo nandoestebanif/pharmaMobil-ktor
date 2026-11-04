@@ -1,0 +1,38 @@
+# Sesion 11, pasos 6.2 a 6.4: la app se abre SIN conexion (modo avion en Android,
+# PharmaSoft apagado en iOS). Entra con el perfil guardado, muestra el inventario de la
+# base local con el aviso y registra un producto que queda pendiente.
+appId: ${APP_ID}
+---
+- launchApp:
+    stopApp: true
+- extendedWaitUntil:
+    visible: ".*Hola,.*"
+    timeout: 90000
+- takeScreenshot: o02-${PLATAFORMA}-sin-red-inicio
+- tapOn: ".*Inventario, precios y stock.*"
+- extendedWaitUntil:
+    visible: "Sin conexión: mostrando datos guardados"
+    timeout: 60000
+- assertVisible: ".*Amoxicilina 500mg.*"
+- takeScreenshot: o03-${PLATAFORMA}-sin-red-lista
+- tapOn: "Nuevo producto"
+- tapOn: "Nombre"
+- inputText: "Omeprazol 20mg"
+- tapOn: "Precio"
+- inputText: "4.50"
+- tapOn: "Stock"
+- inputText: "40"
+- runFlow:
+    when:
+      platform: Android
+    commands:
+      - hideKeyboard
+- takeScreenshot: o04-${PLATAFORMA}-formulario-sin-red
+- tapOn: "Registrar producto"
+- extendedWaitUntil:
+    visible: ".*guardado sin conexión.*"
+    timeout: 30000
+# Lo pendiente va primero en la lista. (Maestro compara sin distinguir mayusculas:
+# «Pendiente» tambien coincidiria con «1 producto pendiente de enviar».)
+- assertVisible: "Omeprazol 20mg.*"
+- takeScreenshot: o05-${PLATAFORMA}-pendiente

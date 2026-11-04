@@ -5,3 +5,12 @@ PRODUCT_BUNDLE_IDENTIFIER=pe.edu.upeu.pharmamobil.PharmaMobil$(TEAM_ID)
 
 CURRENT_PROJECT_VERSION=1
 MARKETING_VERSION=1.0
+
+// URL de PharmaSoft para la app de iOS. Vacia = http://localhost:8080/api/v1/, que es
+// lo que sirve en el simulador. Para un iPhone fisico se pasa al compilar, con la IP de
+// la PC en la red local (ver .github/workflows/ios-evidencias.yml, job ios-dispositivo).
+PHARMASOFT_URL=
+
+// Sesion 11: SQLDelight usa el SQLite del sistema. El framework Shared es estatico, asi que
+// la libreria no viaja con el: la app la enlaza aqui.
+OTHER_LDFLAGS = $(inherited) -lsqlite3

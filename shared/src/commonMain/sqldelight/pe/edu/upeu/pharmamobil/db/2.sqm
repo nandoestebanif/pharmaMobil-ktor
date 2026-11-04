@@ -1,0 +1,4 @@
+-- Migracion 2 -> 3 (sesion 13): estado de envio de cada fila pendiente. Sin esta
+-- migracion, una base de la sesion 11 no tendria las columnas y la app fallaria al leerlas.
+ALTER TABLE producto ADD COLUMN intentos INTEGER NOT NULL DEFAULT 0;
+ALTER TABLE producto ADD COLUMN ultimo_error TEXT;

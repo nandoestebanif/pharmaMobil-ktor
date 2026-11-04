@@ -7,10 +7,8 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CloudOff
 import androidx.compose.material.icons.filled.Email
@@ -18,12 +16,9 @@ import androidx.compose.material.icons.filled.Group
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Phone
 import androidx.compose.material3.Button
-import androidx.compose.material3.Card
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.FilledTonalButton
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -33,7 +28,9 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import pe.edu.upeu.pharmamobil.presentation.components.EstadoVacio
+import pe.edu.upeu.pharmamobil.presentation.components.IconoEnRecuadro
 import pe.edu.upeu.pharmamobil.presentation.components.MensajeExito
+import pe.edu.upeu.pharmamobil.presentation.components.Tarjeta
 import pe.edu.upeu.pharmamobil.presentation.components.ValidatedTextField
 
 @Composable
@@ -100,7 +97,7 @@ fun ClienteScreen(
 
                 is ClienteUiState.Fase.ConClientes ->
                     LazyColumn(
-                        verticalArrangement = Arrangement.spacedBy(8.dp)
+                        verticalArrangement = Arrangement.spacedBy(10.dp)
                     ) {
                         items(
                             items = fase.clientes,
@@ -139,7 +136,7 @@ private fun FormularioClienteCard(
     onRegistrar: () -> Unit
 ) {
 
-    Card(
+    Tarjeta(
         modifier = Modifier.fillMaxWidth()
     ) {
 
@@ -230,30 +227,21 @@ private fun ClienteItem(
     cliente: ClienteUi
 ) {
 
-    Card(
+    Tarjeta(
         modifier = Modifier.fillMaxWidth()
     ) {
 
         Row(
-            modifier = Modifier.padding(12.dp),
+            modifier = Modifier.padding(horizontal = 14.dp, vertical = 12.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(12.dp)
         ) {
 
-            Surface(
-                shape = CircleShape,
-                color = MaterialTheme.colorScheme.secondaryContainer,
-                contentColor = MaterialTheme.colorScheme.onSecondaryContainer
-            ) {
-
-                Icon(
-                    imageVector = Icons.Default.Person,
-                    contentDescription = null,
-                    modifier = Modifier
-                        .padding(8.dp)
-                        .size(20.dp)
-                )
-            }
+            IconoEnRecuadro(
+                icono = Icons.Default.Person,
+                fondo = MaterialTheme.colorScheme.secondaryContainer,
+                color = MaterialTheme.colorScheme.onSecondaryContainer
+            )
 
             Column(
                 modifier = Modifier.weight(1f)
@@ -261,7 +249,7 @@ private fun ClienteItem(
 
                 Text(
                     text = cliente.nombre,
-                    style = MaterialTheme.typography.titleSmall
+                    style = MaterialTheme.typography.titleMedium
                 )
 
                 Text(

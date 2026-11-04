@@ -1,0 +1,38 @@
+# Subflujo de la sesion 10: deja la app en el login (cierra la sesion si habia
+# una) e ingresa con USUARIO y CLAVE. Termina en la pantalla de Inicio.
+appId: ${APP_ID}
+---
+- extendedWaitUntil:
+    visible: "Ingresar|Abrir menú"
+    timeout: 90000
+- runFlow:
+    when:
+      visible: "Abrir menú"
+    commands:
+      - tapOn: "Abrir menú"
+      - tapOn: "Cerrar sesión"
+      - extendedWaitUntil:
+          visible: "Ingresar"
+          timeout: 30000
+# Al cerrar sesion la app conserva el usuario anterior: se borra antes de escribir.
+- tapOn: "Usuario"
+- eraseText: 30
+- inputText: ${USUARIO}
+- tapOn: "Contraseña"
+- inputText: ${CLAVE}
+# En iOS el teclado tapa el boton Ingresar: se envia con la tecla Return
+# (ImeAction.Done del campo Contrasena llama a onIngresar).
+- runFlow:
+    when:
+      platform: Android
+    commands:
+      - hideKeyboard
+      - tapOn: "Ingresar"
+- runFlow:
+    when:
+      platform: iOS
+    commands:
+      - pressKey: Enter
+- extendedWaitUntil:
+    visible: ".*Hola,.*"
+    timeout: 60000

@@ -1,0 +1,29 @@
+# Actividad autonoma 9: pantalla «Acerca de» (tercera capacidad nativa,
+# InfoDispositivo) y el formato de moneda de la plataforma.
+appId: ${APP_ID}
+---
+- launchApp:
+    stopApp: true
+    arguments:
+      pantalla: acerca
+# Si el argumento de arranque no llego, se entra por el menu lateral.
+- runFlow:
+    when:
+      notVisible: "Sistema"
+    commands:
+      - tapOn: "Abrir menú"
+      - tapOn: "Acerca de"
+- extendedWaitUntil:
+    visible: "Sistema"
+    timeout: 60000
+- takeScreenshot: m04-ios-acerca-de
+# En pantallas bajas el formato de moneda queda abajo: se desplaza hasta verlo.
+- scrollUntilVisible:
+    element: "Entre S/ y el monto"
+    direction: DOWN
+    timeout: 20000
+- scrollUntilVisible:
+    element: "Configuración regional"
+    direction: DOWN
+    timeout: 10000
+- takeScreenshot: m05-ios-acerca-de-moneda

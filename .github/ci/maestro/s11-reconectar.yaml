@@ -1,0 +1,20 @@
+# Sesion 11, paso 6.5: vuelve la conexion y se pulsa Sincronizar. El pendiente sube
+# (POST) antes de bajar la lista (GET) y vuelve con su id real.
+appId: ${APP_ID}
+---
+- tapOn: "Sincronizar"
+- extendedWaitUntil:
+    visible: "Inventario al día"
+    timeout: 60000
+- assertNotVisible: ".*Pendiente.*"
+- scrollUntilVisible:
+    element: "Omeprazol 20mg.*"
+    direction: DOWN
+    timeout: 20000
+- takeScreenshot: o06-${PLATAFORMA}-sincronizado
+- tapOn: "Omeprazol 20mg.*"
+- extendedWaitUntil:
+    visible: "Compartir"
+    timeout: 60000
+- takeScreenshot: o07-${PLATAFORMA}-detalle-id-real
+- tapOn: "Volver"

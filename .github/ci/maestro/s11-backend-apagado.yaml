@@ -1,0 +1,18 @@
+# Sesion 11, resultado esperado 4: con red pero con PharmaSoft APAGADO la app abre y
+# lista los productos de la base local.
+appId: ${APP_ID}
+---
+- launchApp:
+    stopApp: true
+- extendedWaitUntil:
+    visible: ".*Hola,.*"
+    timeout: 90000
+- tapOn: ".*Inventario, precios y stock.*"
+- extendedWaitUntil:
+    visible: "Sin conexión: mostrando datos guardados"
+    timeout: 60000
+- scrollUntilVisible:
+    element: "Omeprazol 20mg.*"
+    direction: DOWN
+    timeout: 20000
+- takeScreenshot: o08-${PLATAFORMA}-backend-apagado

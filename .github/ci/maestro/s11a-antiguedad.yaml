@@ -1,0 +1,15 @@
+# Autonoma 11, producto 3: con el reloj del emulador adelantado y en modo avion
+# (no puede sincronizar) la barra dice cuanto hace de la ultima sincronizacion.
+appId: ${APP_ID}
+---
+- launchApp:
+    stopApp: true
+- extendedWaitUntil:
+    visible: ".*Hola,.*"
+    timeout: 90000
+- tapOn: ".*Inventario, precios y stock.*"
+- extendedWaitUntil:
+    visible: "Sin conexión: mostrando datos guardados"
+    timeout: 60000
+- assertVisible: "${ESPERADO}"
+- takeScreenshot: ${CAPTURA}

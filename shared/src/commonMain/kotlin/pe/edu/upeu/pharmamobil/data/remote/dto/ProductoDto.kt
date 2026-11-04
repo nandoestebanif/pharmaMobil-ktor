@@ -3,16 +3,30 @@ package pe.edu.upeu.pharmamobil.data.remote.dto
 import kotlinx.serialization.Serializable
 
 /**
- * Contrato de PharmaSoft: ProductoResponseDTO (GET /api/v1/productos).
- * Solo se modelan los campos que la app usa; el resto (categoriaId,
- * categoriaNombre, fechas) lo descarta ignoreUnknownKeys.
- * BigDecimal llega como numero JSON, por eso precio es Double.
+ * Cuerpo que PharmaSoft exige al crear (POST) o actualizar (PUT) un producto:
+ * ProductoRequestDTO. Los cinco campos son obligatorios en el backend; si falta
+ * alguno responde 400 con el detalle por campo.
  */
 @Serializable
-data class ProductoDto(
+data class ProductoRequestDto(
+    val nombre: String,
+    val precio: Double,
+    val stock: Int,
+    val estado: Boolean = true,
+    val categoriaId: Long
+)
+
+/**
+ * Respuesta de PharmaSoft: ProductoResponseDTO. Las fechas de creacion y
+ * modificacion no se declaran: ignoreUnknownKeys las descarta.
+ */
+@Serializable
+data class ProductoResponseDto(
     val id: Long,
     val nombre: String,
     val precio: Double,
-    val stock: Int = 0,
-    val estado: Boolean = true
+    val stock: Int,
+    val estado: Boolean = true,
+    val categoriaId: Long? = null,
+    val categoriaNombre: String? = null
 )

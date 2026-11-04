@@ -1,0 +1,16 @@
+# Autonoma 11, escenario 5 (parte 1): PharmaSoft con tokens de 1 minuto. Se entra con
+# red y se sincroniza; despues la app se cierra y el token vence.
+appId: ${APP_ID}
+---
+- launchApp:
+    stopApp: true
+- runFlow:
+    file: login.yaml
+    env:
+      USUARIO: admin
+      CLAVE: Admin123
+- tapOn: ".*Inventario, precios y stock.*"
+- extendedWaitUntil:
+    visible: "Inventario al día"
+    timeout: 60000
+- takeScreenshot: a13-esc5-token-de-un-minuto

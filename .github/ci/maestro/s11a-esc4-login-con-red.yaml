@@ -1,0 +1,12 @@
+# Autonoma 11, escenario 4 (parte 2): vuelve la red solo para iniciar sesion.
+# No se abre el inventario: la base local de productos sigue vacia.
+appId: ${APP_ID}
+---
+- launchApp:
+    stopApp: true
+- runFlow:
+    file: login.yaml
+    env:
+      USUARIO: admin
+      CLAVE: Admin123
+- takeScreenshot: a03-esc4-sesion-iniciada

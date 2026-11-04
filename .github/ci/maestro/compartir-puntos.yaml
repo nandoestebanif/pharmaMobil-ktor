@@ -1,0 +1,22 @@
+# Plan B del flujo anterior: si Maestro no ve los textos de Compose, toca por
+# posicion (porcentajes de la pantalla): primera fila del inventario y boton
+# Compartir de la pantalla de detalle.
+appId: ${APP_ID}
+---
+- launchApp:
+    stopApp: true
+    arguments:
+      pantalla: productos
+- waitForAnimationToEnd:
+    timeout: 20000
+- takeScreenshot: p01-ios-listado-precio
+- tapOn:
+    point: "35%,27%"
+- waitForAnimationToEnd:
+    timeout: 10000
+- takeScreenshot: p02-ios-detalle
+- tapOn:
+    point: "50%,75%"
+- waitForAnimationToEnd:
+    timeout: 8000
+- takeScreenshot: p03-ios-hoja-compartir

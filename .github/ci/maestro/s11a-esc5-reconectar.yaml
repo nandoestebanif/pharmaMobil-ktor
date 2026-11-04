@@ -1,0 +1,9 @@
+# Autonoma 11, escenario 5 (parte 3): vuelve la red y se pulsa Sincronizar. El primer
+# POST recibe 401 «El token ha expirado»: la app vuelve al login con el aviso.
+appId: ${APP_ID}
+---
+- tapOn: "Sincronizar"
+- extendedWaitUntil:
+    visible: "Tu sesión expiró. Vuelve a iniciar sesión."
+    timeout: 60000
+- takeScreenshot: a16-esc5-sesion-expirada

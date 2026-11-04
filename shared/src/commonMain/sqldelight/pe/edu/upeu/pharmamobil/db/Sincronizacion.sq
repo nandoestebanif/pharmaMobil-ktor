@@ -1,0 +1,13 @@
+-- Actividad autonoma 11: instante de la ultima sincronizacion CORRECTA (milisegundos desde
+-- 1970, UTC). Una sola fila (id = 1): la pantalla muestra «Actualizado hace 2 horas».
+-- Sin fila = nunca se sincronizo.
+CREATE TABLE sincronizacion (
+    id     INTEGER NOT NULL PRIMARY KEY CHECK (id = 1),
+    ultima INTEGER NOT NULL
+);
+
+ultima:
+SELECT ultima FROM sincronizacion WHERE id = 1;
+
+registrar:
+INSERT OR REPLACE INTO sincronizacion (id, ultima) VALUES (1, ?);

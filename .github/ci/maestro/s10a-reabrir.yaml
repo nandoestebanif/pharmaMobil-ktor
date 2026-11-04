@@ -1,0 +1,12 @@
+# S10 autonoma, almacenamiento seguro (3.ª comprobacion): la app se cierra por
+# completo y al abrirla entra sin pedir credenciales.
+appId: ${APP_ID}
+---
+- stopApp
+- launchApp:
+    stopApp: true
+- extendedWaitUntil:
+    visible: ".*Hola,.*"
+    timeout: 90000
+- assertNotVisible: "Ingresar"
+- takeScreenshot: e03-${PLATAFORMA}-reabierta-sin-credenciales

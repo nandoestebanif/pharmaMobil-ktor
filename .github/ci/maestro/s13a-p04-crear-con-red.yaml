@@ -1,0 +1,26 @@
+# Autonoma 13, paso 4: creacion con conexion; el servicio asigna el id.
+appId: ${APP_ID}
+---
+- tapOn: "Nuevo producto"
+- tapOn: "Nombre"
+- inputText: "Omeprazol 20mg"
+- tapOn: "Precio"
+- inputText: "4.50"
+- tapOn: "Stock"
+- inputText: "40"
+- hideKeyboard
+- tapOn: "Registrar producto"
+- extendedWaitUntil:
+    visible: ".*registrado correctamente.*"
+    timeout: 30000
+- takeScreenshot: f04-creado-con-red
+- scrollUntilVisible:
+    element: "Omeprazol 20mg"
+    direction: DOWN
+    timeout: 20000
+- tapOn: "Omeprazol 20mg"
+- extendedWaitUntil:
+    visible: "Compartir"
+    timeout: 30000
+- takeScreenshot: f04b-detalle-id-del-servidor
+- tapOn: "Volver"

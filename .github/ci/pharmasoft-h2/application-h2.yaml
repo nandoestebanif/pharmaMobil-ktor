@@ -2,9 +2,9 @@
 # Perfil h2: levanta PharmaSoft sin Oracle, con una base H2 en memoria.
 # Uso:  mvnw spring-boot:run -Dspring-boot.run.profiles=h2
 #
-# - El esquema lo genera Hibernate a partir de las entidades (create-drop):
-#   la migracion V1 de Flyway esta escrita para Oracle y no se ejecuta aqui.
-# - Al arrancar se cargan datos de ejemplo desde data-h2.sql.
+# - Flyway arma la base con las migraciones de db/migration-h2: las mismas
+#   tablas que db/migration (Oracle), mas datos de ejemplo (V4).
+# - Usuarios de prueba: admin/Admin123, vendedor/Vendedor123, almacen/Almacen123.
 # - Los datos se pierden al detener el servidor (base en memoria).
 # =====================================================================
 spring:
@@ -14,16 +14,12 @@ spring:
     password:
   jpa:
     hibernate:
-      ddl-auto: create-drop
-    # Crea las tablas ANTES de ejecutar data-h2.sql
-    defer-datasource-initialization: true
+      # Igual que en dev: el esquema lo crea Flyway y Hibernate solo valida.
+      ddl-auto: validate
     show-sql: false
-  sql:
-    init:
-      mode: always
-      data-locations: classpath:data-h2.sql
   flyway:
-    enabled: false
+    enabled: true
+    locations: classpath:db/migration-h2
   h2:
     console:
       enabled: true
@@ -43,3 +39,7 @@ logging:
 app:
   cors:
     allowed-origins: http://localhost:5173,http://127.0.0.1:5173,http://localhost:4200
+  # Mismos valores que el perfil dev. Clave solo para desarrollo.
+  jwt:
+    secret: ILPEwcQMZU9TnjpXzv/hRWNoC9n1Imz+nPTBwMZH7TBX9n7f7XagfIgD7LhCEFZNclj1zxfx9FbVvbpfH45HOA==
+    expiracion-minutos: 60

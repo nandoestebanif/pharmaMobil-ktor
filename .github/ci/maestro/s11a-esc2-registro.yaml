@@ -1,0 +1,18 @@
+# Autonoma 11, escenario 2: registro sin red. Queda en la base local como pendiente.
+appId: ${APP_ID}
+---
+- tapOn: "Nuevo producto"
+- tapOn: "Nombre"
+- inputText: "Omeprazol 20mg"
+- tapOn: "Precio"
+- inputText: "4.50"
+- tapOn: "Stock"
+- inputText: "40"
+- hideKeyboard
+- takeScreenshot: a07-esc2-formulario-sin-red
+- tapOn: "Registrar producto"
+- extendedWaitUntil:
+    visible: ".*guardado sin conexión.*"
+    timeout: 30000
+- assertVisible: "Omeprazol 20mg.*"
+- takeScreenshot: a08-esc2-pendiente

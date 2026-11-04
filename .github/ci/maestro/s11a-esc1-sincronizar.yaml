@@ -1,0 +1,13 @@
+# Autonoma 11, escenario 1 (preparacion): con red se pulsa Sincronizar en la pantalla
+# vacia; baja el inventario y la marca dice «hace un momento».
+appId: ${APP_ID}
+---
+- tapOn: "Sincronizar"
+- extendedWaitUntil:
+    visible: ".*Amoxicilina 500mg.*"
+    timeout: 60000
+- extendedWaitUntil:
+    visible: "Inventario al día"
+    timeout: 60000
+- assertVisible: "Actualizado hace un momento"
+- takeScreenshot: a05-esc1-sincronizado-hace-un-momento

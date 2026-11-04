@@ -1,0 +1,197 @@
+# Sesion 11 (rama feature/offline-first-istana): persistencia local con SQLDelight y
+# estrategia offline-first. GitHub Actions presta un Linux con emulador de Android y un
+# Mac con simulador de iPhone; PharmaSoft corre de verdad (perfil h2).
+#   android  pruebas de commonTest + paso 6 de la guia en el emulador (modo avion con adb),
+#            la base pharma.db en cada paso y Swagger UI con el producto sincronizado
+#   ios      el mismo ciclo en el simulador, sin red = PharmaSoft apagado
+# Cada job publica sus evidencias en una rama ci-evidencias-*-s11 del repositorio.
+name: S11 Offline-first
+
+# Ya entregada: solo se lanza a mano (la autonoma usa s11-autonoma.yml en cada push).
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: s11-offline-${{ github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  android:
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    env:
+      EVID: ${{ github.workspace }}/evidencias
+      RAMA_EVIDENCIAS: ci-evidencias-android-s11
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Habilitar KVM (aceleracion del emulador)
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+
+      - name: Preparar el entorno
+        run: |
+          mkdir -p "$EVID"
+          chmod +x gradlew
+          echo "sdk.dir=$ANDROID_HOME" > local.properties
+          {
+            echo "== sistema"; lsb_release -ds
+            echo "== java"; java -version
+            echo "== commit"; git log -1 --format='%H %s'
+          } > "$EVID/entorno.txt" 2>&1 || true
+
+      - name: Levantar PharmaSoft (perfil h2 con Flyway)
+        run: |
+          bash .github/ci/preparar-backend.sh
+          bash .github/ci/backend.sh 60
+
+      - name: Pruebas del modulo shared (commonTest en la JVM)
+        continue-on-error: true
+        run: |
+          ./gradlew :shared:testAndroidHostTest --console=plain > "$EVID/pruebas-shared.log" 2>&1 || true
+          mkdir -p "$EVID/pruebas-xml"
+          cp shared/build/test-results/testAndroidHostTest/*.xml "$EVID/pruebas-xml/" 2>/dev/null || true
+          python3 .github/ci/resumen_pruebas.py shared/build/test-results/testAndroidHostTest "$EVID/pruebas-s11.txt"
+          echo "::notice title=Pruebas::$(head -2 "$EVID/pruebas-s11.txt" | tail -1)"
+
+      - name: Compilar la app de Android (debug)
+        run: |
+          if ! ./gradlew :androidApp:assembleDebug > "$EVID/gradle-android.log" 2>&1; then
+            ERR=$( (grep -E "^e: |What went wrong|^> " "$EVID/gradle-android.log" | head -25) | tr '\n' ' ' | cut -c1-3500)
+            echo "::error title=Gradle (Android) fallo::$ERR"
+            exit 1
+          fi
+          APK=$(find androidApp/build/outputs/apk/debug -name "*.apk" | head -1)
+          test -n "$APK" || { echo "::error title=Sin APK::assembleDebug no genero el apk"; exit 1; }
+          echo "APK=$PWD/$APK" >> "$GITHUB_ENV"
+
+      - name: Instalar Maestro y Playwright
+        run: |
+          curl -fsSL "https://get.maestro.mobile.dev" | bash > "$EVID/maestro-instalacion.log" 2>&1
+          "$HOME/.maestro/bin/maestro" --version | tee -a "$EVID/maestro-instalacion.log"
+          python3 -m venv /tmp/pw
+          /tmp/pw/bin/pip install --quiet playwright==1.56.0 > "$EVID/playwright-instalacion.log" 2>&1
+          /tmp/pw/bin/python -m playwright install --with-deps chromium >> "$EVID/playwright-instalacion.log" 2>&1
+
+      - name: Emulador y ciclo offline (paso 6 de la guia)
+        continue-on-error: true
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 35
+          arch: x86_64
+          target: google_apis
+          profile: pixel_6
+          disable-animations: true
+          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          script: bash .github/ci/s11-android.sh
+
+      - name: Publicar en la rama ci-evidencias-android-s11
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: bash .github/ci/publicar.sh
+
+  ios:
+    runs-on: macos-latest
+    timeout-minutes: 75
+    env:
+      EVID: ${{ github.workspace }}/evidencias
+      RAMA_EVIDENCIAS: ci-evidencias-ios-s11
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Preparar el entorno
+        run: |
+          mkdir -p "$EVID"
+          chmod +x gradlew
+          {
+            echo "== sistema"; sw_vers
+            echo "== xcode"; xcodebuild -version
+            echo "== sdk simulador"; xcrun --sdk iphonesimulator --show-sdk-version
+            echo "== java"; java -version
+            echo "== commit"; git log -1 --format='%H %s'
+          } > "$EVID/entorno.txt" 2>&1 || true
+
+      - name: Android SDK (lo exige Gradle al configurar el modulo shared)
+        run: |
+          SDK="${ANDROID_HOME:-${ANDROID_SDK_ROOT:-}}"
+          if [ -z "$SDK" ] || [ ! -d "$SDK/platforms" ]; then
+            SDK="$HOME/android-sdk"
+            mkdir -p "$SDK/cmdline-tools"
+            curl -sSLo /tmp/clt.zip https://dl.google.com/android/repository/commandlinetools-mac-13114758_latest.zip
+            unzip -q /tmp/clt.zip -d "$SDK/cmdline-tools"
+            mv "$SDK/cmdline-tools/cmdline-tools" "$SDK/cmdline-tools/latest"
+            yes | "$SDK/cmdline-tools/latest/bin/sdkmanager" --sdk_root="$SDK" --licenses > /dev/null || true
+            "$SDK/cmdline-tools/latest/bin/sdkmanager" --sdk_root="$SDK" "platforms;android-36" "build-tools;36.0.0" > /dev/null
+          fi
+          echo "sdk.dir=$SDK" > local.properties
+          echo "ANDROID_HOME=$SDK" >> "$GITHUB_ENV"
+
+      - name: Levantar PharmaSoft (perfil h2 con Flyway)
+        run: |
+          bash .github/ci/preparar-backend.sh
+          bash .github/ci/backend.sh 60
+
+      - name: Compilar el framework Kotlin (iosSimulatorArm64)
+        run: |
+          if ! ./gradlew :shared:linkDebugFrameworkIosSimulatorArm64 --stacktrace > "$EVID/gradle-framework.log" 2>&1; then
+            ERR=$( (grep -E "^e: |What went wrong|^> |error:|Exception" "$EVID/gradle-framework.log" | head -25) | tr '\n' ' ' | cut -c1-3500)
+            echo "::error title=Gradle (framework iOS) fallo::$ERR"
+            exit 1
+          fi
+
+      - name: Compilar la app iOS para el simulador
+        run: |
+          if ! xcodebuild -project iosApp/iosApp.xcodeproj -target iosApp \
+               -configuration Debug -sdk iphonesimulator -arch arm64 \
+               SYMROOT="$PWD/build/ios" CODE_SIGN_STYLE=Manual CODE_SIGN_IDENTITY=- \
+               DEVELOPMENT_TEAM= CODE_SIGNING_ALLOWED=YES build > "$EVID/xcodebuild.log" 2>&1; then
+            ERR=$( (grep -E "(^| )error: |^e: |What went wrong|Undefined symbol|Permission denied|Exception:|^> " "$EVID/xcodebuild.log" | grep -v "^note:" | head -30) | tr '\n' ' ' | cut -c1-3500)
+            [ -n "$ERR" ] || ERR=$(grep -v "^ *export " "$EVID/xcodebuild.log" | tail -40 | tr '\n' ' ' | cut -c1-3500)
+            echo "::error title=xcodebuild fallo::$ERR"
+            exit 1
+          fi
+          APP=$(find build/ios -maxdepth 3 -name "*.app" | head -1)
+          test -n "$APP" || { echo "::error title=Sin .app::xcodebuild no genero la app"; exit 1; }
+          echo "APP=$PWD/$APP" >> "$GITHUB_ENV"
+          BID=$(/usr/libexec/PlistBuddy -c 'Print CFBundleIdentifier' "$APP/Info.plist")
+          echo "BUNDLE_ID=$BID" >> "$GITHUB_ENV"
+
+      - name: Simulador e instalacion
+        run: |
+          UDID=$(xcrun simctl list devices available -j | python3 -c "import json,sys; d=json.load(sys.stdin)['devices']; rts=sorted([k for k in d if '.iOS-' in k and d[k]], key=lambda k:[int(x) for x in k.split('iOS-')[1].split('-')]); print([x['udid'] for x in d[rts[-1]] if x['name'].startswith('iPhone')][0])")
+          echo "UDID=$UDID" >> "$GITHUB_ENV"
+          xcrun simctl list devices | grep "$UDID" | tee "$EVID/simulador.txt"
+          xcrun simctl boot "$UDID"
+          xcrun simctl bootstatus "$UDID" -b
+          xcrun simctl install "$UDID" "$APP"
+          xcrun simctl launch "$UDID" "$BUNDLE_ID"
+          sleep 45
+          xcrun simctl io "$UDID" screenshot "$EVID/00-ios-primer-arranque.png"
+
+      - name: Ciclo offline en el simulador (Maestro)
+        continue-on-error: true
+        run: |
+          curl -fsSL "https://get.maestro.mobile.dev" | bash > "$EVID/maestro-instalacion.log" 2>&1
+          bash .github/ci/s11-ios.sh "$BUNDLE_ID" "$UDID"
+
+      - name: Publicar en la rama ci-evidencias-ios-s11
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: bash .github/ci/publicar.sh

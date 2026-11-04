@@ -1,0 +1,8 @@
+# Sesion 13: bloqueado para siempre: el unico camino es Ajustes.
+appId: ${APP_ID}
+---
+- tapOn: "Abrir Ajustes"
+- extendedWaitUntil:
+    visible: ".*PharmaMobil.*"
+    timeout: 20000
+- takeScreenshot: b06-ajustes-de-notificaciones

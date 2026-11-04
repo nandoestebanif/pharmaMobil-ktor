@@ -1,0 +1,9 @@
+# Sesion 10, segunda parte: el token ya vencio (el workflow espera 75 s entre
+# ambos flujos). La siguiente peticion recibe el 401 «El token ha expirado».
+appId: ${APP_ID}
+---
+- tapOn: ".*Ibuprofeno 400mg.*"
+- extendedWaitUntil:
+    visible: "Tu sesión expiró. Vuelve a iniciar sesión."
+    timeout: 60000
+- takeScreenshot: d02-${PLATAFORMA}-sesion-expirada

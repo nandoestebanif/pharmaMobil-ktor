@@ -1,0 +1,17 @@
+# Autonoma 13, paso 5: creacion en modo avion; id local provisional y pendiente.
+appId: ${APP_ID}
+---
+- tapOn: "Nuevo producto"
+- tapOn: "Nombre"
+- inputText: "Ranitidina 150mg"
+- tapOn: "Precio"
+- inputText: "2.30"
+- tapOn: "Stock"
+- inputText: "15"
+- hideKeyboard
+- tapOn: "Registrar producto"
+- extendedWaitUntil:
+    visible: ".*guardado sin conexión.*"
+    timeout: 30000
+- assertVisible: "1 producto pendiente de enviar"
+- takeScreenshot: f05-creado-sin-red-pendiente

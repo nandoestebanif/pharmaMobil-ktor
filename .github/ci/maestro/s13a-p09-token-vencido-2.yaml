@@ -1,0 +1,8 @@
+# Autonoma 13, paso 9 (parte 2): el token ya vencio; la siguiente peticion recibe 401.
+appId: ${APP_ID}
+---
+- tapOn: ".*Ibuprofeno 400mg.*"
+- extendedWaitUntil:
+    visible: "Tu sesión expiró. Vuelve a iniciar sesión."
+    timeout: 60000
+- takeScreenshot: f09-token-vencido

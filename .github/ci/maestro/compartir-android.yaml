@@ -1,0 +1,54 @@
+# Flujo de Maestro para la evidencia de Android (Actividad autonoma 9): abre Productos, entra al
+# detalle del primer producto y toca Compartir. Busca los elementos por su texto.
+appId: ${APP_ID}
+---
+- launchApp:
+    stopApp: true
+    arguments:
+      pantalla: productos
+# Si el argumento de arranque no llego, la app abre en Inicio: se entra a mano.
+- runFlow:
+    when:
+      visible: ".*Inventario, precios y stock.*"
+    commands:
+      - tapOn: ".*Inventario, precios y stock.*"
+# El runner de CI va cargado y el backend puede tardar: si la carga falla, se reintenta.
+- extendedWaitUntil:
+    visible: ".*Paracetamol 500mg.*|Reintentar"
+    timeout: 90000
+- runFlow:
+    when:
+      visible: "Reintentar"
+    commands:
+      - tapOn: "Reintentar"
+- extendedWaitUntil:
+    visible: ".*Paracetamol 500mg.*"
+    timeout: 90000
+- takeScreenshot: m01-android-listado-precio
+- tapOn:
+    text: ".*Paracetamol 500mg.*"
+    index: 0
+- extendedWaitUntil:
+    visible: "Compartir|Reintentar"
+    timeout: 60000
+- runFlow:
+    when:
+      visible: "Reintentar"
+    commands:
+      - tapOn: "Reintentar"
+      - extendedWaitUntil:
+          visible: "Compartir|Reintentar"
+          timeout: 60000
+- runFlow:
+    when:
+      visible: "Reintentar"
+    commands:
+      - tapOn: "Reintentar"
+- extendedWaitUntil:
+    visible: "Compartir"
+    timeout: 60000
+- takeScreenshot: m02-android-detalle
+- tapOn: "Compartir"
+- waitForAnimationToEnd:
+    timeout: 10000
+- takeScreenshot: m03-android-selector-compartir

@@ -1,0 +1,104 @@
+# Actividad autonoma 11 (rama feature/offline-first-istana): pruebas unitarias y
+# evidencia de escenarios offline. Linux de GitHub Actions con emulador de Android y
+# PharmaSoft real (perfil h2, base en archivo para poder reiniciarlo sin perder datos).
+#   - :shared:testAndroidHostTest con la suite de 6 pruebas (SuiteOfflineTest)
+#   - bitacora de 5 escenarios en el emulador (.github/ci/s11a-android.sh): capturas,
+#     base pharma.db en cada paso, peticiones KtorHttp y Swagger
+#   - «Actualizado hace...» con el reloj del emulador adelantado 3 h y 26 h
+# Publica todo en la rama ci-evidencias-autonoma-s11.
+name: S11 Autonoma
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ feature/offline-first-istana ]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: s11-autonoma-${{ github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  android:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      EVID: ${{ github.workspace }}/evidencias
+      RAMA_EVIDENCIAS: ci-evidencias-autonoma-s11
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Habilitar KVM (aceleracion del emulador)
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+
+      - name: Preparar el entorno
+        run: |
+          mkdir -p "$EVID"
+          chmod +x gradlew
+          echo "sdk.dir=$ANDROID_HOME" > local.properties
+          {
+            echo "== sistema"; lsb_release -ds
+            echo "== java"; java -version
+            echo "== commit"; git log -1 --format='%H %s'
+          } > "$EVID/entorno.txt" 2>&1 || true
+
+      - name: Levantar PharmaSoft (perfil h2 con Flyway)
+        run: |
+          bash .github/ci/preparar-backend.sh
+          bash .github/ci/backend.sh 60 archivo
+
+      - name: Pruebas del modulo shared (commonTest en la JVM)
+        continue-on-error: true
+        run: |
+          ./gradlew :shared:testAndroidHostTest --console=plain > "$EVID/pruebas-shared.log" 2>&1 || true
+          mkdir -p "$EVID/pruebas-xml"
+          cp shared/build/test-results/testAndroidHostTest/*.xml "$EVID/pruebas-xml/" 2>/dev/null || true
+          python3 .github/ci/resumen_pruebas.py shared/build/test-results/testAndroidHostTest "$EVID/pruebas-s11.txt"
+          echo "::notice title=Pruebas::$(head -2 "$EVID/pruebas-s11.txt" | tail -1)"
+
+      - name: Compilar la app de Android (debug)
+        run: |
+          if ! ./gradlew :androidApp:assembleDebug > "$EVID/gradle-android.log" 2>&1; then
+            ERR=$( (grep -E "^e: |What went wrong|^> " "$EVID/gradle-android.log" | head -25) | tr '\n' ' ' | cut -c1-3500)
+            echo "::error title=Gradle (Android) fallo::$ERR"
+            exit 1
+          fi
+          APK=$(find androidApp/build/outputs/apk/debug -name "*.apk" | head -1)
+          test -n "$APK" || { echo "::error title=Sin APK::assembleDebug no genero el apk"; exit 1; }
+          echo "APK=$PWD/$APK" >> "$GITHUB_ENV"
+
+      - name: Instalar Maestro y Playwright
+        run: |
+          curl -fsSL "https://get.maestro.mobile.dev" | bash > "$EVID/maestro-instalacion.log" 2>&1
+          "$HOME/.maestro/bin/maestro" --version | tee -a "$EVID/maestro-instalacion.log"
+          python3 -m venv /tmp/pw
+          /tmp/pw/bin/pip install --quiet playwright==1.56.0 > "$EVID/playwright-instalacion.log" 2>&1
+          /tmp/pw/bin/python -m playwright install --with-deps chromium >> "$EVID/playwright-instalacion.log" 2>&1
+
+      - name: Emulador y bitacora de 5 escenarios offline
+        continue-on-error: true
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 35
+          arch: x86_64
+          target: google_apis
+          profile: pixel_6
+          disable-animations: true
+          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          script: bash .github/ci/s11a-android.sh
+
+      - name: Publicar en la rama ci-evidencias-autonoma-s11
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: bash .github/ci/publicar.sh

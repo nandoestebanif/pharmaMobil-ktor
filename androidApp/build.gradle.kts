@@ -5,6 +5,14 @@ plugins {
     alias(libs.plugins.composeCompiler)
 }
 
+// Sesion 13: Firebase lee su configuracion de google-services.json (en esta carpeta). El archivo
+// no se sube al repositorio (tiene la clave del proyecto): sin el, la app compila igual y la
+// telemetria escribe en el registro del dispositivo.
+if (file("google-services.json").exists()) {
+    apply(plugin = "com.google.gms.google-services")
+    apply(plugin = "com.google.firebase.crashlytics")
+}
+
 kotlin {
     compilerOptions {
         jvmTarget = JvmTarget.JVM_11

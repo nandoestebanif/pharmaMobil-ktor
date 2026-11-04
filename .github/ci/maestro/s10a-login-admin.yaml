@@ -1,0 +1,15 @@
+# S10 autonoma, cierre de sesion: admin entra y abre el listado de productos.
+appId: ${APP_ID}
+---
+- launchApp:
+    stopApp: true
+- runFlow:
+    file: login.yaml
+    env:
+      USUARIO: admin
+      CLAVE: Admin123
+- tapOn: ".*Inventario, precios y stock.*"
+- extendedWaitUntil:
+    visible: ".*Paracetamol 500mg.*"
+    timeout: 60000
+- takeScreenshot: f01-${PLATAFORMA}-admin-con-sesion

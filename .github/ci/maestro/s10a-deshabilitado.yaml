@@ -1,0 +1,11 @@
+# S10 autonoma, escenario 6: el flujo anterior dejo la sesion abierta y el workflow puso
+# estado = FALSE al vendedor en la base. La siguiente peticion recibe 401
+# «El usuario está deshabilitado» y la app vuelve al login con su propio aviso.
+appId: ${APP_ID}
+---
+- tapOn: ".*Ibuprofeno 400mg.*"
+- extendedWaitUntil:
+    visible: "Tu usuario fue deshabilitado. Consulta con el administrador."
+    timeout: 60000
+- assertVisible: "Ingresar"
+- takeScreenshot: e06-${PLATAFORMA}-usuario-deshabilitado

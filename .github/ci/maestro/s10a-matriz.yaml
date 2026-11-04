@@ -1,0 +1,70 @@
+# S10 autonoma, matriz de permisos: que ofrece la interfaz a cada rol.
+# Las aserciones son la evidencia: si fallan, la interfaz no coincide con lo esperado.
+appId: ${APP_ID}
+---
+- launchApp:
+    stopApp: true
+# admin: todo.
+- runFlow:
+    file: login.yaml
+    env:
+      USUARIO: admin
+      CLAVE: Admin123
+- tapOn: "Abrir menú"
+- assertVisible: "Productos"
+- assertVisible: "Clientes"
+- assertVisible: "Pedidos"
+- takeScreenshot: g01-${PLATAFORMA}-menu-admin
+- tapOn: "Inicio"
+- tapOn: ".*Inventario, precios y stock.*"
+- extendedWaitUntil:
+    visible: ".*Paracetamol 500mg.*"
+    timeout: 60000
+- assertVisible: "Nuevo producto"
+- takeScreenshot: g02-${PLATAFORMA}-productos-admin
+- tapOn: "Volver"
+# vendedor: catalogo solo lectura, ve clientes y pedidos.
+- runFlow:
+    file: login.yaml
+    env:
+      USUARIO: vendedor
+      CLAVE: Vendedor123
+- tapOn: "Abrir menú"
+- assertVisible: "Productos"
+- assertVisible: "Clientes"
+- assertVisible: "Pedidos"
+- takeScreenshot: g03-${PLATAFORMA}-menu-vendedor
+- tapOn: "Inicio"
+- tapOn: ".*Inventario, precios y stock.*"
+- extendedWaitUntil:
+    visible: ".*Paracetamol 500mg.*"
+    timeout: 60000
+- assertNotVisible: "Nuevo producto"
+- takeScreenshot: g04-${PLATAFORMA}-productos-vendedor
+- tapOn: ".*Paracetamol 500mg.*"
+- extendedWaitUntil:
+    visible: "Compartir"
+    timeout: 60000
+- assertNotVisible: "Editar"
+- assertNotVisible: "Eliminar"
+- takeScreenshot: g05-${PLATAFORMA}-detalle-vendedor
+- tapOn: "Volver"
+- tapOn: "Volver"
+# almacen: escribe en el catalogo, pero no ve clientes ni pedidos.
+- runFlow:
+    file: login.yaml
+    env:
+      USUARIO: almacen
+      CLAVE: Almacen123
+- tapOn: "Abrir menú"
+- assertVisible: "Productos"
+- assertNotVisible: "Clientes"
+- assertNotVisible: "Pedidos"
+- takeScreenshot: g06-${PLATAFORMA}-menu-almacen
+- tapOn: "Inicio"
+- tapOn: ".*Inventario, precios y stock.*"
+- extendedWaitUntil:
+    visible: ".*Paracetamol 500mg.*"
+    timeout: 60000
+- assertVisible: "Nuevo producto"
+- takeScreenshot: g07-${PLATAFORMA}-productos-almacen

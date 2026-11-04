@@ -1,0 +1,14 @@
+# Sesion 13: se pide el permiso y se rechaza. Con DIALOGO=segundo, el segundo rechazo lo
+# bloquea para siempre y la tarjeta ofrece ir a Ajustes.
+appId: ${APP_ID}
+---
+- tapOn: "Activar avisos"
+- extendedWaitUntil:
+    visible: "Don.t allow"
+    timeout: 20000
+- takeScreenshot: ${CAPTURA_DIALOGO}
+- tapOn: "Don.t allow"
+- extendedWaitUntil:
+    visible: "${ESPERADO}"
+    timeout: 20000
+- takeScreenshot: ${CAPTURA_TARJETA}

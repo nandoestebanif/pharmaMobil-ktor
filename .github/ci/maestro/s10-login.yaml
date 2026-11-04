@@ -1,0 +1,65 @@
+# Sesion 10: login de admin, CRUD autenticado, la sesion sobrevive al cierre
+# de la app y la accion «Cerrar sesion» devuelve al login.
+appId: ${APP_ID}
+---
+- launchApp:
+    stopApp: true
+- extendedWaitUntil:
+    visible: "Ingresar|Abrir menú"
+    timeout: 90000
+- runFlow:
+    when:
+      visible: "Abrir menú"
+    commands:
+      - tapOn: "Abrir menú"
+      - tapOn: "Cerrar sesión"
+      - extendedWaitUntil:
+          visible: "Ingresar"
+          timeout: 30000
+- takeScreenshot: a01-${PLATAFORMA}-login
+- runFlow:
+    file: login.yaml
+    env:
+      USUARIO: admin
+      CLAVE: Admin123
+- takeScreenshot: a02-${PLATAFORMA}-inicio-admin
+- tapOn: ".*Inventario, precios y stock.*"
+- extendedWaitUntil:
+    visible: ".*Paracetamol 500mg.*"
+    timeout: 60000
+- takeScreenshot: a03-${PLATAFORMA}-productos-admin
+# CRUD autenticado: POST productos con el token adjunto por el plugin Auth.
+- tapOn: "Nuevo producto"
+- tapOn: "Nombre"
+- inputText: "Omeprazol 20mg"
+- tapOn: "Precio"
+- inputText: "4.50"
+- tapOn: "Stock"
+- inputText: "40"
+- runFlow:
+    when:
+      platform: Android
+    commands:
+      - hideKeyboard
+- takeScreenshot: a04-${PLATAFORMA}-formulario
+- tapOn: "Registrar producto"
+- extendedWaitUntil:
+    visible: ".*Omeprazol 20mg.*registrado.*"
+    timeout: 60000
+- takeScreenshot: a05-${PLATAFORMA}-producto-registrado
+# Se cierra la app por completo y se vuelve a abrir: el token sigue guardado.
+- stopApp
+- launchApp:
+    stopApp: true
+- extendedWaitUntil:
+    visible: ".*Hola,.*"
+    timeout: 90000
+- assertNotVisible: "Ingresar"
+- takeScreenshot: a06-${PLATAFORMA}-reabierta-sesion-activa
+- tapOn: "Abrir menú"
+- takeScreenshot: a07-${PLATAFORMA}-menu-admin
+- tapOn: "Cerrar sesión"
+- extendedWaitUntil:
+    visible: "Cerraste sesión."
+    timeout: 30000
+- takeScreenshot: a08-${PLATAFORMA}-sesion-cerrada

@@ -1,22 +1,36 @@
-# Evidencias de iOS sin Mac propio: GitHub Actions presta un runner macOS con Xcode.
-# 1) Levanta PharmaSoft (perfil h2, sin Oracle) en localhost:8080
-# 2) Compila la app iOS y la corre en el simulador abriendo directo en Productos
-# 3) Captura: lista de productos, log de Ktor (GET + 200) y el error sin backend
-# Resultado: artifact "evidencias-ios" (zip) en la pestaña Actions del repositorio.
-name: Evidencias iOS
+# Evidencias de PharmaMobil sin Mac propio: GitHub Actions presta equipos con
+# macOS (simulador de iPhone) y con Linux (emulador de Android y navegador).
+#
+# Sesion 10 (rama feature/auth-jwt-istana), al lanzarlo a mano:
+#   swagger           PharmaSoft + Swagger UI con un navegador real (401, 200, 403)
+#                     y la matriz de verificacion por rol de la guia
+#   android-emulador  la app en un emulador de Android: login, permisos, 403 y expiracion
+#   ios-simulador     lo mismo en un simulador de iPhone
+#   ios-dispositivo   instalador .ipa sin firma para un iPhone fisico (Sideloadly)
+# Cada job publica sus capturas en una rama ci-evidencias-*-s10 del repositorio.
+name: Evidencias iOS y Android
 
+# Desde la actividad autonoma solo se lanza a mano (Actions > Run workflow): las
+# evidencias de la practica ya estan publicadas y el simulador de iPhone tarda ~45 min.
 on:
   workflow_dispatch:
-  push:
-    branches: [ feature/ktor-client ]
+
+# Para publicar las capturas en las ramas de evidencias.
+permissions:
+  contents: write
+
+# Un push nuevo cancela la ejecucion anterior de la misma rama.
+concurrency:
+  group: evidencias-${{ github.ref_name }}
+  cancel-in-progress: true
 
 jobs:
-  ios-simulador:
-    runs-on: macos-latest
-    timeout-minutes: 60
+  swagger:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
     env:
-      BUNDLE_ID: pe.edu.upeu.pharmamobil.PharmaMobil
       EVID: ${{ github.workspace }}/evidencias
+      RAMA_EVIDENCIAS: ci-evidencias-swagger-s10
     steps:
       - uses: actions/checkout@v4
 
@@ -25,65 +39,291 @@ jobs:
           distribution: temurin
           java-version: '21'
 
-      - name: Seleccionar el Xcode mas reciente
+      - name: Levantar PharmaSoft (perfil h2 con Flyway)
         run: |
-          XCODE=$(ls -d /Applications/Xcode_*.app | sort -V | tail -1)
-          sudo xcode-select -s "$XCODE"
-          xcodebuild -version
           mkdir -p "$EVID"
+          bash .github/ci/preparar-backend.sh
+          bash .github/ci/backend.sh 60
 
-      - name: Levantar PharmaSoft (perfil h2)
+      - name: Paso 1 de la guia en Swagger UI (Playwright)
         run: |
-          git clone --depth 1 https://github.com/dreyna/pharmaSoft.git backend
-          cp .github/ci/pharmasoft-h2/* backend/src/main/resources/
-          cd backend
-          # Agrega el driver H2 al pom (igual que la rama feature/perfil-h2)
-          perl -0pi -e 's#(<artifactId>ojdbc11</artifactId>\s*<scope>runtime</scope>\s*</dependency>)#$1\n\t\t<dependency>\n\t\t\t<groupId>com.h2database</groupId>\n\t\t\t<artifactId>h2</artifactId>\n\t\t\t<scope>runtime</scope>\n\t\t</dependency>#' pom.xml
-          grep -q "com.h2database" pom.xml
-          chmod +x mvnw
-          nohup ./mvnw -q -DskipTests spring-boot:run -Dspring-boot.run.profiles=h2 > "$EVID/backend.log" 2>&1 &
-          for i in $(seq 1 60); do
-            curl -sf http://localhost:8080/api/health && break
-            sleep 5
-          done
-          echo
-          curl -sf "http://localhost:8080/api/v1/productos?pagina=0&tamanio=20" | tee "$EVID/productos.json"
+          # Entorno virtual: el Python del sistema no admite pip install (PEP 668).
+          python3 -m venv /tmp/pw
+          /tmp/pw/bin/pip install --quiet playwright==1.56.0 > "$EVID/playwright-instalacion.log" 2>&1
+          /tmp/pw/bin/python -m playwright install --with-deps chromium >> "$EVID/playwright-instalacion.log" 2>&1
+          /tmp/pw/bin/python .github/ci/swagger_capturas.py http://localhost:8080 "$EVID" 2>&1 | tee "$EVID/swagger.log"
+          test "${PIPESTATUS[0]}" -eq 0
+          echo "::notice title=Swagger::$(tr '\n' ' ' < "$EVID/swagger-resumen.txt")"
+
+      - name: Verificacion por rol (seccion 6 de la guia)
+        if: always()
+        run: |
+          python .github/ci/matriz_roles.py http://localhost:8080 "$EVID"
+          echo "::notice title=Matriz por rol::$(tr '\n' ' ' < "$EVID/matriz-roles.md")"
+
+      - name: Publicar en la rama ci-evidencias-swagger-s10
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: bash .github/ci/publicar.sh
+
+  android-emulador:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      EVID: ${{ github.workspace }}/evidencias
+      RAMA_EVIDENCIAS: ci-evidencias-android-s10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Habilitar KVM (aceleracion del emulador)
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+
+      - name: Preparar el entorno
+        run: |
+          mkdir -p "$EVID"
+          chmod +x gradlew
+          echo "sdk.dir=$ANDROID_HOME" > local.properties
+          {
+            echo "== sistema"; lsb_release -ds
+            echo "== java"; java -version
+            echo "== commit"; git log -1 --format='%H %s'
+          } > "$EVID/entorno.txt" 2>&1 || true
+
+      - name: Levantar PharmaSoft (perfil h2 con Flyway)
+        run: |
+          bash .github/ci/preparar-backend.sh
+          bash .github/ci/backend.sh 60
+
+      - name: Compilar la app de Android (debug)
+        run: |
+          if ! ./gradlew :androidApp:assembleDebug > "$EVID/gradle-android.log" 2>&1; then
+            ERR=$( (grep -E "^e: |What went wrong|^> " "$EVID/gradle-android.log" | head -25) | tr '\n' ' ' | cut -c1-3500)
+            echo "::error title=Gradle (Android) fallo::$ERR"
+            exit 1
+          fi
+          APK=$(find androidApp/build/outputs/apk/debug -name "*.apk" | head -1)
+          test -n "$APK" || { echo "::error title=Sin APK::assembleDebug no genero el apk"; exit 1; }
+          echo "APK=$PWD/$APK" >> "$GITHUB_ENV"
+
+      - name: Instalar Maestro
+        run: |
+          curl -fsSL "https://get.maestro.mobile.dev" | bash > "$EVID/maestro-instalacion.log" 2>&1
+          "$HOME/.maestro/bin/maestro" --version | tee -a "$EVID/maestro-instalacion.log"
+
+      - name: Emulador, app y flujos de la sesion 10 (Maestro)
+        continue-on-error: true
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 35
+          arch: x86_64
+          target: google_apis
+          # Pantalla de Pixel 6 (1080x2400): capturas nitidas, como las de un telefono real.
+          profile: pixel_6
+          disable-animations: true
+          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          script: bash .github/ci/android-evidencias.sh
+
+      - name: Publicar en la rama ci-evidencias-android-s10
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: bash .github/ci/publicar.sh
+
+  ios-simulador:
+    runs-on: macos-latest
+    timeout-minutes: 75
+    env:
+      EVID: ${{ github.workspace }}/evidencias
+      RAMA_EVIDENCIAS: ci-evidencias-ios-s10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Preparar el entorno
+        run: |
+          mkdir -p "$EVID"
+          # gradlew se subio desde Windows: en macOS el paso de Xcode lo necesita ejecutable.
+          chmod +x gradlew
+          {
+            echo "== sistema"; sw_vers
+            echo "== xcode"; xcodebuild -version
+            echo "== sdk simulador"; xcrun --sdk iphonesimulator --show-sdk-version
+            echo "== java"; java -version
+            echo "== commit"; git log -1 --format='%H %s'
+          } > "$EVID/entorno.txt" 2>&1 || true
+
+      - name: Android SDK (lo exige Gradle al configurar el modulo shared)
+        run: |
+          SDK="${ANDROID_HOME:-${ANDROID_SDK_ROOT:-}}"
+          if [ -z "$SDK" ] || [ ! -d "$SDK/platforms" ]; then
+            SDK="$HOME/android-sdk"
+            mkdir -p "$SDK/cmdline-tools"
+            curl -sSLo /tmp/clt.zip https://dl.google.com/android/repository/commandlinetools-mac-13114758_latest.zip
+            unzip -q /tmp/clt.zip -d "$SDK/cmdline-tools"
+            mv "$SDK/cmdline-tools/cmdline-tools" "$SDK/cmdline-tools/latest"
+            yes | "$SDK/cmdline-tools/latest/bin/sdkmanager" --sdk_root="$SDK" --licenses > /dev/null || true
+            "$SDK/cmdline-tools/latest/bin/sdkmanager" --sdk_root="$SDK" "platforms;android-36" "build-tools;36.0.0" > /dev/null
+          fi
+          echo "sdk.dir=$SDK" > local.properties
+          echo "ANDROID_HOME=$SDK" >> "$GITHUB_ENV"
+
+      - name: Levantar PharmaSoft (perfil h2 con Flyway)
+        run: |
+          bash .github/ci/preparar-backend.sh
+          bash .github/ci/backend.sh 60
+
+      - name: Compilar el framework Kotlin (iosSimulatorArm64)
+        run: |
+          if ! ./gradlew :shared:linkDebugFrameworkIosSimulatorArm64 --stacktrace > "$EVID/gradle-framework.log" 2>&1; then
+            ERR=$( (grep -E "^e: |What went wrong|^> |error:|Exception" "$EVID/gradle-framework.log" | head -25) | tr '\n' ' ' | cut -c1-3500)
+            echo "::error title=Gradle (framework iOS) fallo::$ERR"
+            exit 1
+          fi
 
       - name: Compilar la app iOS para el simulador
         run: |
-          xcodebuild -project iosApp/iosApp.xcodeproj -target iosApp \
-            -configuration Debug -sdk iphonesimulator -arch arm64 \
-            SYMROOT="$PWD/build/ios" CODE_SIGNING_ALLOWED=NO build | tail -30
-          find build/ios -maxdepth 3 -name "*.app"
+          # Firma ad hoc ("-"): el Keychain del simulador exige una app firmada.
+          if ! xcodebuild -project iosApp/iosApp.xcodeproj -target iosApp \
+               -configuration Debug -sdk iphonesimulator -arch arm64 \
+               SYMROOT="$PWD/build/ios" CODE_SIGN_STYLE=Manual CODE_SIGN_IDENTITY=- \
+               DEVELOPMENT_TEAM= CODE_SIGNING_ALLOWED=YES build > "$EVID/xcodebuild.log" 2>&1; then
+            ERR=$( (grep -E "(^| )error: |^e: |What went wrong|Permission denied|Exception:|^> " "$EVID/xcodebuild.log" | grep -v "^note:" | head -30) | tr '\n' ' ' | cut -c1-3500)
+            [ -n "$ERR" ] || ERR=$(grep -v "^ *export " "$EVID/xcodebuild.log" | tail -40 | tr '\n' ' ' | cut -c1-3500)
+            echo "::error title=xcodebuild fallo::$ERR"
+            exit 1
+          fi
+          APP=$(find build/ios -maxdepth 3 -name "*.app" | head -1)
+          test -n "$APP" || { echo "::error title=Sin .app::xcodebuild no genero la app"; exit 1; }
+          echo "APP=$PWD/$APP" >> "$GITHUB_ENV"
+          BID=$(/usr/libexec/PlistBuddy -c 'Print CFBundleIdentifier' "$APP/Info.plist")
+          echo "BUNDLE_ID=$BID" >> "$GITHUB_ENV"
+          codesign -dv "$APP" >> "$EVID/xcodebuild.log" 2>&1 || true
 
-      - name: Correr en el simulador y capturar la lista
+      - name: Simulador e instalacion
         run: |
           UDID=$(xcrun simctl list devices available -j | python3 -c "import json,sys; d=json.load(sys.stdin)['devices']; rts=sorted([k for k in d if '.iOS-' in k and d[k]], key=lambda k:[int(x) for x in k.split('iOS-')[1].split('-')]); print([x['udid'] for x in d[rts[-1]] if x['name'].startswith('iPhone')][0])")
           echo "UDID=$UDID" >> "$GITHUB_ENV"
+          xcrun simctl list devices | grep "$UDID" | tee "$EVID/simulador.txt"
           xcrun simctl boot "$UDID"
           xcrun simctl bootstatus "$UDID" -b
-          APP=$(find build/ios -maxdepth 3 -name "*.app" | head -1)
           xcrun simctl install "$UDID" "$APP"
-          # --console-pty: guarda el stdout de la app (lineas KtorHttp => ...)
-          nohup xcrun simctl launch --console-pty "$UDID" "$BUNDLE_ID" -pantalla productos > "$EVID/ios-ktor.log" 2>&1 &
-          sleep 40
-          xcrun simctl io "$UDID" screenshot "$EVID/01-ios-lista-productos.png"
-          grep "KtorHttp" "$EVID/ios-ktor.log" > "$EVID/ios-ktor-filtrado.log" || true
-          cat "$EVID/ios-ktor-filtrado.log"
+          # Primer arranque (lento en el runner) fuera de Maestro.
+          xcrun simctl launch "$UDID" "$BUNDLE_ID"
+          sleep 45
+          xcrun simctl io "$UDID" screenshot "$EVID/00-ios-primer-arranque.png"
 
-      - name: Apagar el backend y capturar el error controlado
+      - name: Flujos de la sesion 10 (Maestro)
+        continue-on-error: true
         run: |
-          pkill -f spring-boot || true
-          pkill -f PharmaBackendApplication || true
-          sleep 5
-          xcrun simctl terminate "$UDID" "$BUNDLE_ID" || true
-          nohup xcrun simctl launch --console-pty "$UDID" "$BUNDLE_ID" -pantalla productos > "$EVID/ios-ktor-error.log" 2>&1 &
-          sleep 30
-          xcrun simctl io "$UDID" screenshot "$EVID/02-ios-error-sin-backend.png"
-          cat "$EVID/ios-ktor-error.log" | grep "KtorHttp" || true
+          curl -fsSL "https://get.maestro.mobile.dev" | bash > "$EVID/maestro-instalacion.log" 2>&1
+          bash .github/ci/flujos-s10.sh ios "$BUNDLE_ID" "$UDID"
+          xcrun simctl io "$UDID" screenshot "$EVID/09-ios-estado-final.png" || true
 
-      - uses: actions/upload-artifact@v4
+      - name: Publicar en la rama ci-evidencias-ios-s10
         if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: bash .github/ci/publicar.sh
+
+  # Instalador para un iPhone fisico. Sale sin firma: se firma e instala desde
+  # Windows con Sideloadly y un Apple ID. Solo corre si
+  # iosApp/Configuration/servidor-dispositivo.txt tiene la IP de la PC.
+  ios-dispositivo:
+    runs-on: macos-latest
+    timeout-minutes: 45
+    env:
+      SALIDA: ${{ github.workspace }}/instalador
+      RAMA_INSTALADOR: ci-ios-instalador
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Leer la IP de la PC
+        id: servidor
+        run: |
+          IP=$(tr -d ' \r\n' < iosApp/Configuration/servidor-dispositivo.txt 2>/dev/null || true)
+          if echo "$IP" | grep -Eq '^[0-9]{1,3}(\.[0-9]{1,3}){3}$'; then
+            echo "ip=$IP" >> "$GITHUB_OUTPUT"
+          else
+            echo "::notice title=Instalador omitido::servidor-dispositivo.txt no tiene una IP"
+          fi
+
+      - uses: actions/setup-java@v4
+        if: steps.servidor.outputs.ip != ''
         with:
-          name: evidencias-ios
-          path: evidencias/
+          distribution: temurin
+          java-version: '21'
+
+      - name: Android SDK (lo exige Gradle al configurar el modulo shared)
+        if: steps.servidor.outputs.ip != ''
+        run: |
+          chmod +x gradlew
+          mkdir -p "$SALIDA"
+          SDK="${ANDROID_HOME:-${ANDROID_SDK_ROOT:-}}"
+          if [ -z "$SDK" ] || [ ! -d "$SDK/platforms" ]; then
+            SDK="$HOME/android-sdk"
+            mkdir -p "$SDK/cmdline-tools"
+            curl -sSLo /tmp/clt.zip https://dl.google.com/android/repository/commandlinetools-mac-13114758_latest.zip
+            unzip -q /tmp/clt.zip -d "$SDK/cmdline-tools"
+            mv "$SDK/cmdline-tools/cmdline-tools" "$SDK/cmdline-tools/latest"
+            yes | "$SDK/cmdline-tools/latest/bin/sdkmanager" --sdk_root="$SDK" --licenses > /dev/null || true
+            "$SDK/cmdline-tools/latest/bin/sdkmanager" --sdk_root="$SDK" "platforms;android-36" "build-tools;36.0.0" > /dev/null
+          fi
+          echo "sdk.dir=$SDK" > local.properties
+          echo "ANDROID_HOME=$SDK" >> "$GITHUB_ENV"
+
+      - name: Compilar la app para iPhone (arm64, sin firma)
+        if: steps.servidor.outputs.ip != ''
+        env:
+          IP: ${{ steps.servidor.outputs.ip }}
+        run: |
+          if ! xcodebuild -project iosApp/iosApp.xcodeproj -target iosApp \
+               -configuration Debug -sdk iphoneos -arch arm64 \
+               SYMROOT="$PWD/build/ios-dispositivo" \
+               CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" \
+               PHARMASOFT_URL="http://$IP:8080/api/v1/" build > "$SALIDA/xcodebuild-dispositivo.log" 2>&1; then
+            ERR=$( (grep -E "(^| )error: |^e: |What went wrong|Permission denied|Exception:|^> " "$SALIDA/xcodebuild-dispositivo.log" | grep -v "^note:" | head -30) | tr '\n' ' ' | cut -c1-3500)
+            echo "::error title=xcodebuild (iPhone) fallo::$ERR"
+            exit 1
+          fi
+          APP=$(find build/ios-dispositivo -maxdepth 3 -name "*.app" | head -1)
+          mkdir -p ipa/Payload
+          cp -R "$APP" ipa/Payload/
+          (cd ipa && zip -qry "$SALIDA/PharmaMobil.ipa" Payload)
+          echo "::notice title=Instalador::$(du -h "$SALIDA/PharmaMobil.ipa" | cut -f1) para http://$IP:8080"
+
+      - name: Publicar el instalador en la rama ci-ios-instalador
+        if: always() && steps.servidor.outputs.ip != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+          IP: ${{ steps.servidor.outputs.ip }}
+        run: |
+          cd "$SALIDA"
+          find . -type f -size +95M -delete
+          {
+            echo "# Instalador de PharmaMobil para iPhone"
+            echo
+            echo "- Servidor configurado: http://$IP:8080/api/v1/"
+            echo "- Commit: $GITHUB_SHA ($GITHUB_REF_NAME)"
+            echo "- Fecha (UTC): $(date -u '+%Y-%m-%d %H:%M:%S')"
+            echo
+            echo "PharmaMobil.ipa no esta firmado: se instala con Sideloadly y un Apple ID."
+          } > README.md
+          git init -q
+          git checkout -q -b "$RAMA_INSTALADOR"
+          git add -A
+          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+            commit -qm "Instalador iOS de la ejecucion $GITHUB_RUN_NUMBER ($GITHUB_SHA)"
+          git push -f "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" "$RAMA_INSTALADOR"

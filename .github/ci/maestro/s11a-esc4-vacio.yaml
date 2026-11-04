@@ -1,0 +1,12 @@
+# Autonoma 11, escenario 4 (parte 3): modo avion otra vez y se abre el inventario por
+# primera vez. Base vacia + sin red = estado vacio que se explica, no un error.
+appId: ${APP_ID}
+---
+- tapOn: ".*Inventario, precios y stock.*"
+- extendedWaitUntil:
+    visible: "Todavía no hay datos en este teléfono"
+    timeout: 60000
+- assertVisible: "Nunca sincronizado"
+- assertVisible: "Sin conexión con PharmaSoft"
+- assertNotVisible: "No pudimos cargar el inventario"
+- takeScreenshot: a04-esc4-estado-vacio-informativo

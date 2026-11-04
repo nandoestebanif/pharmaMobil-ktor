@@ -1,0 +1,12 @@
+# S10 autonoma, cierre de sesion: tras el cierre entra OTRO usuario (almacen). La app no
+# arrastra nada del admin: ni sus botones ni su lista (efecto 3), y la peticion
+# usa el token nuevo y no el del admin (efecto 2, comprobado ademas contra el servidor).
+appId: ${APP_ID}
+---
+- runFlow:
+    file: login.yaml
+    env:
+      USUARIO: almacen
+      CLAVE: Almacen123
+- assertNotVisible: ".*Carlos.*"
+- takeScreenshot: f05-${PLATAFORMA}-entra-almacen

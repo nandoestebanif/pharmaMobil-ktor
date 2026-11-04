@@ -1,0 +1,21 @@
+# Autonoma 11, escenario 3: vuelve la red y se pulsa Sincronizar. El pendiente sube
+# (POST) antes de bajar la lista (GET) y queda con el id que asigno PharmaSoft.
+appId: ${APP_ID}
+---
+- tapOn: "Sincronizar"
+- extendedWaitUntil:
+    visible: "Inventario al día"
+    timeout: 60000
+- assertVisible: "Actualizado hace un momento"
+- assertNotVisible: ".*Pendiente.*"
+- takeScreenshot: a09-esc3-sincronizado
+- scrollUntilVisible:
+    element: "Omeprazol 20mg.*"
+    direction: DOWN
+    timeout: 20000
+- tapOn: "Omeprazol 20mg.*"
+- extendedWaitUntil:
+    visible: "Compartir"
+    timeout: 60000
+- takeScreenshot: a10-esc3-detalle-id-real
+- tapOn: "Volver"

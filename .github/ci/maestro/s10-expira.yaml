@@ -1,0 +1,17 @@
+# Sesion 10, primera parte: el backend se reinicia con tokens de 1 minuto. Se inicia sesion,
+# se espera a que el token venza y la siguiente peticion recibe el 401 real
+# «El token ha expirado»: la app cierra la sesion y vuelve al login con aviso.
+appId: ${APP_ID}
+---
+- launchApp:
+    stopApp: true
+- runFlow:
+    file: login.yaml
+    env:
+      USUARIO: admin
+      CLAVE: Admin123
+- tapOn: ".*Inventario, precios y stock.*"
+- extendedWaitUntil:
+    visible: ".*Paracetamol 500mg.*"
+    timeout: 60000
+- takeScreenshot: d01-${PLATAFORMA}-antes-de-expirar

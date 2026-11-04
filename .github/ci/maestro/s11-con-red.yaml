@@ -1,0 +1,20 @@
+# Sesion 11, paso 6.1: con red se abre la app y se deja sincronizar.
+# Instalacion limpia: la base local empieza vacia y se llena con PharmaSoft.
+appId: ${APP_ID}
+---
+- launchApp:
+    clearState: true
+    stopApp: true
+- runFlow:
+    file: login.yaml
+    env:
+      USUARIO: admin
+      CLAVE: Admin123
+- tapOn: ".*Inventario, precios y stock.*"
+- extendedWaitUntil:
+    visible: ".*Amoxicilina 500mg.*"
+    timeout: 60000
+- extendedWaitUntil:
+    visible: "Inventario al día"
+    timeout: 60000
+- takeScreenshot: o01-${PLATAFORMA}-con-red-sincronizado

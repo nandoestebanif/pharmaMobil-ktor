@@ -1,0 +1,19 @@
+-- Sesion 11: datos de la ultima sesion validada (nombre, permisos, roles). Con PharmaSoft
+-- apagado la app no puede preguntar GET auth/me; con esta fila entra igual y muestra el
+-- inventario guardado. El token NO va aqui: sigue en el almacen cifrado de la sesion 10.
+CREATE TABLE perfil (
+    usuario         TEXT NOT NULL PRIMARY KEY,
+    nombre_completo TEXT NOT NULL,
+    -- listas separadas por comas (los permisos de PharmaSoft no llevan comas)
+    permisos        TEXT NOT NULL,
+    roles           TEXT NOT NULL
+);
+
+obtener:
+SELECT * FROM perfil LIMIT 1;
+
+guardar:
+INSERT OR REPLACE INTO perfil VALUES (?, ?, ?, ?);
+
+borrar:
+DELETE FROM perfil;

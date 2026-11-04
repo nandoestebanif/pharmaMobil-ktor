@@ -1,0 +1,16 @@
+# Autonoma 13, paso 10: se vuelve a entrar y se cierra la sesion desde el menu.
+appId: ${APP_ID}
+---
+- tapOn: "Contraseña"
+- inputText: Admin123
+- hideKeyboard
+- tapOn: "Ingresar"
+- extendedWaitUntil:
+    visible: ".*Hola,.*"
+    timeout: 60000
+- tapOn: "Abrir menú"
+- tapOn: "Cerrar sesión"
+- extendedWaitUntil:
+    visible: "Cerraste sesión."
+    timeout: 30000
+- takeScreenshot: f10-sesion-cerrada

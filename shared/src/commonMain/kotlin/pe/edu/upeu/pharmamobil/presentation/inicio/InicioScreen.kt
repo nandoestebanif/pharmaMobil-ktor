@@ -1,14 +1,18 @@
 package pe.edu.upeu.pharmamobil.presentation.inicio
 
+import pe.edu.upeu.pharmamobil.presentation.components.LogoPharmaMobil
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ChevronRight
@@ -16,52 +20,65 @@ import androidx.compose.material.icons.filled.LocalPharmacy
 import androidx.compose.material.icons.filled.Medication
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.ShoppingCart
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import pe.edu.upeu.pharmamobil.navigation.Screen
+import pe.edu.upeu.pharmamobil.presentation.components.Etiqueta
+import pe.edu.upeu.pharmamobil.presentation.components.IconoEnRecuadro
+import pe.edu.upeu.pharmamobil.presentation.components.Tarjeta
 
-/** Cada acceso rapido de la portada lleva a uno de los modulos de la app. */
-private data class Opcion(
+/** Cada modulo de la portada lleva a una pantalla de la app. */
+private data class Modulo(
     val screen: Screen,
     val icono: ImageVector,
     val titulo: String,
-    val descripcion: String
+    val descripcion: String,
+    val disponible: Boolean = true
 )
 
-private val OPCIONES = listOf(
-    Opcion(
+private val MODULOS = listOf(
+    Modulo(
         screen = Screen.Productos,
         icono = Icons.Default.Medication,
-        titulo = "Registrar productos",
-        descripcion = "Da de alta medicamentos con su precio y su stock."
+        titulo = "Productos",
+        descripcion = "Inventario, precios y stock"
     ),
-    Opcion(
+    Modulo(
         screen = Screen.Clientes,
         icono = Icons.Default.Person,
-        titulo = "Registrar clientes",
-        descripcion = "Guarda los datos de contacto para la boleta."
+        titulo = "Clientes",
+        descripcion = "Datos de contacto para la boleta"
     ),
-    Opcion(
+    Modulo(
         screen = Screen.Pedidos,
         icono = Icons.Default.ShoppingCart,
-        titulo = "Revisar pedidos",
-        descripcion = "Disponible en una próxima sesión del curso."
+        titulo = "Pedidos",
+        descripcion = "Llega en una próxima sesión del curso",
+        disponible = false
     )
 )
 
 @Composable
 fun InicioScreen(
     onNavegar: (Screen) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    // Sesion 10: saludo con el nombre del usuario y solo los modulos que su rol puede ver.
+    nombreUsuario: String? = null,
+    rol: String? = null,
+    puedeVer: (Screen) -> Boolean = { true },
+    // Sesion 13: tarjeta del permiso de notificaciones (la arma App con su ViewModel).
+    avisos: @Composable () -> Unit = {}
 ) {
 
     Column(
@@ -69,24 +86,26 @@ fun InicioScreen(
             .fillMaxSize()
             .verticalScroll(rememberScrollState())
             .padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+        verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
 
-        Portada()
+        Portada(nombreUsuario = nombreUsuario, rol = rol)
+
+        avisos()
 
         Text(
-            text = "Qué puedes hacer",
-            style = MaterialTheme.typography.titleMedium
+            text = "Módulos",
+            style = MaterialTheme.typography.titleMedium,
+            fontWeight = FontWeight.SemiBold,
+            modifier = Modifier.padding(top = 8.dp, start = 4.dp)
         )
 
-        OPCIONES.forEach { opcion ->
+        MODULOS.filter { puedeVer(it.screen) }.forEach { modulo ->
 
-            AccesoRapido(
-                icono = opcion.icono,
-                titulo = opcion.titulo,
-                descripcion = opcion.descripcion,
+            AccesoAModulo(
+                modulo = modulo,
                 onClick = {
-                    onNavegar(opcion.screen)
+                    onNavegar(modulo.screen)
                 }
             )
         }
@@ -95,50 +114,80 @@ fun InicioScreen(
 
 
 @Composable
-private fun Portada() {
+private fun Portada(nombreUsuario: String?, rol: String?) {
 
-    Card(
-        modifier = Modifier.fillMaxWidth(),
-        colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.primaryContainer,
-            contentColor = MaterialTheme.colorScheme.onPrimaryContainer
-        )
+    val esquema = MaterialTheme.colorScheme
+
+    // En el tema oscuro los tonos "primary" son claros: se usan los contenedores,
+    // que son oscuros, para que el texto blanco se siga leyendo.
+    val temaOscuro = esquema.background.luminance() < 0.5f
+    val degradado = if (temaOscuro) {
+        listOf(esquema.primaryContainer, esquema.tertiaryContainer)
+    } else {
+        listOf(esquema.primary, esquema.tertiary)
+    }
+
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(28.dp))
+            .background(Brush.linearGradient(colors = degradado))
     ) {
 
+        // Icono grande de fondo, apenas visible: da caracter sin estorbar el texto.
+        Icon(
+            imageVector = Icons.Default.LocalPharmacy,
+            contentDescription = null,
+            tint = Color.White.copy(alpha = 0.12f),
+            modifier = Modifier
+                .align(Alignment.BottomEnd)
+                .offset(x = 28.dp, y = 28.dp)
+                .size(168.dp)
+        )
+
         Column(
-            modifier = Modifier.padding(20.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp)
+            modifier = Modifier.padding(24.dp),
+            verticalArrangement = Arrangement.spacedBy(6.dp)
         ) {
 
-            Icon(
-                imageVector = Icons.Default.LocalPharmacy,
-                contentDescription = null,
-                modifier = Modifier.size(40.dp)
-            )
+            LogoPharmaMobil(lado = 56.dp)
 
             Text(
                 text = "PharmaMobil",
-                style = MaterialTheme.typography.headlineSmall
+                style = MaterialTheme.typography.headlineMedium,
+                fontWeight = FontWeight.Bold,
+                color = Color.White,
+                modifier = Modifier.padding(top = 10.dp)
             )
 
             Text(
-                text = "Sistema de gestión farmacéutica para tu cadena de boticas.",
-                style = MaterialTheme.typography.bodyMedium
+                text = nombreUsuario?.let { "Hola, $it" } ?: "Gestión farmacéutica para tu cadena de boticas.",
+                style = MaterialTheme.typography.bodyLarge,
+                color = Color.White.copy(alpha = 0.9f)
             )
+
+            rol?.let {
+                Etiqueta(
+                    texto = it,
+                    fondo = Color.White.copy(alpha = 0.2f),
+                    color = Color.White,
+                    modifier = Modifier.padding(top = 4.dp)
+                )
+            }
         }
     }
 }
 
 
 @Composable
-private fun AccesoRapido(
-    icono: ImageVector,
-    titulo: String,
-    descripcion: String,
+private fun AccesoAModulo(
+    modulo: Modulo,
     onClick: () -> Unit
 ) {
 
-    Card(
+    val esquema = MaterialTheme.colorScheme
+
+    Tarjeta(
         onClick = onClick,
         modifier = Modifier.fillMaxWidth()
     ) {
@@ -149,42 +198,49 @@ private fun AccesoRapido(
             horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
 
-            Surface(
-                shape = CircleShape,
-                color = MaterialTheme.colorScheme.secondaryContainer,
-                contentColor = MaterialTheme.colorScheme.onSecondaryContainer
-            ) {
-
-                Icon(
-                    imageVector = icono,
-                    contentDescription = null,
-                    modifier = Modifier
-                        .padding(10.dp)
-                        .size(22.dp)
-                )
-            }
+            IconoEnRecuadro(
+                icono = modulo.icono,
+                fondo = if (modulo.disponible) esquema.primaryContainer else esquema.surfaceVariant,
+                color = if (modulo.disponible) esquema.onPrimaryContainer else esquema.onSurfaceVariant,
+                lado = 48.dp
+            )
 
             Column(
                 modifier = Modifier.weight(1f),
                 verticalArrangement = Arrangement.spacedBy(2.dp)
             ) {
 
-                Text(
-                    text = titulo,
-                    style = MaterialTheme.typography.titleSmall
-                )
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+
+                    Text(
+                        text = modulo.titulo,
+                        style = MaterialTheme.typography.titleMedium,
+                        fontWeight = FontWeight.SemiBold
+                    )
+
+                    if (!modulo.disponible) {
+                        Etiqueta(
+                            texto = "Pronto",
+                            fondo = esquema.tertiaryContainer,
+                            color = esquema.onTertiaryContainer
+                        )
+                    }
+                }
 
                 Text(
-                    text = descripcion,
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                    text = modulo.descripcion,
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = esquema.onSurfaceVariant
                 )
             }
 
             Icon(
                 imageVector = Icons.Default.ChevronRight,
                 contentDescription = null,
-                tint = MaterialTheme.colorScheme.onSurfaceVariant
+                tint = esquema.onSurfaceVariant
             )
         }
     }

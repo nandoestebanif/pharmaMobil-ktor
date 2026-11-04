@@ -1,0 +1,29 @@
+# Autonoma 11, escenario 5 (parte 2): token vencido y modo avion. Sin servidor no se
+# puede saber que vencio: la app entra con el perfil guardado, lista lo local y deja
+# registrar (queda pendiente).
+appId: ${APP_ID}
+---
+- launchApp:
+    stopApp: true
+- extendedWaitUntil:
+    visible: ".*Hola,.*"
+    timeout: 90000
+- takeScreenshot: a14-esc5-entra-con-perfil-guardado
+- tapOn: ".*Inventario, precios y stock.*"
+- extendedWaitUntil:
+    visible: "Sin conexión: mostrando datos guardados"
+    timeout: 60000
+- tapOn: "Nuevo producto"
+- tapOn: "Nombre"
+- inputText: "Ranitidina 150mg"
+- tapOn: "Precio"
+- inputText: "2.30"
+- tapOn: "Stock"
+- inputText: "15"
+- hideKeyboard
+- tapOn: "Registrar producto"
+- extendedWaitUntil:
+    visible: ".*guardado sin conexión.*"
+    timeout: 30000
+- assertVisible: "Ranitidina 150mg.*"
+- takeScreenshot: a15-esc5-pendiente-con-token-vencido

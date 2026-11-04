@@ -1,0 +1,26 @@
+# S10 autonoma, cierre de sesion: efectos 3 y 4 en la interfaz.
+# Efecto 3: el login queda limpio (sin el usuario anterior ni su nombre).
+# Efecto 4: el boton atras del sistema no devuelve a una pantalla autenticada.
+appId: ${APP_ID}
+---
+- tapOn: "Volver"
+- tapOn: "Abrir menú"
+- tapOn: "Cerrar sesión"
+- extendedWaitUntil:
+    visible: "Cerraste sesión."
+    timeout: 30000
+- assertNotVisible: "admin"
+- assertNotVisible: ".*Carlos.*"
+- assertNotVisible: ".*Paracetamol.*"
+- takeScreenshot: f02-${PLATAFORMA}-login-limpio
+- back
+- takeScreenshot: f03-${PLATAFORMA}-tras-atras
+- assertNotVisible: ".*Paracetamol.*"
+- assertNotVisible: ".*Hola,.*"
+- launchApp
+- extendedWaitUntil:
+    visible: "Ingresar"
+    timeout: 60000
+- assertNotVisible: ".*Hola,.*"
+- assertNotVisible: ".*Paracetamol.*"
+- takeScreenshot: f04-${PLATAFORMA}-reabierta-pide-login

@@ -1,0 +1,14 @@
+# S10 autonoma, escenario 3: el extra de depuracion token=alterado cambia un caracter
+# de la firma del token guardado. Al abrir, la app lo valida (GET auth/me) y el
+# servidor responde 401 «El token no es válido».
+appId: ${APP_ID}
+---
+- launchApp:
+    stopApp: true
+    arguments:
+      token: alterado
+- extendedWaitUntil:
+    visible: "Tu sesión ya no es válida. Vuelve a iniciar sesión."
+    timeout: 90000
+- assertVisible: "Ingresar"
+- takeScreenshot: e04-${PLATAFORMA}-token-alterado

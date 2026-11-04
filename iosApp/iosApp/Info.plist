@@ -4,6 +4,10 @@
 <dict>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>PharmaMobil se conecta a PharmaSoft, el servidor de la botica en tu red local.</string>
+	<key>PharmaSoftUrl</key>
+	<string>$(PHARMASOFT_URL)</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsLocalNetworking</key>

@@ -1,0 +1,21 @@
+# Autonoma 11, escenario 4 (parte 1): instalacion limpia y primera apertura en modo avion.
+# Sin token guardado la app va al login; al intentar entrar explica que no hay conexion.
+appId: ${APP_ID}
+---
+- launchApp:
+    clearState: true
+    stopApp: true
+- extendedWaitUntil:
+    visible: "Ingresar"
+    timeout: 90000
+- takeScreenshot: a01-esc4-primera-apertura-sin-red
+- tapOn: "Usuario"
+- inputText: admin
+- tapOn: "Contraseña"
+- inputText: Admin123
+- hideKeyboard
+- tapOn: "Ingresar"
+- extendedWaitUntil:
+    visible: "No se pudo conectar con el servidor.*"
+    timeout: 60000
+- takeScreenshot: a02-esc4-login-sin-red

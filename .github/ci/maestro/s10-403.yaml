@@ -1,0 +1,35 @@
+# Sesion 10: 403 provocado a proposito. Con «acciones: todas» (solo en una
+# compilacion de depuracion) la app muestra Eliminar al vendedor, que no tiene
+# CATALOGO_ESCRIBIR: el servidor responde 403 y la sesion sigue.
+appId: ${APP_ID}
+---
+- launchApp:
+    stopApp: true
+    arguments:
+      acciones: todas
+- runFlow:
+    file: login.yaml
+    env:
+      USUARIO: vendedor
+      CLAVE: Vendedor123
+- tapOn: ".*Inventario, precios y stock.*"
+- extendedWaitUntil:
+    visible: ".*Paracetamol 500mg.*"
+    timeout: 60000
+- tapOn: ".*Paracetamol 500mg.*"
+- extendedWaitUntil:
+    visible: "Eliminar"
+    timeout: 60000
+- takeScreenshot: c01-${PLATAFORMA}-detalle-vendedor-acciones-visibles
+- tapOn: "Eliminar"
+- tapOn: "Sí, eliminar"
+- extendedWaitUntil:
+    visible: "No tienes permiso para realizar esta operación."
+    timeout: 60000
+- takeScreenshot: c02-${PLATAFORMA}-403-mensaje
+- assertNotVisible: "Ingresar"
+- tapOn: "Volver"
+- extendedWaitUntil:
+    visible: ".*Hola,.*"
+    timeout: 30000
+- takeScreenshot: c03-${PLATAFORMA}-sesion-sigue-activa

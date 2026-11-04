@@ -1,0 +1,128 @@
+# Sesion 10, actividad autonoma «Validacion de expiracion, almacenamiento y cierre
+# de sesion»: GitHub Actions presta un Linux con emulador de Android y PharmaSoft
+# real (perfil h2). Todo se ejecuta de verdad; las capturas y registros se publican
+# en la rama ci-evidencias-autonoma-s10.
+#   1. PharmaSoft con tokens de 1 minuto: los 6 escenarios de token y la matriz de permisos por HTTP
+#   2. Pruebas del modulo shared (incluida la del cierre de sesion contra el servidor real)
+#   3. Emulador: escenarios en la app, almacen cifrado, cierre de sesion y matriz de permisos
+name: S10 Autonoma (sesion y token)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ feature/auth-jwt-istana ]
+    paths:
+      - '.github/workflows/s10-autonoma.yml'
+      - '.github/ci/**'
+      - 'shared/**'
+      - 'androidApp/**'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: s10-autonoma-${{ github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  autonoma:
+    runs-on: ubuntu-latest
+    timeout-minutes: 80
+    env:
+      EVID: ${{ github.workspace }}/evidencias
+      RAMA_EVIDENCIAS: ci-evidencias-autonoma-s10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Habilitar KVM (aceleracion del emulador)
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+
+      - name: Preparar el entorno
+        run: |
+          mkdir -p "$EVID"
+          chmod +x gradlew
+          echo "sdk.dir=$ANDROID_HOME" > local.properties
+          {
+            echo "== sistema"; lsb_release -ds
+            echo "== java"; java -version
+            echo "== commit"; git log -1 --format='%H %s'
+          } > "$EVID/entorno.txt" 2>&1 || true
+
+      - name: Levantar PharmaSoft (tokens de 1 minuto, base H2 en archivo)
+        run: |
+          bash .github/ci/preparar-backend.sh
+          bash .github/ci/backend.sh 1 archivo
+
+      - name: Escenarios de token por HTTP (6 escenarios)
+        continue-on-error: true
+        run: python3 .github/ci/escenarios_token.py
+
+      - name: Matriz de permisos por HTTP (6 operaciones x 3 roles)
+        continue-on-error: true
+        run: python3 .github/ci/matriz_roles.py http://localhost:8080 "$EVID"
+
+      - name: Pruebas del modulo shared (con el servidor real)
+        continue-on-error: true
+        env:
+          PHARMASOFT_URL: http://localhost:8080/api/v1/
+        run: |
+          ./gradlew :shared:testAndroidHostTest --console=plain > "$EVID/pruebas-shared.log" 2>&1 || true
+          mkdir -p "$EVID/pruebas-xml"
+          cp shared/build/test-results/testAndroidHostTest/*.xml "$EVID/pruebas-xml/" 2>/dev/null || true
+          python3 - <<'PY'
+          import glob, re
+          t = f = e = s = 0
+          for x in glob.glob("shared/build/test-results/testAndroidHostTest/*.xml"):
+              h = open(x, encoding="utf-8").read(2000)
+              m = re.search(r'tests="(\d+)" skipped="(\d+)" failures="(\d+)" errors="(\d+)"', h)
+              if m:
+                  a, b, c, d = map(int, m.groups()); t += a; s += b; f += c; e += d
+          open("evidencias/pruebas-resumen.txt", "w").write(f"tests={t} fallos={f} errores={e} omitidas={s}\n")
+          print(open("evidencias/pruebas-resumen.txt").read())
+          PY
+          grep -E "^(== |   )" "$EVID/pruebas-shared.log" | head -30 > "$EVID/cierre-sesion-real.txt" || true
+
+      - name: Compilar la app de Android (debug)
+        run: |
+          if ! ./gradlew :androidApp:assembleDebug > "$EVID/gradle-android.log" 2>&1; then
+            ERR=$( (grep -E "^e: |What went wrong|^> " "$EVID/gradle-android.log" | head -25) | tr '\n' ' ' | cut -c1-3500)
+            echo "::error title=Gradle (Android) fallo::$ERR"
+            exit 1
+          fi
+          APK=$(find androidApp/build/outputs/apk/debug -name "*.apk" | head -1)
+          test -n "$APK" || { echo "::error title=Sin APK::assembleDebug no genero el apk"; exit 1; }
+          echo "APK=$PWD/$APK" >> "$GITHUB_ENV"
+
+      - name: PharmaSoft con tokens de 60 minutos
+        run: bash .github/ci/backend.sh 60 archivo
+
+      - name: Instalar Maestro
+        run: |
+          curl -fsSL "https://get.maestro.mobile.dev" | bash > "$EVID/maestro-instalacion.log" 2>&1
+          "$HOME/.maestro/bin/maestro" --version | tee -a "$EVID/maestro-instalacion.log"
+
+      - name: Emulador, app y flujos de la actividad autonoma (Maestro)
+        continue-on-error: true
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 35
+          arch: x86_64
+          target: google_apis
+          profile: pixel_6
+          disable-animations: true
+          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          script: bash .github/ci/autonoma-android.sh
+
+      - name: Publicar en la rama ci-evidencias-autonoma-s10
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: bash .github/ci/publicar.sh

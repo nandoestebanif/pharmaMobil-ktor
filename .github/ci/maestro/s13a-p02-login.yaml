@@ -1,0 +1,13 @@
+# Autonoma 13, paso 2: inicio de sesion correcto (admin).
+appId: ${APP_ID}
+---
+- tapOn: "Usuario"
+- inputText: admin
+- tapOn: "Contraseña"
+- inputText: Admin123
+- hideKeyboard
+- tapOn: "Ingresar"
+- extendedWaitUntil:
+    visible: ".*Hola,.*"
+    timeout: 60000
+- takeScreenshot: f02-sesion-iniciada

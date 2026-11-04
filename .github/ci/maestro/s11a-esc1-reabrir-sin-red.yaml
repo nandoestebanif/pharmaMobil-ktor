@@ -1,0 +1,16 @@
+# Autonoma 11, escenario 1: la app se cierra, se activa el modo avion y se vuelve a
+# abrir. Entra con el perfil guardado y lista desde la base local con su antiguedad.
+appId: ${APP_ID}
+---
+- launchApp:
+    stopApp: true
+- extendedWaitUntil:
+    visible: ".*Hola,.*"
+    timeout: 90000
+- tapOn: ".*Inventario, precios y stock.*"
+- extendedWaitUntil:
+    visible: "Sin conexión: mostrando datos guardados"
+    timeout: 60000
+- assertVisible: ".*Amoxicilina 500mg.*"
+- assertVisible: "Actualizado hace .*minuto.*"
+- takeScreenshot: a06-esc1-reabierta-sin-red

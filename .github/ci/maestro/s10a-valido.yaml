@@ -1,0 +1,18 @@
+# S10 autonoma, escenario 1 (token valido) y primer paso del almacenamiento seguro:
+# se instala limpio, inicia sesion el vendedor y lista productos con su token (200).
+appId: ${APP_ID}
+---
+- launchApp:
+    stopApp: true
+    clearState: true
+- runFlow:
+    file: login.yaml
+    env:
+      USUARIO: vendedor
+      CLAVE: Vendedor123
+- takeScreenshot: e01-${PLATAFORMA}-inicio-vendedor-sesion-valida
+- tapOn: ".*Inventario, precios y stock.*"
+- extendedWaitUntil:
+    visible: ".*Paracetamol 500mg.*"
+    timeout: 60000
+- takeScreenshot: e02-${PLATAFORMA}-productos-200
