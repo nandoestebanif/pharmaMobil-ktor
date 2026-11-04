@@ -1,0 +1,17 @@
+# Autonoma 13, paso 7: error de validacion del servidor (nombre de 2 letras -> 400).
+appId: ${APP_ID}
+---
+- tapOn: "Nuevo producto"
+- tapOn: "Nombre"
+- inputText: "Ab"
+- tapOn: "Precio"
+- inputText: "2"
+- tapOn: "Stock"
+- inputText: "5"
+- hideKeyboard
+- tapOn: "Registrar producto"
+- extendedWaitUntil:
+    visible: ".*entre 3 y 150.*"
+    timeout: 30000
+- takeScreenshot: f07-validacion-bajo-el-campo
+- tapOn: "Cancelar"

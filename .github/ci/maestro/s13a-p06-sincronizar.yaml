@@ -1,0 +1,9 @@
+# Autonoma 13, paso 6: vuelve la senal y se sincroniza.
+appId: ${APP_ID}
+---
+- tapOn: "Sincronizar"
+- extendedWaitUntil:
+    visible: "Inventario al día"
+    timeout: 60000
+- assertNotVisible: "1 producto pendiente de enviar"
+- takeScreenshot: f06-sincronizado

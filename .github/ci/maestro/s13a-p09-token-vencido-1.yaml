@@ -1,0 +1,14 @@
+# Autonoma 13, paso 9 (parte 1): PharmaSoft con tokens de 1 minuto; se entra con admin.
+appId: ${APP_ID}
+---
+- launchApp:
+    stopApp: true
+- runFlow:
+    file: login.yaml
+    env:
+      USUARIO: admin
+      CLAVE: Admin123
+- tapOn: ".*Inventario, precios y stock.*"
+- extendedWaitUntil:
+    visible: "Inventario al día"
+    timeout: 60000

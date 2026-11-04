@@ -1,0 +1,9 @@
+# Autonoma 13, paso 3: listado tras la primera sincronizacion.
+appId: ${APP_ID}
+---
+- tapOn: ".*Inventario, precios y stock.*"
+- extendedWaitUntil:
+    visible: "Inventario al día"
+    timeout: 60000
+- assertVisible: ".*Amoxicilina 500mg.*"
+- takeScreenshot: f03-listado-primera-sincronizacion
