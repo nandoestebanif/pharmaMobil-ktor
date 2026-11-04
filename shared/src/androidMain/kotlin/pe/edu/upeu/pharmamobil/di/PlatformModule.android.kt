@@ -1,6 +1,7 @@
 package pe.edu.upeu.pharmamobil.di
 
 import android.content.pm.ApplicationInfo
+import android.os.Build
 import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.engine.okhttp.OkHttp
 import org.koin.android.ext.koin.androidContext
@@ -25,10 +26,11 @@ actual val platformModule: Module = module {
     // Motor OkHttp (requiere el permiso INTERNET en el AndroidManifest).
     single<HttpClientEngine> { OkHttp.create() }
     // 10.0.2.2 = localhost de la PC vista desde el emulador.
-    // En celular fisico reemplazar por la IP local de la PC.
+    // Sesion 13 (pruebas en dispositivo real): un celular conectado por USB llega a la PC con
+    // «adb reverse tcp:8080 tcp:8080», que reenvia su 127.0.0.1:8080 al PharmaSoft de la PC.
     single {
         ConfiguracionApi(
-            urlBase = "http://10.0.2.2:8080/api/v1/",
+            urlBase = if (esEmulador()) "http://10.0.2.2:8080/api/v1/" else "http://127.0.0.1:8080/api/v1/",
             // Bitacoras S7/S8: cambiar a TIEMPO_AGOTADO o JSON_ESTRICTO
             // para provocar cada escenario. Dejar en NINGUNO para el uso normal.
             escenario = EscenarioPrueba.NINGUNO,
@@ -52,3 +54,8 @@ actual val platformModule: Module = module {
     // Sesion 13: Firebase Crashlytics detras de la interfaz del dominio.
     single<Telemetria> { TelemetriaFirebase(androidContext()) }
 }
+
+/** El emulador de Android Studio usa el hardware virtual «ranchu» (antes «goldfish»). */
+private fun esEmulador(): Boolean =
+    Build.HARDWARE.contains("ranchu") || Build.HARDWARE.contains("goldfish") ||
+        Build.FINGERPRINT.startsWith("generic") || Build.PRODUCT.contains("sdk")
