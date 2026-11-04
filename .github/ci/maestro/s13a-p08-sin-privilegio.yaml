@@ -1,5 +1,6 @@
 # Autonoma 13, paso 8: operacion sin privilegio. vendedor no tiene CATALOGO_ESCRIBIR; con
 # «acciones: todas» (solo depuracion) la app le muestra Eliminar para provocar el 403.
+# Se usa el primer producto de la lista para no depender del desplazamiento.
 appId: ${APP_ID}
 ---
 - launchApp:
@@ -13,9 +14,9 @@ appId: ${APP_ID}
       CLAVE: Vendedor123
 - tapOn: ".*Inventario, precios y stock.*"
 - extendedWaitUntil:
-    visible: ".*Paracetamol 500mg.*"
+    visible: ".*Amoxicilina 500mg.*"
     timeout: 60000
-- tapOn: ".*Paracetamol 500mg.*"
+- tapOn: ".*Amoxicilina 500mg.*"
 - extendedWaitUntil:
     visible: "Eliminar"
     timeout: 60000
