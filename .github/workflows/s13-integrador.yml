@@ -7,9 +7,10 @@
 # Publica todo en la rama ci-evidencias-s13.
 name: S13 Integrador
 
-# Evidencias de la practica ya publicadas: desde la autonoma 13 se lanza solo a mano.
 on:
   workflow_dispatch:
+  push:
+    branches: [ feature/integrador-13 ]
 
 permissions:
   contents: write

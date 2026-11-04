@@ -142,6 +142,8 @@ permiso 4-concedido
 cortina b08-notificacion-de-prueba
 
 # ---- Pasos 3 y 4: pendientes, fallidas y fallo transitorio ----
+# Primero una sincronizacion con red, para que la base local tenga el inventario.
+correr s13-primera-sync 2
 adb shell am force-stop "$APP"
 avion on
 red 1-modo-avion
