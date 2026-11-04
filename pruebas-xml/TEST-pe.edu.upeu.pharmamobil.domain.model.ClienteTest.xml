@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="pe.edu.upeu.pharmamobil.domain.model.ClienteTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-11-04T21:40:58.809Z" hostname="runnervm48cm3" time="0.0">
+  <properties/>
+  <testcase name="aceptaUnClienteConTelefono" classname="pe.edu.upeu.pharmamobil.domain.model.ClienteTest" time="0.0"/>
+  <testcase name="elTelefonoPuedeFaltar" classname="pe.edu.upeu.pharmamobil.domain.model.ClienteTest" time="0.0"/>
+  <testcase name="noSeConstruyeSinNombre" classname="pe.edu.upeu.pharmamobil.domain.model.ClienteTest" time="0.0"/>
+  <testcase name="noSeConstruyeConTelefonoVacio" classname="pe.edu.upeu.pharmamobil.domain.model.ClienteTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

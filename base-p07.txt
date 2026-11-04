@@ -1,0 +1,21 @@
+# base local del emulador: p07
+$ sqlite3 pharma.db "SELECT id, nombre, stock, pendiente, intentos, ultimo_error FROM producto"
+  id  nombre               stock  pend.  intentos  ultimo_error
+   4  Amoxicilina 500mg       45      0         0  
+   5  Azitromicina 500mg       3      0         0  
+   7  Cetirizina 10mg          0      0         0  
+  10  Clorfenamina 4mg        15      0         0  
+   9  Complejo B              25      0         0  
+   2  Ibuprofeno 400mg        80      0         0  
+   6  Loratadina 10mg         60      0         0  
+   3  Naproxeno 550mg          6      0         0  
+   1  Paracetamol 500mg      120      0         0  
+  11  Ranitidina 150mg        15      0         0  
+   8  Vitamina C 1g           35      0         0  
+(11 filas, 0 pendientes)
+
+$ sqlite3 pharma.db "SELECT usuario, nombre_completo, roles, permisos FROM perfil"
+admin | Carlos Ramirez Torres | ADMIN | CATALOGO_ESCRIBIR,CATALOGO_LEER,CLIENTES_ESCRIBIR,CLIENTES_LEER,REPORTES_VER,USUARIOS_ADMINISTRAR,VENTAS_LEER,VENTAS_REGISTRAR
+
+$ sqlite3 pharma.db "SELECT ultima FROM sincronizacion"
+1793828868441   -> 2026-11-04 21:47:48 UTC (16:47:48 Lima)

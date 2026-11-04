@@ -1,0 +1,6 @@
+$ adb shell run-as pe.edu.upeu.pharmamobil ls shared_prefs
+ls: shared_prefs: No such file or directory
+$ adb shell run-as pe.edu.upeu.pharmamobil cat shared_prefs/sesion_segura.xml
+cat: shared_prefs/sesion_segura.xml: No such file or directory
+$ grep -c 'eyJ' sesion_segura.xml   # cabecera de todo JWT en texto plano
+0

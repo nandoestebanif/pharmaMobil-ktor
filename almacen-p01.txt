@@ -1,0 +1,10 @@
+$ adb shell run-as pe.edu.upeu.pharmamobil ls shared_prefs
+sesion_segura.xml
+$ adb shell run-as pe.edu.upeu.pharmamobil cat shared_prefs/sesion_segura.xml
+<?xml version='1.0' encoding='utf-8' standalone='yes' ?>
+<map>
+    <string name="__androidx_security_crypto_encrypted_prefs_key_keyset__">12a701796e2db25f8d758c57e07252549f3c...(recortado)</string>
+    <string name="__androidx_security_crypto_encrypted_prefs_value_keyset__">128801ffe3ccbd24d629a8ee7a07a756b126...(recortado)</string>
+</map>
+$ grep -c 'eyJ' sesion_segura.xml   # cabecera de todo JWT en texto plano
+0

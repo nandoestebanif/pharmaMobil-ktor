@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="pe.edu.upeu.pharmamobil.data.remote.MapearErrorSesionTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-11-04T21:40:58.323Z" hostname="runnervm48cm3" time="0.003">
+  <properties/>
+  <testcase name="un401ConElMensajeDeExpiracionEsSesionExpirada" classname="pe.edu.upeu.pharmamobil.data.remote.MapearErrorSesionTest" time="0.0"/>
+  <testcase name="un401DeUnUsuarioDeshabilitadoEsUsuarioDeshabilitado" classname="pe.edu.upeu.pharmamobil.data.remote.MapearErrorSesionTest" time="0.001"/>
+  <testcase name="un401ConUnTokenAlteradoEsSesionInvalida" classname="pe.edu.upeu.pharmamobil.data.remote.MapearErrorSesionTest" time="0.0"/>
+  <testcase name="un403EsFaltaDePermisos" classname="pe.edu.upeu.pharmamobil.data.remote.MapearErrorSesionTest" time="0.001"/>
+  <testcase name="sinCabeceraOConPrefijoMalEscritoElServidorDiceQueDebeIniciarSesion" classname="pe.edu.upeu.pharmamobil.data.remote.MapearErrorSesionTest" time="0.0"/>
+  <testcase name="un401EnElLoginSonCredencialesInvalidas" classname="pe.edu.upeu.pharmamobil.data.remote.MapearErrorSesionTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

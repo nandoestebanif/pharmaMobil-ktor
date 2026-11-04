@@ -1,0 +1,51 @@
+--------- beginning of main
+11-04 21:45:16.437 I/System.out( 3588): Server running on port [ 38803 ]
+11-04 21:45:40.734 I/System.out( 4126): Server running on port [ 35237 ]
+11-04 21:46:09.188 I/System.out( 3802): KtorHttp => REQUEST: http://10.0.2.2:8080/api/v1/auth/login
+11-04 21:46:09.188 I/System.out( 3802): KtorHttp => METHOD: POST
+11-04 21:46:09.188 I/System.out( 3802): KtorHttp => COMMON HEADERS
+11-04 21:46:09.188 I/System.out( 3802): KtorHttp => -> Accept: application/json
+11-04 21:46:09.188 I/System.out( 3802): KtorHttp => CONTENT HEADERS
+11-04 21:46:09.188 I/System.out( 3802): KtorHttp => -> Content-Length: 42
+11-04 21:46:09.188 I/System.out( 3802): KtorHttp => -> Content-Type: application/json
+11-04 21:46:10.587 I/System.out( 3802): KtorHttp => RESPONSE: 200 
+11-04 21:46:10.589 I/System.out( 3802): KtorHttp => METHOD: POST
+11-04 21:46:10.589 I/System.out( 3802): KtorHttp => FROM: http://10.0.2.2:8080/api/v1/auth/login
+11-04 21:46:10.589 I/System.out( 3802): KtorHttp => COMMON HEADERS
+11-04 21:46:10.589 I/System.out( 3802): KtorHttp => -> cache-control: no-cache, no-store, max-age=0, must-revalidate
+11-04 21:46:10.589 I/System.out( 3802): KtorHttp => -> connection: keep-alive
+11-04 21:46:10.589 I/System.out( 3802): KtorHttp => -> content-type: application/json
+11-04 21:46:10.589 I/System.out( 3802): KtorHttp => -> date: Wed, 04 Nov 2026 21:46:11 GMT
+11-04 21:46:10.589 I/System.out( 3802): KtorHttp => -> expires: 0
+11-04 21:46:10.589 I/System.out( 3802): KtorHttp => -> keep-alive: timeout=60
+11-04 21:46:10.589 I/System.out( 3802): KtorHttp => -> pragma: no-cache
+11-04 21:46:10.589 I/System.out( 3802): KtorHttp => -> transfer-encoding: chunked
+11-04 21:46:10.589 I/System.out( 3802): KtorHttp => -> vary: Origin; Access-Control-Request-Method; Access-Control-Request-Headers
+11-04 21:46:10.589 I/System.out( 3802): KtorHttp => -> x-content-type-options: nosniff
+11-04 21:46:10.589 I/System.out( 3802): KtorHttp => -> x-frame-options: DENY
+11-04 21:46:10.589 I/System.out( 3802): KtorHttp => -> x-xss-protection: 0
+11-04 21:46:28.918 I/System.out( 4744): Server running on port [ 40893 ]
+11-04 21:46:32.929 I/System.out( 3802): KtorHttp => REQUEST: http://10.0.2.2:8080/api/v1/productos?pagina=0&tamanio=100
+11-04 21:46:32.929 I/System.out( 3802): KtorHttp => METHOD: GET
+11-04 21:46:32.929 I/System.out( 3802): KtorHttp => COMMON HEADERS
+11-04 21:46:32.930 I/System.out( 3802): KtorHttp => -> Accept: application/json
+11-04 21:46:32.930 I/System.out( 3802): KtorHttp => -> Authorization: ***
+11-04 21:46:32.930 I/System.out( 3802): KtorHttp => -> Content-Type: application/json
+11-04 21:46:32.930 I/System.out( 3802): KtorHttp => CONTENT HEADERS
+11-04 21:46:32.930 I/System.out( 3802): KtorHttp => -> Content-Length: 0
+11-04 21:46:33.068 I/System.out( 3802): KtorHttp => RESPONSE: 200 
+11-04 21:46:33.069 I/System.out( 3802): KtorHttp => METHOD: GET
+11-04 21:46:33.069 I/System.out( 3802): KtorHttp => FROM: http://10.0.2.2:8080/api/v1/productos?pagina=0&tamanio=100
+11-04 21:46:33.069 I/System.out( 3802): KtorHttp => COMMON HEADERS
+11-04 21:46:33.070 I/System.out( 3802): KtorHttp => -> cache-control: no-cache, no-store, max-age=0, must-revalidate
+11-04 21:46:33.070 I/System.out( 3802): KtorHttp => -> connection: keep-alive
+11-04 21:46:33.070 I/System.out( 3802): KtorHttp => -> content-type: application/json
+11-04 21:46:33.070 I/System.out( 3802): KtorHttp => -> date: Wed, 04 Nov 2026 21:46:33 GMT
+11-04 21:46:33.070 I/System.out( 3802): KtorHttp => -> expires: 0
+11-04 21:46:33.070 I/System.out( 3802): KtorHttp => -> keep-alive: timeout=60
+11-04 21:46:33.070 I/System.out( 3802): KtorHttp => -> pragma: no-cache
+11-04 21:46:33.070 I/System.out( 3802): KtorHttp => -> transfer-encoding: chunked
+11-04 21:46:33.070 I/System.out( 3802): KtorHttp => -> vary: Origin; Access-Control-Request-Method; Access-Control-Request-Headers
+11-04 21:46:33.070 I/System.out( 3802): KtorHttp => -> x-content-type-options: nosniff
+11-04 21:46:33.070 I/System.out( 3802): KtorHttp => -> x-frame-options: DENY
+11-04 21:46:33.070 I/System.out( 3802): KtorHttp => -> x-xss-protection: 0

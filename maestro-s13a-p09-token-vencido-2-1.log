@@ -1,0 +1,17 @@
+Running on test
+ > Flow s13a-p09-token-vencido-2
+Tap on ".*Ibuprofeno 400mg.*"... COMPLETED
+Assert that "Tu sesión expiró. Vuelve a iniciar sesión." is visible... FAILED
+
+Assertion is false: "Tu sesión expiró. Vuelve a iniciar sesión." is visible
+
+Assertion '"Tu sesión expiró. Vuelve a iniciar sesión." is visible' failed. Check the UI hierarchy in debug artifacts to verify the element state and properties.
+
+Possible causes:
+- Element selector may be incorrect - check if there are similar elements with slightly different names/properties.
+- Element may be temporarily unavailable due to loading state
+- This could be a real regression that needs to be addressed
+
+==== Debug output (logs & screenshots) ====
+
+/home/runner/.maestro/tests/2026-11-04_215046

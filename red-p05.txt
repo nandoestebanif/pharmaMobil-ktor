@@ -1,0 +1,4 @@
+$ adb shell settings get global airplane_mode_on
+1
+$ adb shell ping -c 1 -W 2 10.0.2.2   # PC (PharmaSoft) vista desde el emulador
+connect: Network is unreachable

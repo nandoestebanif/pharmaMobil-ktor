@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="pe.edu.upeu.pharmamobil.data.local.ProductoLocalTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-11-04T21:40:57.575Z" hostname="runnervm48cm3" time="0.306">
+  <properties/>
+  <testcase name="losPendientesRecibenIdsLocalesNegativosYDistintos" classname="pe.edu.upeu.pharmamobil.data.local.ProductoLocalTest" time="0.28"/>
+  <testcase name="confirmarLaSubidaCambiaElIdLocalPorElReal" classname="pe.edu.upeu.pharmamobil.data.local.ProductoLocalTest" time="0.02"/>
+  <testcase name="laListaDelServidorNoBorraLoCreadoSinRed" classname="pe.edu.upeu.pharmamobil.data.local.ProductoLocalTest" time="0.006"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[SLF4J(W): No SLF4J providers were found.
+SLF4J(W): Defaulting to no-operation (NOP) logger implementation
+SLF4J(W): See https://www.slf4j.org/codes.html#noProviders for further details.
+]]></system-err>
+</testsuite>

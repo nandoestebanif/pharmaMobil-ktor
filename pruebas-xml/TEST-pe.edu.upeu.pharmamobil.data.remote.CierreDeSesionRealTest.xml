@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="pe.edu.upeu.pharmamobil.data.remote.CierreDeSesionRealTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-11-04T21:40:58.261Z" hostname="runnervm48cm3" time="0.004">
+  <properties/>
+  <testcase name="trasCerrarSesionLaSiguientePeticionSaleSinTokenYDa401" classname="pe.edu.upeu.pharmamobil.data.remote.CierreDeSesionRealTest" time="0.004"/>
+  <system-out><![CDATA[PHARMASOFT_URL no esta definida: prueba omitida
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

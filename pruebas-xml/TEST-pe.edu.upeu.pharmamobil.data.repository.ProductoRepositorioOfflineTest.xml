@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="pe.edu.upeu.pharmamobil.data.repository.ProductoRepositorioOfflineTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-11-04T21:40:58.451Z" hostname="runnervm48cm3" time="0.098">
+  <properties/>
+  <testcase name="un pendiente que el servidor rechaza no bloquea la bajada de la lista" classname="pe.edu.upeu.pharmamobil.data.repository.ProductoRepositorioOfflineTest" time="0.031"/>
+  <testcase name="con red el producto se sube y queda con el id del servidor" classname="pe.edu.upeu.pharmamobil.data.repository.ProductoRepositorioOfflineTest" time="0.009"/>
+  <testcase name="sincronizar sube lo pendiente antes de bajar y no se pierde nada" classname="pe.edu.upeu.pharmamobil.data.repository.ProductoRepositorioOfflineTest" time="0.016"/>
+  <testcase name="sin red el producto queda pendiente y la pantalla lo ve" classname="pe.edu.upeu.pharmamobil.data.repository.ProductoRepositorioOfflineTest" time="0.007"/>
+  <testcase name="si la red se corta a la mitad lo ya subido no se vuelve a enviar" classname="pe.edu.upeu.pharmamobil.data.repository.ProductoRepositorioOfflineTest" time="0.014"/>
+  <testcase name="sin red el detalle se muestra desde la copia local" classname="pe.edu.upeu.pharmamobil.data.repository.ProductoRepositorioOfflineTest" time="0.009"/>
+  <testcase name="con la sesion vencida se corta la sincronizacion y lo pendiente se conserva" classname="pe.edu.upeu.pharmamobil.data.repository.ProductoRepositorioOfflineTest" time="0.011"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

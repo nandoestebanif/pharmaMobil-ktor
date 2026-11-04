@@ -1,0 +1,6 @@
+$ adb shell run-as pe.edu.upeu.pharmamobil ls shared_prefs
+adb: device offline
+$ adb shell run-as pe.edu.upeu.pharmamobil cat shared_prefs/sesion_segura.xml
+adb: device offline
+$ grep -c 'eyJ' sesion_segura.xml   # cabecera de todo JWT en texto plano
+0

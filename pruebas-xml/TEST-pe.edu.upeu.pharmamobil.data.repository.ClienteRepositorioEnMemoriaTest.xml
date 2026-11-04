@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="pe.edu.upeu.pharmamobil.data.repository.ClienteRepositorioEnMemoriaTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-11-04T21:40:58.437Z" hostname="runnervm48cm3" time="0.004">
+  <properties/>
+  <testcase name="asignaIdCorrelativoAlRegistrar" classname="pe.edu.upeu.pharmamobil.data.repository.ClienteRepositorioEnMemoriaTest" time="0.003"/>
+  <testcase name="listarDevuelveLosClientesRegistrados" classname="pe.edu.upeu.pharmamobil.data.repository.ClienteRepositorioEnMemoriaTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

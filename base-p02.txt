@@ -1,0 +1,10 @@
+# base local del emulador: p02
+$ sqlite3 pharma.db "SELECT id, nombre, stock, pendiente, intentos, ultimo_error FROM producto"
+  id  nombre               stock  pend.  intentos  ultimo_error
+(0 filas, 0 pendientes)
+
+$ sqlite3 pharma.db "SELECT usuario, nombre_completo, roles, permisos FROM perfil"
+admin | Carlos Ramirez Torres | ADMIN | CATALOGO_ESCRIBIR,CATALOGO_LEER,CLIENTES_ESCRIBIR,CLIENTES_LEER,REPORTES_VER,USUARIOS_ADMINISTRAR,VENTAS_LEER,VENTAS_REGISTRAR
+
+$ sqlite3 pharma.db "SELECT ultima FROM sincronizacion"
+(sin filas: nunca sincronizado)

@@ -1,0 +1,40 @@
+2026-11-04 21:44:56 UTC | 16:44:56 Lima | emulador: 2026-11-04 21:44:56 UTC | inicio: app instalada (instalacion limpia)
+2026-11-04 21:45:31 UTC | 16:45:31 Lima | emulador: 2026-11-04 21:45:31 UTC | flujo s13a-p01-primera-apertura: completado
+2026-11-04 21:45:31 UTC | 16:45:31 Lima | emulador: 2026-11-04 21:45:31 UTC | almacen: p01
+2026-11-04 21:45:32 UTC | 16:45:32 Lima | emulador: 2026-11-04 21:45:31 UTC | base copiada: base-p01.txt
+2026-11-04 21:46:16 UTC | 16:46:16 Lima | emulador: 2026-11-04 21:46:16 UTC | flujo s13a-p02-login: completado
+2026-11-04 21:46:17 UTC | 16:46:17 Lima | emulador: 2026-11-04 21:46:16 UTC | almacen: p02
+2026-11-04 21:46:17 UTC | 16:46:17 Lima | emulador: 2026-11-04 21:46:17 UTC | base copiada: base-p02.txt
+2026-11-04 21:46:35 UTC | 16:46:35 Lima | emulador:  | flujo s13a-p03-listado: completado
+2026-11-04 21:46:35 UTC | 16:46:35 Lima | emulador:  | almacen: p03
+2026-11-04 21:46:35 UTC | 16:46:35 Lima | emulador:  | base copiada: base-p03.txt
+2026-11-04 21:46:53 UTC | 16:46:53 Lima | emulador: 2026-11-04 21:46:52 UTC | flujo s13a-p04-crear-con-red: FALLO (intento 1)
+2026-11-04 21:46:53 UTC | 16:46:53 Lima | emulador: 2026-11-04 21:46:52 UTC | almacen: p04
+2026-11-04 21:46:53 UTC | 16:46:53 Lima | emulador: 2026-11-04 21:46:53 UTC | base copiada: base-p04.txt
+2026-11-04 21:47:01 UTC | 16:47:01 Lima | emulador: 2026-11-04 21:47:01 UTC | modo avion: on
+2026-11-04 21:47:33 UTC | 16:47:33 Lima | emulador: 2026-11-04 21:47:33 UTC | flujo s13a-p05-crear-sin-red: completado
+2026-11-04 21:47:33 UTC | 16:47:33 Lima | emulador: 2026-11-04 21:47:33 UTC | almacen: p05
+2026-11-04 21:47:33 UTC | 16:47:33 Lima | emulador: 2026-11-04 21:47:33 UTC | base copiada: base-p05.txt
+2026-11-04 21:47:36 UTC | 16:47:36 Lima | emulador: 2026-11-04 21:47:35 UTC | modo avion: off
+2026-11-04 21:47:51 UTC | 16:47:51 Lima | emulador: 2026-11-04 21:47:51 UTC | flujo s13a-p06-sincronizar: completado
+2026-11-04 21:47:51 UTC | 16:47:51 Lima | emulador: 2026-11-04 21:47:51 UTC | almacen: p06
+2026-11-04 21:47:52 UTC | 16:47:52 Lima | emulador: 2026-11-04 21:47:51 UTC | base copiada: base-p06.txt
+2026-11-04 21:48:08 UTC | 16:48:08 Lima | emulador: 2026-11-04 21:48:07 UTC | flujo s13a-p07-validacion: FALLO (intento 1)
+2026-11-04 21:48:08 UTC | 16:48:08 Lima | emulador: 2026-11-04 21:48:07 UTC | almacen: p07
+2026-11-04 21:48:08 UTC | 16:48:08 Lima | emulador: 2026-11-04 21:48:07 UTC | base copiada: base-p07.txt
+2026-11-04 21:49:06 UTC | 16:49:06 Lima | emulador: 2026-11-04 21:49:06 UTC | flujo s13a-p08-sin-privilegio: completado
+2026-11-04 21:49:06 UTC | 16:49:06 Lima | emulador: 2026-11-04 21:49:06 UTC | almacen: p08
+2026-11-04 21:49:07 UTC | 16:49:07 Lima | emulador: 2026-11-04 21:49:06 UTC | base copiada: base-p08.txt
+2026-11-04 21:49:19 UTC | 16:49:19 Lima | emulador: 2026-11-04 21:49:19 UTC | PharmaSoft reiniciado con tokens de 1 minuto
+2026-11-04 21:49:30 UTC | 16:49:30 Lima | emulador: 2026-11-04 21:49:29 UTC | flujo s13a-p09-token-vencido-1: FALLO (intento 1)
+2026-11-04 21:50:45 UTC | 16:50:45 Lima | emulador: 2026-11-04 21:50:44 UTC | token vencido (75 s)
+2026-11-04 21:51:58 UTC | 16:51:58 Lima | emulador: 2026-11-04 21:51:57 UTC | flujo s13a-p09-token-vencido-2: FALLO (intento 1)
+2026-11-04 21:51:58 UTC | 16:51:58 Lima | emulador: 2026-11-04 21:51:58 UTC | almacen: p09
+2026-11-04 21:51:58 UTC | 16:51:58 Lima | emulador: 2026-11-04 21:51:58 UTC | base copiada: base-p09.txt
+2026-11-04 21:52:09 UTC | 16:52:09 Lima | emulador: 2026-11-04 21:52:08 UTC | PharmaSoft con tokens de 60 minutos
+2026-11-04 21:52:35 UTC | 16:52:35 Lima | emulador: 2026-11-04 21:52:35 UTC | flujo s13a-p10-cerrar-sesion: FALLO (intento 1)
+2026-11-04 21:52:36 UTC | 16:52:36 Lima | emulador: 2026-11-04 21:52:35 UTC | almacen: p10
+2026-11-04 21:52:36 UTC | 16:52:36 Lima | emulador: 2026-11-04 21:52:35 UTC | base copiada: base-p10.txt
+2026-11-04 21:53:03 UTC | 16:53:03 Lima | emulador: 2026-11-04 21:53:03 UTC | flujo s13a-p02-login: FALLO (intento 1)
+2026-11-04 21:53:03 UTC | 16:53:03 Lima | emulador: 2026-11-04 21:53:03 UTC | almacen: r1-antes-de-reinstalar
+2026-11-04 21:53:07 UTC | 16:53:07 Lima | emulador: 2026-11-04 21:53:06 UTC | almacen: r2-despues-de-reinstalar

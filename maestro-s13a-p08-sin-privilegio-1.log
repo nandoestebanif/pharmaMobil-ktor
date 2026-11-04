@@ -1,0 +1,32 @@
+Running on test
+ > Flow s13a-p08-sin-privilegio
+Launch app "${APP_ID}" (launch arguments: {acciones=todas})... COMPLETED
+Run login.yaml...
+  Assert that "Ingresar|Abrir menú" is visible... COMPLETED
+  Run flow when "Abrir menú" is visible...
+    Tap on "Abrir menú"... COMPLETED
+    Tap on "Cerrar sesión"... COMPLETED
+    Assert that "Ingresar" is visible... COMPLETED
+  Run flow when "Abrir menú" is visible... COMPLETED
+  Tap on "Usuario"... COMPLETED
+  Erase 30 characters... COMPLETED
+  Input text ${USUARIO}... COMPLETED
+  Tap on "Contraseña"... COMPLETED
+  Input text ${CLAVE}... COMPLETED
+  Run flow when Platform is ANDROID...
+    Hide Keyboard... COMPLETED
+    Tap on "Ingresar"... COMPLETED
+  Run flow when Platform is ANDROID... COMPLETED
+  Run flow when Platform is IOS...
+  Run flow when Platform is IOS... SKIPPED
+  Assert that ".*Hola,.*" is visible... COMPLETED
+Run login.yaml... COMPLETED
+Tap on ".*Inventario, precios y stock.*"... COMPLETED
+Assert that ".*Amoxicilina 500mg.*" is visible... COMPLETED
+Tap on ".*Amoxicilina 500mg.*"... COMPLETED
+Assert that "Eliminar" is visible... COMPLETED
+Tap on "Eliminar"... COMPLETED
+Tap on "Sí, eliminar"... COMPLETED
+Assert that "No tienes permiso para realizar esta operación." is visible... COMPLETED
+Take screenshot f08-403-sin-privilegio... COMPLETED
+Assert that "Ingresar" is not visible... COMPLETED

@@ -1,0 +1,24 @@
+11-04 21:50:55.530  6205  6205 I System.out: KtorHttp => REQUEST: http://10.0.2.2:8080/api/v1/productos/2
+11-04 21:50:55.530  6205  6205 I System.out: KtorHttp => METHOD: GET
+11-04 21:50:55.530  6205  6205 I System.out: KtorHttp => COMMON HEADERS
+11-04 21:50:55.530  6205  6205 I System.out: KtorHttp => -> Accept: application/json
+11-04 21:50:55.530  6205  6205 I System.out: KtorHttp => -> Authorization: ***
+11-04 21:50:55.530  6205  6205 I System.out: KtorHttp => -> Content-Type: application/json
+11-04 21:50:55.530  6205  6205 I System.out: KtorHttp => CONTENT HEADERS
+11-04 21:50:55.530  6205  6205 I System.out: KtorHttp => -> Content-Length: 0
+11-04 21:50:56.063  6205  6205 I System.out: KtorHttp => RESPONSE: 200 
+11-04 21:50:56.063  6205  6205 I System.out: KtorHttp => METHOD: GET
+11-04 21:50:56.063  6205  6205 I System.out: KtorHttp => FROM: http://10.0.2.2:8080/api/v1/productos/2
+11-04 21:50:56.063  6205  6205 I System.out: KtorHttp => COMMON HEADERS
+11-04 21:50:56.063  6205  6205 I System.out: KtorHttp => -> cache-control: no-cache, no-store, max-age=0, must-revalidate
+11-04 21:50:56.063  6205  6205 I System.out: KtorHttp => -> connection: keep-alive
+11-04 21:50:56.063  6205  6205 I System.out: KtorHttp => -> content-type: application/json
+11-04 21:50:56.063  6205  6205 I System.out: KtorHttp => -> date: Wed, 04 Nov 2026 21:50:56 GMT
+11-04 21:50:56.063  6205  6205 I System.out: KtorHttp => -> expires: 0
+11-04 21:50:56.063  6205  6205 I System.out: KtorHttp => -> keep-alive: timeout=60
+11-04 21:50:56.063  6205  6205 I System.out: KtorHttp => -> pragma: no-cache
+11-04 21:50:56.063  6205  6205 I System.out: KtorHttp => -> transfer-encoding: chunked
+11-04 21:50:56.063  6205  6205 I System.out: KtorHttp => -> vary: Origin; Access-Control-Request-Method; Access-Control-Request-Headers
+11-04 21:50:56.063  6205  6205 I System.out: KtorHttp => -> x-content-type-options: nosniff
+11-04 21:50:56.063  6205  6205 I System.out: KtorHttp => -> x-frame-options: DENY
+11-04 21:50:56.063  6205  6205 I System.out: KtorHttp => -> x-xss-protection: 0

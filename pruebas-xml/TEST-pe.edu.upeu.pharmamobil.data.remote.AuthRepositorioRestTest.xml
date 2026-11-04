@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="pe.edu.upeu.pharmamobil.data.remote.AuthRepositorioRestTest" tests="16" skipped="0" failures="0" errors="0" timestamp="2026-11-04T21:40:57.886Z" hostname="runnervm48cm3" time="0.373">
+  <properties/>
+  <testcase name="elLoginGuardaElTokenYNoEnviaAuthorization" classname="pe.edu.upeu.pharmamobil.data.remote.AuthRepositorioRestTest" time="0.156"/>
+  <testcase name="sinServidorElLoginFallaPorConexion" classname="pe.edu.upeu.pharmamobil.data.remote.AuthRepositorioRestTest" time="0.015"/>
+  <testcase name="cerrarSesionBorraTambienElPerfilLocal" classname="pe.edu.upeu.pharmamobil.data.remote.AuthRepositorioRestTest" time="0.016"/>
+  <testcase name="credencialesIncorrectasNoGuardanToken" classname="pe.edu.upeu.pharmamobil.data.remote.AuthRepositorioRestTest" time="0.023"/>
+  <testcase name="cerrarSesionBorraElTokenYLaSiguientePeticionVaSinEl" classname="pe.edu.upeu.pharmamobil.data.remote.AuthRepositorioRestTest" time="0.021"/>
+  <testcase name="siempreSeEnviaElPrefijoBearerConMayuscula" classname="pe.edu.upeu.pharmamobil.data.remote.AuthRepositorioRestTest" time="0.006"/>
+  <testcase name="un401DeUsuarioDeshabilitadoBorraElTokenYAvisaConSuPropioMotivo" classname="pe.edu.upeu.pharmamobil.data.remote.AuthRepositorioRestTest" time="0.013"/>
+  <testcase name="trasElLoginLaPrimeraPeticionYaLlevaElToken" classname="pe.edu.upeu.pharmamobil.data.remote.AuthRepositorioRestTest" time="0.013"/>
+  <testcase name="un403MantieneLaSesionYNoAvisa" classname="pe.edu.upeu.pharmamobil.data.remote.AuthRepositorioRestTest" time="0.011"/>
+  <testcase name="un401EnCualquierPeticionBorraElTokenYAvisaQueExpiro" classname="pe.edu.upeu.pharmamobil.data.remote.AuthRepositorioRestTest" time="0.01"/>
+  <testcase name="sinServidorSeEntraConElPerfilDeLaUltimaSesion" classname="pe.edu.upeu.pharmamobil.data.remote.AuthRepositorioRestTest" time="0.018"/>
+  <testcase name="unSegundoLoginUsaElTokenNuevoYNoElDeLaCache" classname="pe.edu.upeu.pharmamobil.data.remote.AuthRepositorioRestTest" time="0.03"/>
+  <testcase name="conTokenGuardadoRecuperaLaSesionDesdeAuthMe" classname="pe.edu.upeu.pharmamobil.data.remote.AuthRepositorioRestTest" time="0.013"/>
+  <testcase name="unLoginFallidoNoSeRepiteConElTokenAnterior" classname="pe.edu.upeu.pharmamobil.data.remote.AuthRepositorioRestTest" time="0.009"/>
+  <testcase name="unTokenGuardadoVencidoTerminaEnSesionExpirada" classname="pe.edu.upeu.pharmamobil.data.remote.AuthRepositorioRestTest" time="0.013"/>
+  <testcase name="sinTokenGuardadoNoHaySesionNiPeticiones" classname="pe.edu.upeu.pharmamobil.data.remote.AuthRepositorioRestTest" time="0.004"/>
+  <system-out><![CDATA[KtorHttp => REQUEST: http://localhost:8080/api/v1/auth/login
+KtorHttp => METHOD: POST
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Accept: application/json
+KtorHttp => CONTENT HEADERS
+KtorHttp => -> Content-Length: 42
+KtorHttp => -> Content-Type: application/json
+KtorHttp => RESPONSE: 200 OK
+KtorHttp => METHOD: POST
+KtorHttp => FROM: http://localhost:8080/api/v1/auth/login
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Content-Type: application/json
+KtorHttp => REQUEST: http://localhost:8080/api/v1/auth/login
+KtorHttp => METHOD: POST
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Accept: application/json
+KtorHttp => CONTENT HEADERS
+KtorHttp => -> Content-Length: 42
+KtorHttp => -> Content-Type: application/json
+KtorHttp => REQUEST http://localhost:8080/api/v1/auth/login failed with exception: java.io.IOException: Connection refused
+KtorHttp => REQUEST: http://localhost:8080/api/v1/auth/login
+KtorHttp => METHOD: POST
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Accept: application/json
+KtorHttp => CONTENT HEADERS
+KtorHttp => -> Content-Length: 42
+KtorHttp => -> Content-Type: application/json
+KtorHttp => RESPONSE: 200 OK
+KtorHttp => METHOD: POST
+KtorHttp => FROM: http://localhost:8080/api/v1/auth/login
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Content-Type: application/json
+KtorHttp => REQUEST: http://localhost:8080/api/v1/auth/login
+KtorHttp => METHOD: POST
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Accept: application/json
+KtorHttp => CONTENT HEADERS
+KtorHttp => -> Content-Length: 45
+KtorHttp => -> Content-Type: application/json
+KtorHttp => RESPONSE: 401 Unauthorized
+KtorHttp => METHOD: POST
+KtorHttp => FROM: http://localhost:8080/api/v1/auth/login
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Content-Type: application/json
+KtorHttp => REQUEST: http://localhost:8080/api/v1/productos?pagina=0&tamanio=100
+KtorHttp => METHOD: GET
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Accept: application/json
+KtorHttp => -> Authorization: ***
+KtorHttp => -> Content-Type: application/json
+KtorHttp => CONTENT HEADERS
+KtorHttp => -> Content-Length: 0
+KtorHttp => RESPONSE: 200 OK
+KtorHttp => METHOD: GET
+KtorHttp => FROM: http://localhost:8080/api/v1/productos?pagina=0&tamanio=100
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Content-Type: application/json
+KtorHttp => REQUEST: http://localhost:8080/api/v1/productos?pagina=0&tamanio=100
+KtorHttp => METHOD: GET
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Accept: application/json
+KtorHttp => -> Content-Type: application/json
+KtorHttp => CONTENT HEADERS
+KtorHttp => -> Content-Length: 0
+KtorHttp => RESPONSE: 200 OK
+KtorHttp => METHOD: GET
+KtorHttp => FROM: http://localhost:8080/api/v1/productos?pagina=0&tamanio=100
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Content-Type: application/json
+KtorHttp => REQUEST: http://localhost:8080/api/v1/productos?pagina=0&tamanio=100
+KtorHttp => METHOD: GET
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Accept: application/json
+KtorHttp => -> Authorization: ***
+KtorHttp => -> Content-Type: application/json
+KtorHttp => CONTENT HEADERS
+KtorHttp => -> Content-Length: 0
+KtorHttp => RESPONSE: 200 OK
+KtorHttp => METHOD: GET
+KtorHttp => FROM: http://localhost:8080/api/v1/productos?pagina=0&tamanio=100
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Content-Type: application/json
+KtorHttp => REQUEST: http://localhost:8080/api/v1/productos?pagina=0&tamanio=100
+KtorHttp => METHOD: GET
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Accept: application/json
+KtorHttp => -> Authorization: ***
+KtorHttp => -> Content-Type: application/json
+KtorHttp => CONTENT HEADERS
+KtorHttp => -> Content-Length: 0
+KtorHttp => RESPONSE: 401 Unauthorized
+KtorHttp => METHOD: GET
+KtorHttp => FROM: http://localhost:8080/api/v1/productos?pagina=0&tamanio=100
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Content-Type: application/json
+KtorHttp => REQUEST: http://localhost:8080/api/v1/auth/login
+KtorHttp => METHOD: POST
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Accept: application/json
+KtorHttp => CONTENT HEADERS
+KtorHttp => -> Content-Length: 42
+KtorHttp => -> Content-Type: application/json
+KtorHttp => RESPONSE: 200 OK
+KtorHttp => METHOD: POST
+KtorHttp => FROM: http://localhost:8080/api/v1/auth/login
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Content-Type: application/json
+KtorHttp => REQUEST: http://localhost:8080/api/v1/productos?pagina=0&tamanio=100
+KtorHttp => METHOD: GET
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Accept: application/json
+KtorHttp => -> Authorization: ***
+KtorHttp => -> Content-Type: application/json
+KtorHttp => CONTENT HEADERS
+KtorHttp => -> Content-Length: 0
+KtorHttp => RESPONSE: 200 OK
+KtorHttp => METHOD: GET
+KtorHttp => FROM: http://localhost:8080/api/v1/productos?pagina=0&tamanio=100
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Content-Type: application/json
+KtorHttp => REQUEST: http://localhost:8080/api/v1/productos?pagina=0&tamanio=100
+KtorHttp => METHOD: GET
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Accept: application/json
+KtorHttp => -> Authorization: ***
+KtorHttp => -> Content-Type: application/json
+KtorHttp => CONTENT HEADERS
+KtorHttp => -> Content-Length: 0
+KtorHttp => RESPONSE: 403 Forbidden
+KtorHttp => METHOD: GET
+KtorHttp => FROM: http://localhost:8080/api/v1/productos?pagina=0&tamanio=100
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Content-Type: application/json
+KtorHttp => REQUEST: http://localhost:8080/api/v1/productos?pagina=0&tamanio=100
+KtorHttp => METHOD: GET
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Accept: application/json
+KtorHttp => -> Authorization: ***
+KtorHttp => -> Content-Type: application/json
+KtorHttp => CONTENT HEADERS
+KtorHttp => -> Content-Length: 0
+KtorHttp => RESPONSE: 401 Unauthorized
+KtorHttp => METHOD: GET
+KtorHttp => FROM: http://localhost:8080/api/v1/productos?pagina=0&tamanio=100
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Content-Type: application/json
+KtorHttp => REQUEST: http://localhost:8080/api/v1/auth/login
+KtorHttp => METHOD: POST
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Accept: application/json
+KtorHttp => CONTENT HEADERS
+KtorHttp => -> Content-Length: 42
+KtorHttp => -> Content-Type: application/json
+KtorHttp => RESPONSE: 200 OK
+KtorHttp => METHOD: POST
+KtorHttp => FROM: http://localhost:8080/api/v1/auth/login
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Content-Type: application/json
+KtorHttp => REQUEST: http://localhost:8080/api/v1/auth/me
+KtorHttp => METHOD: GET
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Accept: application/json
+KtorHttp => -> Authorization: ***
+KtorHttp => -> Content-Type: application/json
+KtorHttp => CONTENT HEADERS
+KtorHttp => -> Content-Length: 0
+KtorHttp => REQUEST http://localhost:8080/api/v1/auth/me failed with exception: java.io.IOException: Connection refused
+KtorHttp => REQUEST: http://localhost:8080/api/v1/auth/login
+KtorHttp => METHOD: POST
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Accept: application/json
+KtorHttp => CONTENT HEADERS
+KtorHttp => -> Content-Length: 42
+KtorHttp => -> Content-Type: application/json
+KtorHttp => RESPONSE: 200 OK
+KtorHttp => METHOD: POST
+KtorHttp => FROM: http://localhost:8080/api/v1/auth/login
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Content-Type: application/json
+KtorHttp => REQUEST: http://localhost:8080/api/v1/productos?pagina=0&tamanio=100
+KtorHttp => METHOD: GET
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Accept: application/json
+KtorHttp => -> Authorization: ***
+KtorHttp => -> Content-Type: application/json
+KtorHttp => CONTENT HEADERS
+KtorHttp => -> Content-Length: 0
+KtorHttp => RESPONSE: 200 OK
+KtorHttp => METHOD: GET
+KtorHttp => FROM: http://localhost:8080/api/v1/productos?pagina=0&tamanio=100
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Content-Type: application/json
+KtorHttp => REQUEST: http://localhost:8080/api/v1/auth/login
+KtorHttp => METHOD: POST
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Accept: application/json
+KtorHttp => CONTENT HEADERS
+KtorHttp => -> Content-Length: 46
+KtorHttp => -> Content-Type: application/json
+KtorHttp => RESPONSE: 200 OK
+KtorHttp => METHOD: POST
+KtorHttp => FROM: http://localhost:8080/api/v1/auth/login
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Content-Type: application/json
+KtorHttp => REQUEST: http://localhost:8080/api/v1/productos?pagina=0&tamanio=100
+KtorHttp => METHOD: GET
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Accept: application/json
+KtorHttp => -> Authorization: ***
+KtorHttp => -> Content-Type: application/json
+KtorHttp => CONTENT HEADERS
+KtorHttp => -> Content-Length: 0
+KtorHttp => RESPONSE: 200 OK
+KtorHttp => METHOD: GET
+KtorHttp => FROM: http://localhost:8080/api/v1/productos?pagina=0&tamanio=100
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Content-Type: application/json
+KtorHttp => REQUEST: http://localhost:8080/api/v1/auth/me
+KtorHttp => METHOD: GET
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Accept: application/json
+KtorHttp => -> Authorization: ***
+KtorHttp => -> Content-Type: application/json
+KtorHttp => CONTENT HEADERS
+KtorHttp => -> Content-Length: 0
+KtorHttp => RESPONSE: 200 OK
+KtorHttp => METHOD: GET
+KtorHttp => FROM: http://localhost:8080/api/v1/auth/me
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Content-Type: application/json
+KtorHttp => REQUEST: http://localhost:8080/api/v1/auth/login
+KtorHttp => METHOD: POST
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Accept: application/json
+KtorHttp => CONTENT HEADERS
+KtorHttp => -> Content-Length: 45
+KtorHttp => -> Content-Type: application/json
+KtorHttp => RESPONSE: 401 Unauthorized
+KtorHttp => METHOD: POST
+KtorHttp => FROM: http://localhost:8080/api/v1/auth/login
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Content-Type: application/json
+KtorHttp => REQUEST: http://localhost:8080/api/v1/auth/me
+KtorHttp => METHOD: GET
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Accept: application/json
+KtorHttp => -> Authorization: ***
+KtorHttp => -> Content-Type: application/json
+KtorHttp => CONTENT HEADERS
+KtorHttp => -> Content-Length: 0
+KtorHttp => RESPONSE: 401 Unauthorized
+KtorHttp => METHOD: GET
+KtorHttp => FROM: http://localhost:8080/api/v1/auth/me
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Content-Type: application/json
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

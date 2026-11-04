@@ -1,0 +1,7 @@
+Running on test
+ > Flow s13a-p04-crear-con-red
+Tap on "Nuevo producto"... COMPLETED
+Tap on "Nombre"...
+==== Debug output (logs & screenshots) ====
+
+/home/runner/.maestro/tests/2026-11-04_214637

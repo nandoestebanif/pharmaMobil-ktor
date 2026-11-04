@@ -1,0 +1,82 @@
+# Evidencias (android)
+
+- Ejecucion: 3 (id 41917916249)
+- Commit: 999fa21488e7e225909e4de9a56669709bffa296
+- Rama: feature/integrador-13
+- Fecha (UTC): 2026-11-04 21:53:17
+
+## Archivos
+- README.md
+- adb-install.log
+- almacen-p01.txt
+- almacen-p02.txt
+- almacen-p03.txt
+- almacen-p04.txt
+- almacen-p05.txt
+- almacen-p06.txt
+- almacen-p07.txt
+- almacen-p08.txt
+- almacen-p09.txt
+- almacen-p10.txt
+- almacen-r1-antes-de-reinstalar.txt
+- almacen-r2-despues-de-reinstalar.txt
+- android-version.txt
+- backend-1min.txt
+- backend-60min.txt
+- backend-token-1min.log
+- backend-token-60min.log
+- base-p01.txt
+- base-p02.txt
+- base-p03.txt
+- base-p04.txt
+- base-p05.txt
+- base-p06.txt
+- base-p07.txt
+- base-p08.txt
+- base-p09.txt
+- base-p10.txt
+- bitacora-tiempos.txt
+- db-p01
+- db-p02
+- db-p03
+- db-p04
+- db-p05
+- db-p06
+- db-p07
+- db-p08
+- db-p09
+- db-p10
+- entorno.txt
+- f11-reinstalada-pide-login.png
+- gradle-android.log
+- ktor-completo.log
+- ktor-p01.log
+- ktor-p02.log
+- ktor-p03.log
+- ktor-p04.log
+- ktor-p05.log
+- ktor-p06.log
+- ktor-p07.log
+- ktor-p08.log
+- ktor-p09.log
+- ktor-p10.log
+- logcat-app.txt
+- maestro-debug
+- maestro-instalacion.log
+- maestro-s13a-p01-primera-apertura-1.log
+- maestro-s13a-p02-login-1.log
+- maestro-s13a-p03-listado-1.log
+- maestro-s13a-p04-crear-con-red-1.log
+- maestro-s13a-p05-crear-sin-red-1.log
+- maestro-s13a-p06-sincronizar-1.log
+- maestro-s13a-p07-validacion-1.log
+- maestro-s13a-p08-sin-privilegio-1.log
+- maestro-s13a-p09-token-vencido-1-1.log
+- maestro-s13a-p09-token-vencido-2-1.log
+- maestro-s13a-p10-cerrar-sesion-1.log
+- pruebas-s11.txt
+- pruebas-shared.log
+- pruebas-xml
+- red-p05.txt
+- red-p06.txt
+- reinstalar.txt

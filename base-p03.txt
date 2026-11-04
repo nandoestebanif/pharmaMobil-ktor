@@ -1,0 +1,2 @@
+# base local del emulador: p03
+(la app todavia no creo pharma.db)
