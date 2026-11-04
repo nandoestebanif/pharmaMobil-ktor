@@ -1,0 +1,72 @@
+11-04 21:50:09.591  5742  5742 I System.out: KtorHttp => REQUEST: http://10.0.2.2:8080/api/v1/productos
+11-04 21:50:09.591  5742  5742 I System.out: KtorHttp => METHOD: POST
+11-04 21:50:09.591  5742  5742 I System.out: KtorHttp => COMMON HEADERS
+11-04 21:50:09.591  5742  5742 I System.out: KtorHttp => -> Accept: application/json
+11-04 21:50:09.591  5742  5742 I System.out: KtorHttp => -> Authorization: ***
+11-04 21:50:09.591  5742  5742 I System.out: KtorHttp => CONTENT HEADERS
+11-04 21:50:09.592  5742  5742 I System.out: KtorHttp => -> Content-Length: 81
+11-04 21:50:09.592  5742  5742 I System.out: KtorHttp => -> Content-Type: application/json
+11-04 21:50:10.129  5742  5742 I System.out: KtorHttp => RESPONSE: 201 
+11-04 21:50:10.129  5742  5742 I System.out: KtorHttp => METHOD: POST
+11-04 21:50:10.129  5742  5742 I System.out: KtorHttp => FROM: http://10.0.2.2:8080/api/v1/productos
+11-04 21:50:10.129  5742  5742 I System.out: KtorHttp => COMMON HEADERS
+11-04 21:50:10.129  5742  5742 I System.out: KtorHttp => -> cache-control: no-cache, no-store, max-age=0, must-revalidate
+11-04 21:50:10.129  5742  5742 I System.out: KtorHttp => -> connection: keep-alive
+11-04 21:50:10.129  5742  5742 I System.out: KtorHttp => -> content-type: application/json
+11-04 21:50:10.129  5742  5742 I System.out: KtorHttp => -> date: Wed, 04 Nov 2026 21:50:10 GMT
+11-04 21:50:10.129  5742  5742 I System.out: KtorHttp => -> expires: 0
+11-04 21:50:10.129  5742  5742 I System.out: KtorHttp => -> keep-alive: timeout=60
+11-04 21:50:10.129  5742  5742 I System.out: KtorHttp => -> pragma: no-cache
+11-04 21:50:10.129  5742  5742 I System.out: KtorHttp => -> transfer-encoding: chunked
+11-04 21:50:10.129  5742  5742 I System.out: KtorHttp => -> vary: Origin; Access-Control-Request-Method; Access-Control-Request-Headers
+11-04 21:50:10.129  5742  5742 I System.out: KtorHttp => -> x-content-type-options: nosniff
+11-04 21:50:10.129  5742  5742 I System.out: KtorHttp => -> x-frame-options: DENY
+11-04 21:50:10.129  5742  5742 I System.out: KtorHttp => -> x-xss-protection: 0
+11-04 21:50:10.149  5742  5742 I System.out: KtorHttp => REQUEST: http://10.0.2.2:8080/api/v1/productos
+11-04 21:50:10.150  5742  5742 I System.out: KtorHttp => METHOD: POST
+11-04 21:50:10.150  5742  5742 I System.out: KtorHttp => COMMON HEADERS
+11-04 21:50:10.151  5742  5742 I System.out: KtorHttp => -> Accept: application/json
+11-04 21:50:10.151  5742  5742 I System.out: KtorHttp => -> Authorization: ***
+11-04 21:50:10.151  5742  5742 I System.out: KtorHttp => CONTENT HEADERS
+11-04 21:50:10.151  5742  5742 I System.out: KtorHttp => -> Content-Length: 84
+11-04 21:50:10.151  5742  5742 I System.out: KtorHttp => -> Content-Type: application/json
+11-04 21:50:10.205  5742  5742 I System.out: KtorHttp => RESPONSE: 409 
+11-04 21:50:10.205  5742  5742 I System.out: KtorHttp => METHOD: POST
+11-04 21:50:10.205  5742  5742 I System.out: KtorHttp => FROM: http://10.0.2.2:8080/api/v1/productos
+11-04 21:50:10.205  5742  5742 I System.out: KtorHttp => COMMON HEADERS
+11-04 21:50:10.205  5742  5742 I System.out: KtorHttp => -> cache-control: no-cache, no-store, max-age=0, must-revalidate
+11-04 21:50:10.205  5742  5742 I System.out: KtorHttp => -> connection: keep-alive
+11-04 21:50:10.205  5742  5742 I System.out: KtorHttp => -> content-type: application/json
+11-04 21:50:10.205  5742  5742 I System.out: KtorHttp => -> date: Wed, 04 Nov 2026 21:50:10 GMT
+11-04 21:50:10.205  5742  5742 I System.out: KtorHttp => -> expires: 0
+11-04 21:50:10.205  5742  5742 I System.out: KtorHttp => -> keep-alive: timeout=60
+11-04 21:50:10.205  5742  5742 I System.out: KtorHttp => -> pragma: no-cache
+11-04 21:50:10.205  5742  5742 I System.out: KtorHttp => -> transfer-encoding: chunked
+11-04 21:50:10.205  5742  5742 I System.out: KtorHttp => -> vary: Origin; Access-Control-Request-Method; Access-Control-Request-Headers
+11-04 21:50:10.205  5742  5742 I System.out: KtorHttp => -> x-content-type-options: nosniff
+11-04 21:50:10.205  5742  5742 I System.out: KtorHttp => -> x-frame-options: DENY
+11-04 21:50:10.205  5742  5742 I System.out: KtorHttp => -> x-xss-protection: 0
+11-04 21:50:10.287  5742  5742 I System.out: KtorHttp => REQUEST: http://10.0.2.2:8080/api/v1/productos?pagina=0&tamanio=100
+11-04 21:50:10.287  5742  5742 I System.out: KtorHttp => METHOD: GET
+11-04 21:50:10.287  5742  5742 I System.out: KtorHttp => COMMON HEADERS
+11-04 21:50:10.287  5742  5742 I System.out: KtorHttp => -> Accept: application/json
+11-04 21:50:10.287  5742  5742 I System.out: KtorHttp => -> Authorization: ***
+11-04 21:50:10.288  5742  5742 I System.out: KtorHttp => -> Content-Type: application/json
+11-04 21:50:10.288  5742  5742 I System.out: KtorHttp => CONTENT HEADERS
+11-04 21:50:10.288  5742  5742 I System.out: KtorHttp => -> Content-Length: 0
+11-04 21:50:10.483  5742  5742 I System.out: KtorHttp => RESPONSE: 200 
+11-04 21:50:10.483  5742  5742 I System.out: KtorHttp => METHOD: GET
+11-04 21:50:10.483  5742  5742 I System.out: KtorHttp => FROM: http://10.0.2.2:8080/api/v1/productos?pagina=0&tamanio=100
+11-04 21:50:10.483  5742  5742 I System.out: KtorHttp => COMMON HEADERS
+11-04 21:50:10.483  5742  5742 I System.out: KtorHttp => -> cache-control: no-cache, no-store, max-age=0, must-revalidate
+11-04 21:50:10.483  5742  5742 I System.out: KtorHttp => -> connection: keep-alive
+11-04 21:50:10.483  5742  5742 I System.out: KtorHttp => -> content-type: application/json
+11-04 21:50:10.483  5742  5742 I System.out: KtorHttp => -> date: Wed, 04 Nov 2026 21:50:10 GMT
+11-04 21:50:10.483  5742  5742 I System.out: KtorHttp => -> expires: 0
+11-04 21:50:10.483  5742  5742 I System.out: KtorHttp => -> keep-alive: timeout=60
+11-04 21:50:10.483  5742  5742 I System.out: KtorHttp => -> pragma: no-cache
+11-04 21:50:10.483  5742  5742 I System.out: KtorHttp => -> transfer-encoding: chunked
+11-04 21:50:10.483  5742  5742 I System.out: KtorHttp => -> vary: Origin; Access-Control-Request-Method; Access-Control-Request-Headers
+11-04 21:50:10.483  5742  5742 I System.out: KtorHttp => -> x-content-type-options: nosniff
+11-04 21:50:10.483  5742  5742 I System.out: KtorHttp => -> x-frame-options: DENY
+11-04 21:50:10.483  5742  5742 I System.out: KtorHttp => -> x-xss-protection: 0

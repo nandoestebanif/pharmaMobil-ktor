@@ -1,0 +1,4 @@
+21:50:20.595144 POST /api/v1/productos -> 503
+21:50:49.613944 POST /api/v1/productos -> 503
+21:50:52.187375 POST /api/v1/productos -> 503
+21:50:54.700418 GET /api/v1/productos?pagina=0&tamanio=100 -> 503

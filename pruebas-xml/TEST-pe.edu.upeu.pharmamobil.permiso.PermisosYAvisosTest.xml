@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="pe.edu.upeu.pharmamobil.permiso.PermisosYAvisosTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-11-04T21:41:57.583Z" hostname="runnervm7aw5e" time="0.018">
+  <properties/>
+  <testcase name="conElPermisoSePuedeEnviarUnAvisoDePrueba" classname="pe.edu.upeu.pharmamobil.permiso.PermisosYAvisosTest" time="0.011"/>
+  <testcase name="laTarjetaExplicaPrimeroYPideSoloAlPulsarActivar" classname="pe.edu.upeu.pharmamobil.permiso.PermisosYAvisosTest" time="0.003"/>
+  <testcase name="sincronizarAvisaSoloCuandoAparecenFilasFallidas" classname="pe.edu.upeu.pharmamobil.permiso.PermisosYAvisosTest" time="0.001"/>
+  <testcase name="bloqueadoParaSiempreOfreceIrAAjustesYAlVolverSeActualiza" classname="pe.edu.upeu.pharmamobil.permiso.PermisosYAvisosTest" time="0.001"/>
+  <testcase name="laTelemetriaNuncaEnviaElTokenNiDatosPersonales" classname="pe.edu.upeu.pharmamobil.permiso.PermisosYAvisosTest" time="0.002"/>
+  <testcase name="laTablaDelPaso5DistingueLosTresEstados" classname="pe.edu.upeu.pharmamobil.permiso.PermisosYAvisosTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

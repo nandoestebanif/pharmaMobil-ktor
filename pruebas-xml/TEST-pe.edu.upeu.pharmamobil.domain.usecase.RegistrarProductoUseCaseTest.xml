@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="pe.edu.upeu.pharmamobil.domain.usecase.RegistrarProductoUseCaseTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2026-11-04T21:41:57.503Z" hostname="runnervm7aw5e" time="0.016">
+  <properties/>
+  <testcase name="aceptaStockCero" classname="pe.edu.upeu.pharmamobil.domain.usecase.RegistrarProductoUseCaseTest" time="0.003"/>
+  <testcase name="rechazaNombreVacio" classname="pe.edu.upeu.pharmamobil.domain.usecase.RegistrarProductoUseCaseTest" time="0.001"/>
+  <testcase name="rechazaNaNComoPrecio" classname="pe.edu.upeu.pharmamobil.domain.usecase.RegistrarProductoUseCaseTest" time="0.001"/>
+  <testcase name="rechazaInfinityComoPrecio" classname="pe.edu.upeu.pharmamobil.domain.usecase.RegistrarProductoUseCaseTest" time="0.001"/>
+  <testcase name="devuelveFailureCuandoElRepositorioFalla" classname="pe.edu.upeu.pharmamobil.domain.usecase.RegistrarProductoUseCaseTest" time="0.001"/>
+  <testcase name="rechazaStockNegativo" classname="pe.edu.upeu.pharmamobil.domain.usecase.RegistrarProductoUseCaseTest" time="0.001"/>
+  <testcase name="rechazaPrecioNoNumerico" classname="pe.edu.upeu.pharmamobil.domain.usecase.RegistrarProductoUseCaseTest" time="0.001"/>
+  <testcase name="elIdLoAsignaElRepositorioNoLaPantalla" classname="pe.edu.upeu.pharmamobil.domain.usecase.RegistrarProductoUseCaseTest" time="0.001"/>
+  <testcase name="reportaLosTresErroresALaVez" classname="pe.edu.upeu.pharmamobil.domain.usecase.RegistrarProductoUseCaseTest" time="0.0"/>
+  <testcase name="rechazaPrecioCero" classname="pe.edu.upeu.pharmamobil.domain.usecase.RegistrarProductoUseCaseTest" time="0.001"/>
+  <testcase name="aceptaUnPrecioValido" classname="pe.edu.upeu.pharmamobil.domain.usecase.RegistrarProductoUseCaseTest" time="0.004"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

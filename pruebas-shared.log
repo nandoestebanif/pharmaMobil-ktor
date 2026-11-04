@@ -1,0 +1,679 @@
+Downloading https://services.gradle.org/distributions/gradle-9.1.0-bin.zip
+............10%.............20%.............30%.............40%.............50%............60%.............70%.............80%.............90%.............100%
+
+Welcome to Gradle 9.1.0!
+
+Here are the highlights of this release:
+ - Full Java 25 support
+ - Native task graph visualization
+ - Enhanced console output
+
+For more details see https://docs.gradle.org/9.1.0/release-notes.html
+
+Starting a Gradle Daemon (subsequent builds will be faster)
+Daemon JVM discovery is an incubating feature.
+Calculating task graph as no cached configuration is available for tasks: :shared:testAndroidHostTest
+
+> Configure project :shared
+w: ⚠️ Native task 'iosSimulatorArm64Test' is disabled
+Task 'iosSimulatorArm64Test' for target 'ios_simulator_arm64' cannot run on the current host (linux-x86_64).
+Reason: simulator tests require macOS
+Solution: To suppress this warning, add 'kotlin.native.ignoreDisabledTargets=true' to gradle.properties.
+
+
+> Task :shared:androidPreBuild UP-TO-DATE
+> Task :shared:preAndroidMainBuild UP-TO-DATE
+> Task :shared:kmpPartiallyResolvedDependenciesChecker
+> Task :shared:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :shared:convertXmlValueResourcesForAndroidMain NO-SOURCE
+> Task :shared:convertXmlValueResourcesForCommonMain NO-SOURCE
+> Task :shared:copyNonXmlValueResourcesForAndroidMain NO-SOURCE
+> Task :shared:prepareComposeResourcesTaskForAndroidMain NO-SOURCE
+> Task :shared:generateResourceAccessorsForAndroidMain NO-SOURCE
+> Task :shared:generateAndroidMainEmptyResourceFiles
+> Task :shared:copyNonXmlValueResourcesForCommonMain
+> Task :shared:prepareComposeResourcesTaskForCommonMain
+> Task :shared:generateExpectResourceCollectorsForCommonMain
+> Task :shared:generateComposeResClass
+> Task :shared:generateResourceAccessorsForCommonMain
+> Task :shared:copyAndroidMainComposeResourcesToAndroidAssets
+> Task :shared:androidJar
+> Task :shared:generateAndroidHostTestAssets UP-TO-DATE
+> Task :shared:generateAndroidMainAssets UP-TO-DATE
+> Task :shared:generateActualResourceCollectorsForAndroidMain
+> Task :shared:preAndroidHostTestBuild UP-TO-DATE
+> Task :shared:writeAndroidMainAarMetadata
+> Task :shared:mergeAndroidMainAssets
+> Task :shared:packageAndroidMainResources
+
+> Task :shared:generateCommonMainPharmaDbInterface
+WARN: Attempt to load key 'ide.hide.excluded.files' for not yet loaded registry
+WARN: Attempt to load key 'psi.sleep.in.validity.check' for not yet loaded registry
+WARN: Attempt to load key 'psi.incremental.reparse.depth.limit' for not yet loaded registry
+
+> Task :shared:parseAndroidMainLocalResources
+> Task :shared:generateAndroidMainRFile
+> Task :shared:compileAndroidMainLibraryResources
+> Task :shared:mapAndroidHostTestSourceSetPaths
+> Task :shared:generateAndroidHostTestResources
+> Task :shared:checkAndroidHostTestAarMetadata
+> Task :shared:mergeAndroidHostTestAssets
+> Task :shared:convertXmlValueResourcesForAndroidHostTest NO-SOURCE
+> Task :shared:copyNonXmlValueResourcesForAndroidHostTest NO-SOURCE
+> Task :shared:prepareComposeResourcesTaskForAndroidHostTest NO-SOURCE
+> Task :shared:generateResourceAccessorsForAndroidHostTest NO-SOURCE
+> Task :shared:convertXmlValueResourcesForCommonTest NO-SOURCE
+> Task :shared:copyNonXmlValueResourcesForCommonTest NO-SOURCE
+> Task :shared:prepareComposeResourcesTaskForCommonTest NO-SOURCE
+> Task :shared:generateResourceAccessorsForCommonTest NO-SOURCE
+> Task :shared:processAndroidHostTestJavaRes NO-SOURCE
+> Task :shared:processAndroidMainManifest
+> Task :shared:processAndroidHostTestManifest
+> Task :shared:mergeAndroidHostTestResources
+> Task :shared:processAndroidHostTestResources
+> Task :shared:packageAndroidHostTestForUnitTest
+> Task :shared:generateAndroidHostTestConfig
+> Task :shared:compileAndroidMain
+w: file:///home/runner/work/pharmaMobil-ktor/pharmaMobil-ktor/shared/src/androidMain/kotlin/pe/edu/upeu/pharmamobil/data/local/AlmacenSeguroAndroid.kt:6:8 'class EncryptedSharedPreferences : Any, SharedPreferences' is deprecated. Deprecated in Java.
+w: file:///home/runner/work/pharmaMobil-ktor/pharmaMobil-ktor/shared/src/androidMain/kotlin/pe/edu/upeu/pharmamobil/data/local/AlmacenSeguroAndroid.kt:7:8 'class EncryptedSharedPreferences : Any, SharedPreferences' is deprecated. Deprecated in Java.
+w: file:///home/runner/work/pharmaMobil-ktor/pharmaMobil-ktor/shared/src/commonMain/kotlin/pe/edu/upeu/pharmamobil/App.kt:133:5 'fun KoinContext(koin: Koin = ..., content: ComposableFunction0<Unit>): Unit' is deprecated. KoinContext is not needed anymore. This can be removed. Compose Koin context is setup with StartKoin().
+
+> Task :shared:processAndroidMainJavaRes
+> Task :shared:bundleAndroidMainClassesToCompileJar
+> Task :shared:bundleAndroidMainClassesToRuntimeJar
+
+> Task :shared:compileAndroidHostTest
+w: file:///home/runner/work/pharmaMobil-ktor/pharmaMobil-ktor/shared/src/commonTest/kotlin/pe/edu/upeu/pharmamobil/data/remote/AuthRepositorioRestTest.kt:167:27 This declaration needs opt-in. Its usage should be marked with '@kotlinx.coroutines.ExperimentalCoroutinesApi' or '@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)'
+w: file:///home/runner/work/pharmaMobil-ktor/pharmaMobil-ktor/shared/src/commonTest/kotlin/pe/edu/upeu/pharmamobil/data/remote/AuthRepositorioRestTest.kt:182:27 This declaration needs opt-in. Its usage should be marked with '@kotlinx.coroutines.ExperimentalCoroutinesApi' or '@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)'
+
+> Task :shared:testAndroidHostTest
+
+ProductoLocalTest > losPendientesRecibenIdsLocalesNegativosYDistintos STANDARD_ERROR
+    SLF4J(W): No SLF4J providers were found.
+    SLF4J(W): Defaulting to no-operation (NOP) logger implementation
+    SLF4J(W): See https://www.slf4j.org/codes.html#noProviders for further details.
+
+AuthRepositorioRestTest > elLoginGuardaElTokenYNoEnviaAuthorization STANDARD_OUT
+    KtorHttp => REQUEST: http://localhost:8080/api/v1/auth/login
+    KtorHttp => METHOD: POST
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Accept: application/json
+    KtorHttp => CONTENT HEADERS
+    KtorHttp => -> Content-Length: 42
+    KtorHttp => -> Content-Type: application/json
+    KtorHttp => RESPONSE: 200 OK
+    KtorHttp => METHOD: POST
+    KtorHttp => FROM: http://localhost:8080/api/v1/auth/login
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Content-Type: application/json
+
+AuthRepositorioRestTest > sinServidorElLoginFallaPorConexion STANDARD_OUT
+    KtorHttp => REQUEST: http://localhost:8080/api/v1/auth/login
+    KtorHttp => METHOD: POST
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Accept: application/json
+    KtorHttp => CONTENT HEADERS
+    KtorHttp => -> Content-Length: 42
+    KtorHttp => -> Content-Type: application/json
+    KtorHttp => REQUEST http://localhost:8080/api/v1/auth/login failed with exception: java.io.IOException: Connection refused
+
+AuthRepositorioRestTest > cerrarSesionBorraTambienElPerfilLocal STANDARD_OUT
+    KtorHttp => REQUEST: http://localhost:8080/api/v1/auth/login
+    KtorHttp => METHOD: POST
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Accept: application/json
+    KtorHttp => CONTENT HEADERS
+    KtorHttp => -> Content-Length: 42
+    KtorHttp => -> Content-Type: application/json
+    KtorHttp => RESPONSE: 200 OK
+    KtorHttp => METHOD: POST
+    KtorHttp => FROM: http://localhost:8080/api/v1/auth/login
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Content-Type: application/json
+
+AuthRepositorioRestTest > credencialesIncorrectasNoGuardanToken STANDARD_OUT
+    KtorHttp => REQUEST: http://localhost:8080/api/v1/auth/login
+    KtorHttp => METHOD: POST
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Accept: application/json
+    KtorHttp => CONTENT HEADERS
+    KtorHttp => -> Content-Length: 45
+    KtorHttp => -> Content-Type: application/json
+    KtorHttp => RESPONSE: 401 Unauthorized
+    KtorHttp => METHOD: POST
+    KtorHttp => FROM: http://localhost:8080/api/v1/auth/login
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Content-Type: application/json
+
+AuthRepositorioRestTest > cerrarSesionBorraElTokenYLaSiguientePeticionVaSinEl STANDARD_OUT
+    KtorHttp => REQUEST: http://localhost:8080/api/v1/productos?pagina=0&tamanio=100
+    KtorHttp => METHOD: GET
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Accept: application/json
+    KtorHttp => -> Authorization: ***
+    KtorHttp => -> Content-Type: application/json
+    KtorHttp => CONTENT HEADERS
+    KtorHttp => -> Content-Length: 0
+    KtorHttp => RESPONSE: 200 OK
+    KtorHttp => METHOD: GET
+    KtorHttp => FROM: http://localhost:8080/api/v1/productos?pagina=0&tamanio=100
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Content-Type: application/json
+    KtorHttp => REQUEST: http://localhost:8080/api/v1/productos?pagina=0&tamanio=100
+    KtorHttp => METHOD: GET
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Accept: application/json
+    KtorHttp => -> Content-Type: application/json
+    KtorHttp => CONTENT HEADERS
+    KtorHttp => -> Content-Length: 0
+    KtorHttp => RESPONSE: 200 OK
+    KtorHttp => METHOD: GET
+    KtorHttp => FROM: http://localhost:8080/api/v1/productos?pagina=0&tamanio=100
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Content-Type: application/json
+
+AuthRepositorioRestTest > siempreSeEnviaElPrefijoBearerConMayuscula STANDARD_OUT
+    KtorHttp => REQUEST: http://localhost:8080/api/v1/productos?pagina=0&tamanio=100
+    KtorHttp => METHOD: GET
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Accept: application/json
+    KtorHttp => -> Authorization: ***
+    KtorHttp => -> Content-Type: application/json
+    KtorHttp => CONTENT HEADERS
+    KtorHttp => -> Content-Length: 0
+    KtorHttp => RESPONSE: 200 OK
+    KtorHttp => METHOD: GET
+    KtorHttp => FROM: http://localhost:8080/api/v1/productos?pagina=0&tamanio=100
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Content-Type: application/json
+
+AuthRepositorioRestTest > un401DeUsuarioDeshabilitadoBorraElTokenYAvisaConSuPropioMotivo STANDARD_OUT
+    KtorHttp => REQUEST: http://localhost:8080/api/v1/productos?pagina=0&tamanio=100
+    KtorHttp => METHOD: GET
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Accept: application/json
+    KtorHttp => -> Authorization: ***
+    KtorHttp => -> Content-Type: application/json
+    KtorHttp => CONTENT HEADERS
+    KtorHttp => -> Content-Length: 0
+    KtorHttp => RESPONSE: 401 Unauthorized
+    KtorHttp => METHOD: GET
+    KtorHttp => FROM: http://localhost:8080/api/v1/productos?pagina=0&tamanio=100
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Content-Type: application/json
+
+AuthRepositorioRestTest > trasElLoginLaPrimeraPeticionYaLlevaElToken STANDARD_OUT
+    KtorHttp => REQUEST: http://localhost:8080/api/v1/auth/login
+    KtorHttp => METHOD: POST
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Accept: application/json
+    KtorHttp => CONTENT HEADERS
+    KtorHttp => -> Content-Length: 42
+    KtorHttp => -> Content-Type: application/json
+    KtorHttp => RESPONSE: 200 OK
+    KtorHttp => METHOD: POST
+    KtorHttp => FROM: http://localhost:8080/api/v1/auth/login
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Content-Type: application/json
+    KtorHttp => REQUEST: http://localhost:8080/api/v1/productos?pagina=0&tamanio=100
+    KtorHttp => METHOD: GET
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Accept: application/json
+    KtorHttp => -> Authorization: ***
+    KtorHttp => -> Content-Type: application/json
+    KtorHttp => CONTENT HEADERS
+    KtorHttp => -> Content-Length: 0
+    KtorHttp => RESPONSE: 200 OK
+    KtorHttp => METHOD: GET
+    KtorHttp => FROM: http://localhost:8080/api/v1/productos?pagina=0&tamanio=100
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Content-Type: application/json
+
+AuthRepositorioRestTest > un403MantieneLaSesionYNoAvisa STANDARD_OUT
+    KtorHttp => REQUEST: http://localhost:8080/api/v1/productos?pagina=0&tamanio=100
+    KtorHttp => METHOD: GET
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Accept: application/json
+    KtorHttp => -> Authorization: ***
+    KtorHttp => -> Content-Type: application/json
+    KtorHttp => CONTENT HEADERS
+    KtorHttp => -> Content-Length: 0
+    KtorHttp => RESPONSE: 403 Forbidden
+    KtorHttp => METHOD: GET
+    KtorHttp => FROM: http://localhost:8080/api/v1/productos?pagina=0&tamanio=100
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Content-Type: application/json
+
+AuthRepositorioRestTest > un401EnCualquierPeticionBorraElTokenYAvisaQueExpiro STANDARD_OUT
+    KtorHttp => REQUEST: http://localhost:8080/api/v1/productos?pagina=0&tamanio=100
+    KtorHttp => METHOD: GET
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Accept: application/json
+    KtorHttp => -> Authorization: ***
+    KtorHttp => -> Content-Type: application/json
+    KtorHttp => CONTENT HEADERS
+    KtorHttp => -> Content-Length: 0
+    KtorHttp => RESPONSE: 401 Unauthorized
+    KtorHttp => METHOD: GET
+    KtorHttp => FROM: http://localhost:8080/api/v1/productos?pagina=0&tamanio=100
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Content-Type: application/json
+
+AuthRepositorioRestTest > sinServidorSeEntraConElPerfilDeLaUltimaSesion STANDARD_OUT
+    KtorHttp => REQUEST: http://localhost:8080/api/v1/auth/login
+    KtorHttp => METHOD: POST
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Accept: application/json
+    KtorHttp => CONTENT HEADERS
+    KtorHttp => -> Content-Length: 42
+    KtorHttp => -> Content-Type: application/json
+    KtorHttp => RESPONSE: 200 OK
+    KtorHttp => METHOD: POST
+    KtorHttp => FROM: http://localhost:8080/api/v1/auth/login
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Content-Type: application/json
+    KtorHttp => REQUEST: http://localhost:8080/api/v1/auth/me
+    KtorHttp => METHOD: GET
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Accept: application/json
+    KtorHttp => -> Authorization: ***
+    KtorHttp => -> Content-Type: application/json
+    KtorHttp => CONTENT HEADERS
+    KtorHttp => -> Content-Length: 0
+    KtorHttp => REQUEST http://localhost:8080/api/v1/auth/me failed with exception: java.io.IOException: Connection refused
+
+AuthRepositorioRestTest > unSegundoLoginUsaElTokenNuevoYNoElDeLaCache STANDARD_OUT
+    KtorHttp => REQUEST: http://localhost:8080/api/v1/auth/login
+    KtorHttp => METHOD: POST
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Accept: application/json
+    KtorHttp => CONTENT HEADERS
+    KtorHttp => -> Content-Length: 42
+    KtorHttp => -> Content-Type: application/json
+    KtorHttp => RESPONSE: 200 OK
+    KtorHttp => METHOD: POST
+    KtorHttp => FROM: http://localhost:8080/api/v1/auth/login
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Content-Type: application/json
+    KtorHttp => REQUEST: http://localhost:8080/api/v1/productos?pagina=0&tamanio=100
+    KtorHttp => METHOD: GET
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Accept: application/json
+    KtorHttp => -> Authorization: ***
+    KtorHttp => -> Content-Type: application/json
+    KtorHttp => CONTENT HEADERS
+    KtorHttp => -> Content-Length: 0
+    KtorHttp => RESPONSE: 200 OK
+    KtorHttp => METHOD: GET
+    KtorHttp => FROM: http://localhost:8080/api/v1/productos?pagina=0&tamanio=100
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Content-Type: application/json
+    KtorHttp => REQUEST: http://localhost:8080/api/v1/auth/login
+    KtorHttp => METHOD: POST
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Accept: application/json
+    KtorHttp => CONTENT HEADERS
+    KtorHttp => -> Content-Length: 46
+    KtorHttp => -> Content-Type: application/json
+    KtorHttp => RESPONSE: 200 OK
+    KtorHttp => METHOD: POST
+    KtorHttp => FROM: http://localhost:8080/api/v1/auth/login
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Content-Type: application/json
+    KtorHttp => REQUEST: http://localhost:8080/api/v1/productos?pagina=0&tamanio=100
+    KtorHttp => METHOD: GET
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Accept: application/json
+    KtorHttp => -> Authorization: ***
+    KtorHttp => -> Content-Type: application/json
+    KtorHttp => CONTENT HEADERS
+    KtorHttp => -> Content-Length: 0
+    KtorHttp => RESPONSE: 200 OK
+    KtorHttp => METHOD: GET
+    KtorHttp => FROM: http://localhost:8080/api/v1/productos?pagina=0&tamanio=100
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Content-Type: application/json
+
+AuthRepositorioRestTest > conTokenGuardadoRecuperaLaSesionDesdeAuthMe STANDARD_OUT
+    KtorHttp => REQUEST: http://localhost:8080/api/v1/auth/me
+    KtorHttp => METHOD: GET
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Accept: application/json
+    KtorHttp => -> Authorization: ***
+    KtorHttp => -> Content-Type: application/json
+    KtorHttp => CONTENT HEADERS
+    KtorHttp => -> Content-Length: 0
+    KtorHttp => RESPONSE: 200 OK
+    KtorHttp => METHOD: GET
+    KtorHttp => FROM: http://localhost:8080/api/v1/auth/me
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Content-Type: application/json
+
+AuthRepositorioRestTest > unLoginFallidoNoSeRepiteConElTokenAnterior STANDARD_OUT
+    KtorHttp => REQUEST: http://localhost:8080/api/v1/auth/login
+    KtorHttp => METHOD: POST
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Accept: application/json
+    KtorHttp => CONTENT HEADERS
+    KtorHttp => -> Content-Length: 45
+    KtorHttp => -> Content-Type: application/json
+    KtorHttp => RESPONSE: 401 Unauthorized
+    KtorHttp => METHOD: POST
+    KtorHttp => FROM: http://localhost:8080/api/v1/auth/login
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Content-Type: application/json
+
+AuthRepositorioRestTest > unTokenGuardadoVencidoTerminaEnSesionExpirada STANDARD_OUT
+    KtorHttp => REQUEST: http://localhost:8080/api/v1/auth/me
+    KtorHttp => METHOD: GET
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Accept: application/json
+    KtorHttp => -> Authorization: ***
+    KtorHttp => -> Content-Type: application/json
+    KtorHttp => CONTENT HEADERS
+    KtorHttp => -> Content-Length: 0
+    KtorHttp => RESPONSE: 401 Unauthorized
+    KtorHttp => METHOD: GET
+    KtorHttp => FROM: http://localhost:8080/api/v1/auth/me
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Content-Type: application/json
+
+CierreDeSesionRealTest > trasCerrarSesionLaSiguientePeticionSaleSinTokenYDa401 STANDARD_OUT
+    PHARMASOFT_URL no esta definida: prueba omitida
+
+EjecutarLlamadaTest > el409ConservaElMensajeDelServidor STANDARD_OUT
+    KtorHttp => REQUEST: http://10.0.2.2:8080/api/v1/productos
+    KtorHttp => METHOD: GET
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Accept: application/json
+    KtorHttp => -> Content-Type: application/json
+    KtorHttp => CONTENT HEADERS
+    KtorHttp => -> Content-Length: 0
+    KtorHttp => RESPONSE: 409 Conflict
+    KtorHttp => METHOD: GET
+    KtorHttp => FROM: http://10.0.2.2:8080/api/v1/productos
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Content-Type: application/json
+
+EjecutarLlamadaTest > el401EsNoAutenticadoYEl403SinPermiso STANDARD_OUT
+    KtorHttp => REQUEST: http://10.0.2.2:8080/api/v1/productos
+    KtorHttp => METHOD: GET
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Accept: application/json
+    KtorHttp => -> Content-Type: application/json
+    KtorHttp => CONTENT HEADERS
+    KtorHttp => -> Content-Length: 0
+    KtorHttp => RESPONSE http://10.0.2.2:8080/api/v1/productos failed with exception: io.ktor.serialization.JsonConvertException: Illegal input: Fields [status, error, message] are required for type with serial name 'pe.edu.upeu.pharmamobil.data.remote.dto.ErrorResponseDto', but they were missing at path: $
+    KtorHttp => RESPONSE http://10.0.2.2:8080/api/v1/productos failed with exception: io.ktor.serialization.JsonConvertException: Illegal input: Fields [status, error, message] are required for type with serial name 'pe.edu.upeu.pharmamobil.data.remote.dto.ErrorResponseDto', but they were missing at path: $
+    KtorHttp => REQUEST: http://10.0.2.2:8080/api/v1/productos
+    KtorHttp => METHOD: GET
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Accept: application/json
+    KtorHttp => -> Content-Type: application/json
+    KtorHttp => CONTENT HEADERS
+    KtorHttp => -> Content-Length: 0
+    KtorHttp => RESPONSE: 403 Forbidden
+    KtorHttp => METHOD: GET
+    KtorHttp => FROM: http://10.0.2.2:8080/api/v1/productos
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Content-Type: application/json
+    KtorHttp => RESPONSE http://10.0.2.2:8080/api/v1/productos failed with exception: io.ktor.serialization.JsonConvertException: Illegal input: Fields [status, error, message] are required for type with serial name 'pe.edu.upeu.pharmamobil.data.remote.dto.ErrorResponseDto', but they were missing at path: $
+
+EjecutarLlamadaTest > el400SinCuerpoLegibleDevuelveValidacionVacia STANDARD_OUT
+    KtorHttp => REQUEST: http://10.0.2.2:8080/api/v1/productos
+    KtorHttp => METHOD: GET
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Accept: application/json
+    KtorHttp => -> Content-Type: application/json
+    KtorHttp => CONTENT HEADERS
+    KtorHttp => -> Content-Length: 0
+    KtorHttp => RESPONSE: 400 Bad Request
+    KtorHttp => METHOD: GET
+    KtorHttp => FROM: http://10.0.2.2:8080/api/v1/productos
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Content-Type: application/json
+    KtorHttp => RESPONSE http://10.0.2.2:8080/api/v1/productos failed with exception: io.ktor.serialization.JsonConvertException: Illegal input: Unexpected JSON token at offset 0: Expected start of the object '{', but had 'n' instead at path: $
+    KtorHttp => JSON input: no es json
+
+EjecutarLlamadaTest > el400TraeLosErroresPorCampoDelBackend STANDARD_OUT
+    KtorHttp => REQUEST: http://10.0.2.2:8080/api/v1/productos
+    KtorHttp => METHOD: GET
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Accept: application/json
+    KtorHttp => -> Content-Type: application/json
+    KtorHttp => CONTENT HEADERS
+    KtorHttp => -> Content-Length: 0
+    KtorHttp => RESPONSE: 400 Bad Request
+    KtorHttp => METHOD: GET
+    KtorHttp => FROM: http://10.0.2.2:8080/api/v1/productos
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Content-Type: application/json
+
+EjecutarLlamadaTest > laCancelacionSeRelanzaYNoSeConvierteEnFailure STANDARD_OUT
+    KtorHttp => llamada cancelada: se relanza CancellationException
+
+EjecutarLlamadaTest > el500EsErrorDeServidor STANDARD_OUT
+    KtorHttp => REQUEST: http://10.0.2.2:8080/api/v1/productos
+    KtorHttp => METHOD: GET
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Accept: application/json
+    KtorHttp => -> Content-Type: application/json
+    KtorHttp => CONTENT HEADERS
+    KtorHttp => -> Content-Length: 0
+    KtorHttp => RESPONSE: 500 Internal Server Error
+    KtorHttp => METHOD: GET
+    KtorHttp => FROM: http://10.0.2.2:8080/api/v1/productos
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Content-Type: application/json
+
+EjecutarLlamadaTest > el404EsNoEncontrado STANDARD_OUT
+    KtorHttp => REQUEST: http://10.0.2.2:8080/api/v1/productos
+    KtorHttp => METHOD: GET
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Accept: application/json
+    KtorHttp => -> Content-Type: application/json
+    KtorHttp => CONTENT HEADERS
+    KtorHttp => -> Content-Length: 0
+    KtorHttp => RESPONSE: 404 Not Found
+    KtorHttp => METHOD: GET
+    KtorHttp => FROM: http://10.0.2.2:8080/api/v1/productos
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Content-Type: application/json
+
+ProductoRemotoTest > registroQueRompeReglasDelDominio_seDescartaSinTumbarLaLista STANDARD_OUT
+    KtorHttp => REQUEST: http://10.0.2.2:8080/api/v1/productos?pagina=0&tamanio=100
+    KtorHttp => METHOD: GET
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Accept: application/json
+    KtorHttp => -> Content-Type: application/json
+    KtorHttp => CONTENT HEADERS
+    KtorHttp => -> Content-Length: 0
+    KtorHttp => RESPONSE: 200 OK
+    KtorHttp => METHOD: GET
+    KtorHttp => FROM: http://10.0.2.2:8080/api/v1/productos?pagina=0&tamanio=100
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Content-Type: application/json
+
+ProductoRemotoTest > registrar_conNombreDuplicado_lanzaConflictoConElMensajeDelServidor STANDARD_OUT
+    KtorHttp => REQUEST: http://10.0.2.2:8080/api/v1/productos
+    KtorHttp => METHOD: POST
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Accept: application/json
+    KtorHttp => CONTENT HEADERS
+    KtorHttp => -> Content-Length: 81
+    KtorHttp => -> Content-Type: application/json
+    KtorHttp => RESPONSE: 409 Conflict
+    KtorHttp => METHOD: POST
+    KtorHttp => FROM: http://10.0.2.2:8080/api/v1/productos
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Content-Type: application/json
+
+ProductoRemotoTest > registrar_enviaPostConLosCincoCamposQueExigeElBackend STANDARD_OUT
+    KtorHttp => REQUEST: http://10.0.2.2:8080/api/v1/productos
+    KtorHttp => METHOD: POST
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Accept: application/json
+    KtorHttp => CONTENT HEADERS
+    KtorHttp => -> Content-Length: 81
+    KtorHttp => -> Content-Type: application/json
+    KtorHttp => RESPONSE: 201 Created
+    KtorHttp => METHOD: POST
+    KtorHttp => FROM: http://10.0.2.2:8080/api/v1/productos
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Content-Type: application/json
+
+ProductoRemotoTest > caso3_sinConexion_seTraduceASinConexion STANDARD_OUT
+    KtorHttp => REQUEST: http://10.0.2.2:8080/api/v1/productos?pagina=0&tamanio=100
+    KtorHttp => METHOD: GET
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Accept: application/json
+    KtorHttp => -> Content-Type: application/json
+    KtorHttp => CONTENT HEADERS
+    KtorHttp => -> Content-Length: 0
+    KtorHttp => REQUEST http://10.0.2.2:8080/api/v1/productos?pagina=0&tamanio=100 failed with exception: java.io.IOException: Failed to connect to /10.0.2.2:8080
+
+ProductoRemotoTest > caso5_jsonConCampoNuevo_seIgnoraGraciasAIgnoreUnknownKeys STANDARD_OUT
+    KtorHttp => REQUEST: http://10.0.2.2:8080/api/v1/productos?pagina=0&tamanio=100
+    KtorHttp => METHOD: GET
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Accept: application/json
+    KtorHttp => -> Content-Type: application/json
+    KtorHttp => CONTENT HEADERS
+    KtorHttp => -> Content-Length: 0
+    KtorHttp => RESPONSE: 200 OK
+    KtorHttp => METHOD: GET
+    KtorHttp => FROM: http://10.0.2.2:8080/api/v1/productos?pagina=0&tamanio=100
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Content-Type: application/json
+
+ProductoRemotoTest > caso2_error404_seTraduceANoEncontrado STANDARD_OUT
+    KtorHttp => REQUEST: http://10.0.2.2:8080/api/v1/productos?pagina=0&tamanio=100
+    KtorHttp => METHOD: GET
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Accept: application/json
+    KtorHttp => -> Content-Type: application/json
+    KtorHttp => CONTENT HEADERS
+    KtorHttp => -> Content-Length: 0
+    KtorHttp => RESPONSE: 404 Not Found
+    KtorHttp => METHOD: GET
+    KtorHttp => FROM: http://10.0.2.2:8080/api/v1/productos?pagina=0&tamanio=100
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Content-Type: application/json
+    KtorHttp => RESPONSE http://10.0.2.2:8080/api/v1/productos?pagina=0&tamanio=100 failed with exception: io.ktor.serialization.JsonConvertException: Illegal input: Fields [status, error, message] are required for type with serial name 'pe.edu.upeu.pharmamobil.data.remote.dto.ErrorResponseDto', but they were missing at path: $
+
+ProductoRemotoTest > caso5b_sinIgnoreUnknownKeys_seTraduceARespuestaInesperada STANDARD_OUT
+    KtorHttp => REQUEST: http://10.0.2.2:8080/api/v1/productos?pagina=0&tamanio=100
+    KtorHttp => METHOD: GET
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Accept: application/json
+    KtorHttp => -> Content-Type: application/json
+    KtorHttp => CONTENT HEADERS
+    KtorHttp => -> Content-Length: 0
+    KtorHttp => RESPONSE: 200 OK
+    KtorHttp => METHOD: GET
+    KtorHttp => FROM: http://10.0.2.2:8080/api/v1/productos?pagina=0&tamanio=100
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Content-Type: application/json
+    KtorHttp => RESPONSE http://10.0.2.2:8080/api/v1/productos?pagina=0&tamanio=100 failed with exception: io.ktor.serialization.JsonConvertException: Illegal input: Unexpected JSON token at offset 157: Encountered an unknown key 'fechaCreacion' at path: $.contenido[0]
+    KtorHttp => Use 'ignoreUnknownKeys = true' in 'Json {}' builder or '@JsonIgnoreUnknownKeys' annotation to ignore unknown keys.
+    KtorHttp => JSON input: .....aNombre":"Analgesicos",
+    KtorHttp =>      "fechaCreacion":"2026-09-30T10:.....
+
+ProductoRemotoTest > eliminar_aceptaEl204SinCuerpo STANDARD_OUT
+    KtorHttp => REQUEST: http://10.0.2.2:8080/api/v1/productos/11
+    KtorHttp => METHOD: DELETE
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Accept: application/json
+    KtorHttp => -> Content-Type: application/json
+    KtorHttp => CONTENT HEADERS
+    KtorHttp => -> Content-Length: 0
+    KtorHttp => RESPONSE: 204 No Content
+    KtorHttp => METHOD: DELETE
+    KtorHttp => FROM: http://10.0.2.2:8080/api/v1/productos/11
+    KtorHttp => COMMON HEADERS
+
+ProductoRemotoTest > caso1_exito200_deserializaLaPaginaYMapeaAlDominio STANDARD_OUT
+    KtorHttp => REQUEST: http://10.0.2.2:8080/api/v1/productos?pagina=0&tamanio=100
+    KtorHttp => METHOD: GET
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Accept: application/json
+    KtorHttp => -> Content-Type: application/json
+    KtorHttp => CONTENT HEADERS
+    KtorHttp => -> Content-Length: 0
+    KtorHttp => RESPONSE: 200 OK
+    KtorHttp => METHOD: GET
+    KtorHttp => FROM: http://10.0.2.2:8080/api/v1/productos?pagina=0&tamanio=100
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Content-Type: application/json
+
+ProductoRemotoTest > actualizar_conActivoTrue_enviaEstadoTrueParaReactivar STANDARD_OUT
+    KtorHttp => REQUEST: http://10.0.2.2:8080/api/v1/productos/11
+    KtorHttp => METHOD: PUT
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Accept: application/json
+    KtorHttp => CONTENT HEADERS
+    KtorHttp => -> Content-Length: 81
+    KtorHttp => -> Content-Type: application/json
+    KtorHttp => RESPONSE: 200 OK
+    KtorHttp => METHOD: PUT
+    KtorHttp => FROM: http://10.0.2.2:8080/api/v1/productos/11
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Content-Type: application/json
+
+ProductoRemotoTest > obtener_pideElRecursoPorIdYConservaLaCategoria STANDARD_OUT
+    KtorHttp => REQUEST: http://10.0.2.2:8080/api/v1/productos/11
+    KtorHttp => METHOD: GET
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Accept: application/json
+    KtorHttp => -> Content-Type: application/json
+    KtorHttp => CONTENT HEADERS
+    KtorHttp => -> Content-Length: 0
+    KtorHttp => RESPONSE: 200 OK
+    KtorHttp => METHOD: GET
+    KtorHttp => FROM: http://10.0.2.2:8080/api/v1/productos/11
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Content-Type: application/json
+
+ProductoRemotoTest > caso4_timeout_seTraduceATiempoAgotado STANDARD_OUT
+    KtorHttp => REQUEST: http://10.0.2.2:8080/api/v1/productos?pagina=0&tamanio=100
+    KtorHttp => METHOD: GET
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Accept: application/json
+    KtorHttp => -> Content-Type: application/json
+    KtorHttp => CONTENT HEADERS
+    KtorHttp => -> Content-Length: 0
+    KtorHttp => REQUEST http://10.0.2.2:8080/api/v1/productos?pagina=0&tamanio=100 failed with exception: io.ktor.client.plugins.HttpRequestTimeoutException: Request timeout has expired [url=productos, request_timeout=15000 ms]
+
+ProductoRemotoTest > actualizar_enviaPutAlIdYNoPisaLaCategoriaDelProducto STANDARD_OUT
+    KtorHttp => REQUEST: http://10.0.2.2:8080/api/v1/productos/11
+    KtorHttp => METHOD: PUT
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Accept: application/json
+    KtorHttp => CONTENT HEADERS
+    KtorHttp => -> Content-Length: 81
+    KtorHttp => -> Content-Type: application/json
+    KtorHttp => RESPONSE: 200 OK
+    KtorHttp => METHOD: PUT
+    KtorHttp => FROM: http://10.0.2.2:8080/api/v1/productos/11
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Content-Type: application/json
+
+AppModuleTest > resuelveLosViewModelConSusCasosDeUso STANDARD_OUT
+    KtorHttp => REQUEST: http://localhost:8080/api/v1/productos?pagina=0&tamanio=100
+    KtorHttp => METHOD: GET
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Accept: application/json
+    KtorHttp => -> Content-Type: application/json
+    KtorHttp => CONTENT HEADERS
+    KtorHttp => -> Content-Length: 0
+    KtorHttp => RESPONSE: 200 OK
+    KtorHttp => METHOD: GET
+    KtorHttp => FROM: http://localhost:8080/api/v1/productos?pagina=0&tamanio=100
+    KtorHttp => COMMON HEADERS
+    KtorHttp => -> Content-Type: application/json
+
+[Incubating] Problems report is available at: file:///home/runner/work/pharmaMobil-ktor/pharmaMobil-ktor/build/reports/problems/problems-report.html
+
+BUILD SUCCESSFUL in 3m 9s
+33 actionable tasks: 33 executed
+Configuration cache entry stored.

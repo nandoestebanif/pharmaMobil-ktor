@@ -1,0 +1,28 @@
+2026-11-04 21:46:10 UTC | 16:46:10 Lima | emulador: 2026-11-04 21:46:09 UTC | inicio: app instalada (instalacion limpia)
+2026-11-04 21:47:17 UTC | 16:47:17 Lima | emulador: 2026-11-04 21:47:17 UTC | flujo s13-inicio: completado
+2026-11-04 21:47:18 UTC | 16:47:18 Lima | emulador: 2026-11-04 21:47:17 UTC | permiso: 1-sin-pedir
+2026-11-04 21:47:44 UTC | 16:47:44 Lima | emulador: 2026-11-04 21:47:44 UTC | flujo s13-permiso-rechazar: completado
+2026-11-04 21:47:44 UTC | 16:47:44 Lima | emulador: 2026-11-04 21:47:44 UTC | permiso: 2-denegado-una-vez
+2026-11-04 21:48:01 UTC | 16:48:01 Lima | emulador: 2026-11-04 21:48:00 UTC | flujo s13-permiso-rechazar: completado
+2026-11-04 21:48:01 UTC | 16:48:01 Lima | emulador: 2026-11-04 21:48:00 UTC | permiso: 3-denegado-para-siempre
+2026-11-04 21:48:15 UTC | 16:48:15 Lima | emulador: 2026-11-04 21:48:15 UTC | flujo s13-permiso-ajustes: completado
+2026-11-04 21:48:15 UTC | 16:48:15 Lima | emulador: 2026-11-04 21:48:15 UTC | pm grant POST_NOTIFICATIONS (como el interruptor de Ajustes)
+2026-11-04 21:48:30 UTC | 16:48:30 Lima | emulador: 2026-11-04 21:48:30 UTC | flujo s13-permiso-concedido: completado
+2026-11-04 21:48:31 UTC | 16:48:31 Lima | emulador: 2026-11-04 21:48:30 UTC | permiso: 4-concedido
+2026-11-04 21:48:35 UTC | 16:48:35 Lima | emulador: 2026-11-04 21:48:35 UTC | captura de la cortina: b08-notificacion-de-prueba
+2026-11-04 21:48:49 UTC | 16:48:49 Lima | emulador: 2026-11-04 21:48:48 UTC | flujo s13-primera-sync: completado
+2026-11-04 21:48:58 UTC | 16:48:58 Lima | emulador: 2026-11-04 21:48:57 UTC | modo avion: on
+2026-11-04 21:49:56 UTC | 16:49:56 Lima | emulador: 2026-11-04 21:49:56 UTC | flujo s13-sin-red: completado
+2026-11-04 21:49:56 UTC | 16:49:56 Lima | emulador: 2026-11-04 21:49:56 UTC | base copiada: base-c1-dos-pendientes.txt
+2026-11-04 21:49:59 UTC | 16:49:59 Lima | emulador: 2026-11-04 21:49:58 UTC | modo avion: off
+2026-11-04 21:50:13 UTC | 16:50:13 Lima | emulador: 2026-11-04 21:50:13 UTC | flujo s13-sincronizar: completado
+2026-11-04 21:50:14 UTC | 16:50:14 Lima | emulador: 2026-11-04 21:50:13 UTC | base copiada: base-c2-una-fallida.txt
+2026-11-04 21:50:18 UTC | 16:50:18 Lima | emulador: 2026-11-04 21:50:18 UTC | captura de la cortina: c03-notificacion-envio-fallido
+2026-11-04 21:50:20 UTC | 16:50:20 Lima | emulador: 2026-11-04 21:50:20 UTC | PharmaSoft reemplazado por un servidor que responde 503
+2026-11-04 21:50:56 UTC | 16:50:56 Lima | emulador: 2026-11-04 21:50:56 UTC | flujo s13-transitorio: completado
+2026-11-04 21:50:57 UTC | 16:50:57 Lima | emulador: 2026-11-04 21:50:56 UTC | base copiada: base-c4-transitorio.txt
+2026-11-04 21:51:07 UTC | 16:51:07 Lima | emulador: 2026-11-04 21:51:06 UTC | PharmaSoft de vuelta
+2026-11-04 21:51:21 UTC | 16:51:21 Lima | emulador: 2026-11-04 21:51:20 UTC | flujo s13-recuperado: completado
+2026-11-04 21:51:21 UTC | 16:51:21 Lima | emulador: 2026-11-04 21:51:21 UTC | base copiada: base-c5-recuperado.txt
+2026-11-04 21:51:38 UTC | 16:51:38 Lima | emulador: 2026-11-04 21:51:37 UTC | flujo s13-corregir: FALLO (intento 1)
+2026-11-04 21:51:38 UTC | 16:51:38 Lima | emulador: 2026-11-04 21:51:37 UTC | base copiada: base-c6-corregido.txt

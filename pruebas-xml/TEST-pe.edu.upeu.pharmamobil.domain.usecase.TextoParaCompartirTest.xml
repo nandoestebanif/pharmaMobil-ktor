@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="pe.edu.upeu.pharmamobil.domain.usecase.TextoParaCompartirTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-11-04T21:41:57.520Z" hostname="runnervm7aw5e" time="0.025">
+  <properties/>
+  <testcase name="incluyeNombrePrecioFormateadoYStock" classname="pe.edu.upeu.pharmamobil.domain.usecase.TextoParaCompartirTest" time="0.025"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

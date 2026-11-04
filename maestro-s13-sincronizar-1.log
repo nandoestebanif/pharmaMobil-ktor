@@ -1,0 +1,8 @@
+Running on test
+ > Flow s13-sincronizar
+Tap on "Sincronizar"... COMPLETED
+Assert that "1 cambio no se pudo enviar" is visible... COMPLETED
+Assert that "No se envió" is visible... COMPLETED
+Assert that ".*Ya existe.*" is visible... COMPLETED
+Assert that "Reintentar envío" is visible... COMPLETED
+Take screenshot c02-una-fila-fallida... COMPLETED

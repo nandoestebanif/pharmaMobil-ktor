@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="pe.edu.upeu.pharmamobil.data.remote.EjecutarLlamadaTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-11-04T21:41:56.882Z" hostname="runnervm7aw5e" time="0.058">
+  <properties/>
+  <testcase name="el409ConservaElMensajeDelServidor" classname="pe.edu.upeu.pharmamobil.data.remote.EjecutarLlamadaTest" time="0.01"/>
+  <testcase name="el401EsNoAutenticadoYEl403SinPermiso" classname="pe.edu.upeu.pharmamobil.data.remote.EjecutarLlamadaTest" time="0.015"/>
+  <testcase name="el400SinCuerpoLegibleDevuelveValidacionVacia" classname="pe.edu.upeu.pharmamobil.data.remote.EjecutarLlamadaTest" time="0.008"/>
+  <testcase name="el400TraeLosErroresPorCampoDelBackend" classname="pe.edu.upeu.pharmamobil.data.remote.EjecutarLlamadaTest" time="0.008"/>
+  <testcase name="laCancelacionSeRelanzaYNoSeConvierteEnFailure" classname="pe.edu.upeu.pharmamobil.data.remote.EjecutarLlamadaTest" time="0.002"/>
+  <testcase name="el500EsErrorDeServidor" classname="pe.edu.upeu.pharmamobil.data.remote.EjecutarLlamadaTest" time="0.005"/>
+  <testcase name="el404EsNoEncontrado" classname="pe.edu.upeu.pharmamobil.data.remote.EjecutarLlamadaTest" time="0.006"/>
+  <system-out><![CDATA[KtorHttp => REQUEST: http://10.0.2.2:8080/api/v1/productos
+KtorHttp => METHOD: GET
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Accept: application/json
+KtorHttp => -> Content-Type: application/json
+KtorHttp => CONTENT HEADERS
+KtorHttp => -> Content-Length: 0
+KtorHttp => RESPONSE: 409 Conflict
+KtorHttp => METHOD: GET
+KtorHttp => FROM: http://10.0.2.2:8080/api/v1/productos
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Content-Type: application/json
+KtorHttp => REQUEST: http://10.0.2.2:8080/api/v1/productos
+KtorHttp => METHOD: GET
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Accept: application/json
+KtorHttp => -> Content-Type: application/json
+KtorHttp => CONTENT HEADERS
+KtorHttp => -> Content-Length: 0
+KtorHttp => RESPONSE http://10.0.2.2:8080/api/v1/productos failed with exception: io.ktor.serialization.JsonConvertException: Illegal input: Fields [status, error, message] are required for type with serial name 'pe.edu.upeu.pharmamobil.data.remote.dto.ErrorResponseDto', but they were missing at path: $
+KtorHttp => RESPONSE http://10.0.2.2:8080/api/v1/productos failed with exception: io.ktor.serialization.JsonConvertException: Illegal input: Fields [status, error, message] are required for type with serial name 'pe.edu.upeu.pharmamobil.data.remote.dto.ErrorResponseDto', but they were missing at path: $
+KtorHttp => REQUEST: http://10.0.2.2:8080/api/v1/productos
+KtorHttp => METHOD: GET
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Accept: application/json
+KtorHttp => -> Content-Type: application/json
+KtorHttp => CONTENT HEADERS
+KtorHttp => -> Content-Length: 0
+KtorHttp => RESPONSE: 403 Forbidden
+KtorHttp => METHOD: GET
+KtorHttp => FROM: http://10.0.2.2:8080/api/v1/productos
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Content-Type: application/json
+KtorHttp => RESPONSE http://10.0.2.2:8080/api/v1/productos failed with exception: io.ktor.serialization.JsonConvertException: Illegal input: Fields [status, error, message] are required for type with serial name 'pe.edu.upeu.pharmamobil.data.remote.dto.ErrorResponseDto', but they were missing at path: $
+KtorHttp => REQUEST: http://10.0.2.2:8080/api/v1/productos
+KtorHttp => METHOD: GET
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Accept: application/json
+KtorHttp => -> Content-Type: application/json
+KtorHttp => CONTENT HEADERS
+KtorHttp => -> Content-Length: 0
+KtorHttp => RESPONSE: 400 Bad Request
+KtorHttp => METHOD: GET
+KtorHttp => FROM: http://10.0.2.2:8080/api/v1/productos
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Content-Type: application/json
+KtorHttp => RESPONSE http://10.0.2.2:8080/api/v1/productos failed with exception: io.ktor.serialization.JsonConvertException: Illegal input: Unexpected JSON token at offset 0: Expected start of the object '{', but had 'n' instead at path: $
+KtorHttp => JSON input: no es json
+KtorHttp => REQUEST: http://10.0.2.2:8080/api/v1/productos
+KtorHttp => METHOD: GET
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Accept: application/json
+KtorHttp => -> Content-Type: application/json
+KtorHttp => CONTENT HEADERS
+KtorHttp => -> Content-Length: 0
+KtorHttp => RESPONSE: 400 Bad Request
+KtorHttp => METHOD: GET
+KtorHttp => FROM: http://10.0.2.2:8080/api/v1/productos
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Content-Type: application/json
+KtorHttp => llamada cancelada: se relanza CancellationException
+KtorHttp => REQUEST: http://10.0.2.2:8080/api/v1/productos
+KtorHttp => METHOD: GET
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Accept: application/json
+KtorHttp => -> Content-Type: application/json
+KtorHttp => CONTENT HEADERS
+KtorHttp => -> Content-Length: 0
+KtorHttp => RESPONSE: 500 Internal Server Error
+KtorHttp => METHOD: GET
+KtorHttp => FROM: http://10.0.2.2:8080/api/v1/productos
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Content-Type: application/json
+KtorHttp => REQUEST: http://10.0.2.2:8080/api/v1/productos
+KtorHttp => METHOD: GET
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Accept: application/json
+KtorHttp => -> Content-Type: application/json
+KtorHttp => CONTENT HEADERS
+KtorHttp => -> Content-Length: 0
+KtorHttp => RESPONSE: 404 Not Found
+KtorHttp => METHOD: GET
+KtorHttp => FROM: http://10.0.2.2:8080/api/v1/productos
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Content-Type: application/json
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

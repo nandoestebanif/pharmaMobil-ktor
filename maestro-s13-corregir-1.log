@@ -1,0 +1,9 @@
+Running on test
+ > Flow s13-corregir
+Tap on "Paracetamol 500mg"... COMPLETED
+Assert that "Editar" is visible... COMPLETED
+Tap on "Editar"... COMPLETED
+Tap on "Paracetamol 500mg"...
+==== Debug output (logs & screenshots) ====
+
+/home/runner/.maestro/tests/2026-11-04_215122

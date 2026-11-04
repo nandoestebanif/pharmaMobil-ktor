@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="pe.edu.upeu.pharmamobil.presentation.cliente.ClienteViewModelTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-11-04T21:41:57.614Z" hostname="runnervm7aw5e" time="0.006">
+  <properties/>
+  <testcase name="elTelefonoAusenteSeMuestraComoNoRegistrado" classname="pe.edu.upeu.pharmamobil.presentation.cliente.ClienteViewModelTest" time="0.003"/>
+  <testcase name="arrancaEnSinClientesCuandoLaCarteraEstaVacia" classname="pe.edu.upeu.pharmamobil.presentation.cliente.ClienteViewModelTest" time="0.001"/>
+  <testcase name="elCorreoInvalidoCaeEnElFormulario" classname="pe.edu.upeu.pharmamobil.presentation.cliente.ClienteViewModelTest" time="0.001"/>
+  <testcase name="elClienteRegistradoApareceEnLaCartera" classname="pe.edu.upeu.pharmamobil.presentation.cliente.ClienteViewModelTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

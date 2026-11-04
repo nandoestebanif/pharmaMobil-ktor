@@ -1,0 +1,30 @@
+Running on test
+ > Flow s13-sin-red
+Tap on ".*Inventario, precios y stock.*"... COMPLETED
+Assert that "Sin conexión: mostrando datos guardados" is visible... COMPLETED
+Run s13-registro.yaml...
+  Tap on "Nuevo producto"... COMPLETED
+  Tap on "Nombre"... COMPLETED
+  Input text ${NOMBRE}... COMPLETED
+  Tap on "Precio"... COMPLETED
+  Input text ${PRECIO}... COMPLETED
+  Tap on "Stock"... COMPLETED
+  Input text ${STOCK}... COMPLETED
+  Hide Keyboard... COMPLETED
+  Tap on "Registrar producto"... COMPLETED
+  Assert that "${NOMBRE}.*" is visible... COMPLETED
+Run s13-registro.yaml... COMPLETED
+Run s13-registro.yaml...
+  Tap on "Nuevo producto"... COMPLETED
+  Tap on "Nombre"... COMPLETED
+  Input text ${NOMBRE}... COMPLETED
+  Tap on "Precio"... COMPLETED
+  Input text ${PRECIO}... COMPLETED
+  Tap on "Stock"... COMPLETED
+  Input text ${STOCK}... COMPLETED
+  Hide Keyboard... COMPLETED
+  Tap on "Registrar producto"... COMPLETED
+  Assert that "${NOMBRE}.*" is visible... COMPLETED
+Run s13-registro.yaml... COMPLETED
+Assert that "2 productos pendientes de enviar" is visible... COMPLETED
+Take screenshot c01-dos-pendientes-sin-red... COMPLETED

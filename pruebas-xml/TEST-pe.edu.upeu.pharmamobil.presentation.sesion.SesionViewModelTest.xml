@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="pe.edu.upeu.pharmamobil.presentation.sesion.SesionViewModelTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2026-11-04T21:41:57.688Z" hostname="runnervm7aw5e" time="0.009">
+  <properties/>
+  <testcase name="un401EnCualquierPantallaVuelveAlLoginConAviso" classname="pe.edu.upeu.pharmamobil.presentation.sesion.SesionViewModelTest" time="0.001"/>
+  <testcase name="credencialesIncorrectasMuestranElError" classname="pe.edu.upeu.pharmamobil.presentation.sesion.SesionViewModelTest" time="0.001"/>
+  <testcase name="unLoginCorrectoAbreLaSesionYOlvidaLaContrasena" classname="pe.edu.upeu.pharmamobil.presentation.sesion.SesionViewModelTest" time="0.0"/>
+  <testcase name="sinTokenGuardadoMuestraElLogin" classname="pe.edu.upeu.pharmamobil.presentation.sesion.SesionViewModelTest" time="0.001"/>
+  <testcase name="conUnTokenGuardadoEntraSinPedirCredenciales" classname="pe.edu.upeu.pharmamobil.presentation.sesion.SesionViewModelTest" time="0.001"/>
+  <testcase name="unTokenGuardadoVencidoLlevaAlLoginConAviso" classname="pe.edu.upeu.pharmamobil.presentation.sesion.SesionViewModelTest" time="0.001"/>
+  <testcase name="cerrarSesionNoDejaNadaDeLaSesionAnterior" classname="pe.edu.upeu.pharmamobil.presentation.sesion.SesionViewModelTest" time="0.001"/>
+  <testcase name="losCamposVaciosSeMarcanSinLlamarAlServidor" classname="pe.edu.upeu.pharmamobil.presentation.sesion.SesionViewModelTest" time="0.001"/>
+  <testcase name="unUsuarioDeshabilitadoVuelveAlLoginConSuPropioAviso" classname="pe.edu.upeu.pharmamobil.presentation.sesion.SesionViewModelTest" time="0.001"/>
+  <testcase name="cerrarSesionBorraElTokenYVuelveAlLogin" classname="pe.edu.upeu.pharmamobil.presentation.sesion.SesionViewModelTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

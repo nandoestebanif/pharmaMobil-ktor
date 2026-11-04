@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="pe.edu.upeu.pharmamobil.presentation.acerca.AcercaDeUiTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-11-04T21:41:57.610Z" hostname="runnervm7aw5e" time="0.002">
+  <properties/>
+  <testcase name="laPantallaUsaElFormatoDeLaPlataforma" classname="pe.edu.upeu.pharmamobil.presentation.acerca.AcercaDeUiTest" time="0.002"/>
+  <testcase name="avisaCuandoElSimboloVaPegado" classname="pe.edu.upeu.pharmamobil.presentation.acerca.AcercaDeUiTest" time="0.0"/>
+  <testcase name="reconoceUnEspacioNormal" classname="pe.edu.upeu.pharmamobil.presentation.acerca.AcercaDeUiTest" time="0.0"/>
+  <testcase name="reconoceElEspacioDeNoSeparacion" classname="pe.edu.upeu.pharmamobil.presentation.acerca.AcercaDeUiTest" time="0.0"/>
+  <testcase name="noFallaConUnTextoSinCifras" classname="pe.edu.upeu.pharmamobil.presentation.acerca.AcercaDeUiTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

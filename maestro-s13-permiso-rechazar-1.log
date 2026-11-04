@@ -1,0 +1,8 @@
+Running on test
+ > Flow s13-permiso-rechazar
+Tap on "Activar avisos"... COMPLETED
+Assert that "Don.t allow" is visible... COMPLETED
+Take screenshot ${CAPTURA_DIALOGO}... COMPLETED
+Tap on "Don.t allow"... COMPLETED
+Assert that "${ESPERADO}" is visible... COMPLETED
+Take screenshot ${CAPTURA_TARJETA}... COMPLETED

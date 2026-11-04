@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="pe.edu.upeu.pharmamobil.data.repository.SuiteOfflineTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-11-04T21:41:57.315Z" hostname="runnervm7aw5e" time="0.066">
+  <properties/>
+  <testcase name="5 identificadores sin colision - un producto local y uno del servidor conviven" classname="pe.edu.upeu.pharmamobil.data.repository.SuiteOfflineTest" time="0.012"/>
+  <testcase name="4 la bajada no borra lo pendiente - la lista del servidor conserva lo creado sin conexion" classname="pe.edu.upeu.pharmamobil.data.repository.SuiteOfflineTest" time="0.008"/>
+  <testcase name="6 sincronizar dos veces no duplica" classname="pe.edu.upeu.pharmamobil.data.repository.SuiteOfflineTest" time="0.017"/>
+  <testcase name="3 envio al reconectar - sincronizar sube lo pendiente y la fila deja de estar marcada" classname="pe.edu.upeu.pharmamobil.data.repository.SuiteOfflineTest" time="0.014"/>
+  <testcase name="1 sincronizacion con red - la base queda con los productos del servidor y el Flow los emite" classname="pe.edu.upeu.pharmamobil.data.repository.SuiteOfflineTest" time="0.009"/>
+  <testcase name="2 registro sin red - el producto queda pendiente y el Flow lo emite igual" classname="pe.edu.upeu.pharmamobil.data.repository.SuiteOfflineTest" time="0.006"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

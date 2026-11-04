@@ -1,0 +1,266 @@
+--------- beginning of main
+11-04 21:46:28.967 I/System.out( 3369): Server running on port [ 45777 ]
+11-04 21:47:09.631 I/System.out( 3752): KtorHttp => REQUEST: http://10.0.2.2:8080/api/v1/auth/login
+11-04 21:47:09.632 I/System.out( 3752): KtorHttp => METHOD: POST
+11-04 21:47:09.632 I/System.out( 3752): KtorHttp => COMMON HEADERS
+11-04 21:47:09.632 I/System.out( 3752): KtorHttp => -> Accept: application/json
+11-04 21:47:09.633 I/System.out( 3752): KtorHttp => CONTENT HEADERS
+11-04 21:47:09.633 I/System.out( 3752): KtorHttp => -> Content-Length: 42
+11-04 21:47:09.633 I/System.out( 3752): KtorHttp => -> Content-Type: application/json
+11-04 21:47:11.335 I/System.out( 3752): KtorHttp => RESPONSE: 200 
+11-04 21:47:11.335 I/System.out( 3752): KtorHttp => METHOD: POST
+11-04 21:47:11.335 I/System.out( 3752): KtorHttp => FROM: http://10.0.2.2:8080/api/v1/auth/login
+11-04 21:47:11.335 I/System.out( 3752): KtorHttp => COMMON HEADERS
+11-04 21:47:11.335 I/System.out( 3752): KtorHttp => -> cache-control: no-cache, no-store, max-age=0, must-revalidate
+11-04 21:47:11.335 I/System.out( 3752): KtorHttp => -> connection: keep-alive
+11-04 21:47:11.335 I/System.out( 3752): KtorHttp => -> content-type: application/json
+11-04 21:47:11.335 I/System.out( 3752): KtorHttp => -> date: Wed, 04 Nov 2026 21:47:11 GMT
+11-04 21:47:11.335 I/System.out( 3752): KtorHttp => -> expires: 0
+11-04 21:47:11.335 I/System.out( 3752): KtorHttp => -> keep-alive: timeout=60
+11-04 21:47:11.335 I/System.out( 3752): KtorHttp => -> pragma: no-cache
+11-04 21:47:11.335 I/System.out( 3752): KtorHttp => -> transfer-encoding: chunked
+11-04 21:47:11.335 I/System.out( 3752): KtorHttp => -> vary: Origin; Access-Control-Request-Method; Access-Control-Request-Headers
+11-04 21:47:11.335 I/System.out( 3752): KtorHttp => -> x-content-type-options: nosniff
+11-04 21:47:11.335 I/System.out( 3752): KtorHttp => -> x-frame-options: DENY
+11-04 21:47:11.335 I/System.out( 3752): KtorHttp => -> x-xss-protection: 0
+11-04 21:47:33.306 I/System.out( 4568): Server running on port [ 34571 ]
+11-04 21:47:52.156 I/System.out( 4801): Server running on port [ 37601 ]
+11-04 21:48:08.327 I/System.out( 5006): Server running on port [ 35007 ]
+11-04 21:48:23.771 I/System.out( 5276): Server running on port [ 39347 ]
+11-04 21:48:42.605 I/System.out( 5545): Server running on port [ 39785 ]
+11-04 21:48:45.656 I/System.out( 3752): KtorHttp => REQUEST: http://10.0.2.2:8080/api/v1/productos?pagina=0&tamanio=100
+11-04 21:48:45.657 I/System.out( 3752): KtorHttp => METHOD: GET
+11-04 21:48:45.657 I/System.out( 3752): KtorHttp => COMMON HEADERS
+11-04 21:48:45.657 I/System.out( 3752): KtorHttp => -> Accept: application/json
+11-04 21:48:45.657 I/System.out( 3752): KtorHttp => -> Authorization: ***
+11-04 21:48:45.657 I/System.out( 3752): KtorHttp => -> Content-Type: application/json
+11-04 21:48:45.657 I/System.out( 3752): KtorHttp => CONTENT HEADERS
+11-04 21:48:45.657 I/System.out( 3752): KtorHttp => -> Content-Length: 0
+11-04 21:48:46.217 I/System.out( 3752): KtorHttp => RESPONSE: 200 
+11-04 21:48:46.217 I/System.out( 3752): KtorHttp => METHOD: GET
+11-04 21:48:46.217 I/System.out( 3752): KtorHttp => FROM: http://10.0.2.2:8080/api/v1/productos?pagina=0&tamanio=100
+11-04 21:48:46.217 I/System.out( 3752): KtorHttp => COMMON HEADERS
+11-04 21:48:46.217 I/System.out( 3752): KtorHttp => -> cache-control: no-cache, no-store, max-age=0, must-revalidate
+11-04 21:48:46.217 I/System.out( 3752): KtorHttp => -> connection: keep-alive
+11-04 21:48:46.217 I/System.out( 3752): KtorHttp => -> content-type: application/json
+11-04 21:48:46.217 I/System.out( 3752): KtorHttp => -> date: Wed, 04 Nov 2026 21:48:46 GMT
+11-04 21:48:46.217 I/System.out( 3752): KtorHttp => -> expires: 0
+11-04 21:48:46.217 I/System.out( 3752): KtorHttp => -> keep-alive: timeout=60
+11-04 21:48:46.217 I/System.out( 3752): KtorHttp => -> pragma: no-cache
+11-04 21:48:46.217 I/System.out( 3752): KtorHttp => -> transfer-encoding: chunked
+11-04 21:48:46.217 I/System.out( 3752): KtorHttp => -> vary: Origin; Access-Control-Request-Method; Access-Control-Request-Headers
+11-04 21:48:46.217 I/System.out( 3752): KtorHttp => -> x-content-type-options: nosniff
+11-04 21:48:46.217 I/System.out( 3752): KtorHttp => -> x-frame-options: DENY
+11-04 21:48:46.217 I/System.out( 3752): KtorHttp => -> x-xss-protection: 0
+11-04 21:49:00.215 I/System.out( 5742): KtorHttp => REQUEST: http://10.0.2.2:8080/api/v1/auth/me
+11-04 21:49:00.215 I/System.out( 5742): KtorHttp => METHOD: GET
+11-04 21:49:00.215 I/System.out( 5742): KtorHttp => COMMON HEADERS
+11-04 21:49:00.215 I/System.out( 5742): KtorHttp => -> Accept: application/json
+11-04 21:49:00.215 I/System.out( 5742): KtorHttp => -> Authorization: ***
+11-04 21:49:00.215 I/System.out( 5742): KtorHttp => -> Content-Type: application/json
+11-04 21:49:00.215 I/System.out( 5742): KtorHttp => CONTENT HEADERS
+11-04 21:49:00.215 I/System.out( 5742): KtorHttp => -> Content-Length: 0
+11-04 21:49:00.402 I/System.out( 5742): KtorHttp => REQUEST http://10.0.2.2:8080/api/v1/auth/me failed with exception: java.net.ConnectException: Failed to connect to /10.0.2.2:8080
+11-04 21:49:11.282 I/System.out( 5839): Server running on port [ 40015 ]
+11-04 21:49:14.532 I/System.out( 5742): KtorHttp => REQUEST: http://10.0.2.2:8080/api/v1/productos?pagina=0&tamanio=100
+11-04 21:49:14.532 I/System.out( 5742): KtorHttp => METHOD: GET
+11-04 21:49:14.532 I/System.out( 5742): KtorHttp => COMMON HEADERS
+11-04 21:49:14.532 I/System.out( 5742): KtorHttp => -> Accept: application/json
+11-04 21:49:14.532 I/System.out( 5742): KtorHttp => -> Authorization: ***
+11-04 21:49:14.532 I/System.out( 5742): KtorHttp => -> Content-Type: application/json
+11-04 21:49:14.532 I/System.out( 5742): KtorHttp => CONTENT HEADERS
+11-04 21:49:14.532 I/System.out( 5742): KtorHttp => -> Content-Length: 0
+11-04 21:49:15.519 I/System.out( 5742): KtorHttp => REQUEST http://10.0.2.2:8080/api/v1/productos?pagina=0&tamanio=100 failed with exception: java.net.ConnectException: Failed to connect to /10.0.2.2:8080
+11-04 21:49:34.351 I/System.out( 5742): KtorHttp => REQUEST: http://10.0.2.2:8080/api/v1/productos
+11-04 21:49:34.351 I/System.out( 5742): KtorHttp => METHOD: POST
+11-04 21:49:34.351 I/System.out( 5742): KtorHttp => COMMON HEADERS
+11-04 21:49:34.352 I/System.out( 5742): KtorHttp => -> Accept: application/json
+11-04 21:49:34.352 I/System.out( 5742): KtorHttp => -> Authorization: ***
+11-04 21:49:34.352 I/System.out( 5742): KtorHttp => CONTENT HEADERS
+11-04 21:49:34.352 I/System.out( 5742): KtorHttp => -> Content-Length: 81
+11-04 21:49:34.352 I/System.out( 5742): KtorHttp => -> Content-Type: application/json
+11-04 21:49:34.423 I/System.out( 5742): KtorHttp => REQUEST http://10.0.2.2:8080/api/v1/productos failed with exception: java.net.ConnectException: Failed to connect to /10.0.2.2:8080
+11-04 21:49:53.733 I/System.out( 5742): KtorHttp => REQUEST: http://10.0.2.2:8080/api/v1/productos
+11-04 21:49:53.733 I/System.out( 5742): KtorHttp => METHOD: POST
+11-04 21:49:53.733 I/System.out( 5742): KtorHttp => COMMON HEADERS
+11-04 21:49:53.733 I/System.out( 5742): KtorHttp => -> Accept: application/json
+11-04 21:49:53.733 I/System.out( 5742): KtorHttp => -> Authorization: ***
+11-04 21:49:53.733 I/System.out( 5742): KtorHttp => CONTENT HEADERS
+11-04 21:49:53.733 I/System.out( 5742): KtorHttp => -> Content-Length: 84
+11-04 21:49:53.733 I/System.out( 5742): KtorHttp => -> Content-Type: application/json
+11-04 21:49:53.822 I/System.out( 5742): KtorHttp => REQUEST http://10.0.2.2:8080/api/v1/productos failed with exception: java.net.ConnectException: Failed to connect to /10.0.2.2:8080
+11-04 21:50:06.545 I/System.out( 6289): Server running on port [ 41575 ]
+11-04 21:50:09.591 I/System.out( 5742): KtorHttp => REQUEST: http://10.0.2.2:8080/api/v1/productos
+11-04 21:50:09.591 I/System.out( 5742): KtorHttp => METHOD: POST
+11-04 21:50:09.591 I/System.out( 5742): KtorHttp => COMMON HEADERS
+11-04 21:50:09.591 I/System.out( 5742): KtorHttp => -> Accept: application/json
+11-04 21:50:09.591 I/System.out( 5742): KtorHttp => -> Authorization: ***
+11-04 21:50:09.591 I/System.out( 5742): KtorHttp => CONTENT HEADERS
+11-04 21:50:09.592 I/System.out( 5742): KtorHttp => -> Content-Length: 81
+11-04 21:50:09.592 I/System.out( 5742): KtorHttp => -> Content-Type: application/json
+11-04 21:50:10.129 I/System.out( 5742): KtorHttp => RESPONSE: 201 
+11-04 21:50:10.129 I/System.out( 5742): KtorHttp => METHOD: POST
+11-04 21:50:10.129 I/System.out( 5742): KtorHttp => FROM: http://10.0.2.2:8080/api/v1/productos
+11-04 21:50:10.129 I/System.out( 5742): KtorHttp => COMMON HEADERS
+11-04 21:50:10.129 I/System.out( 5742): KtorHttp => -> cache-control: no-cache, no-store, max-age=0, must-revalidate
+11-04 21:50:10.129 I/System.out( 5742): KtorHttp => -> connection: keep-alive
+11-04 21:50:10.129 I/System.out( 5742): KtorHttp => -> content-type: application/json
+11-04 21:50:10.129 I/System.out( 5742): KtorHttp => -> date: Wed, 04 Nov 2026 21:50:10 GMT
+11-04 21:50:10.129 I/System.out( 5742): KtorHttp => -> expires: 0
+11-04 21:50:10.129 I/System.out( 5742): KtorHttp => -> keep-alive: timeout=60
+11-04 21:50:10.129 I/System.out( 5742): KtorHttp => -> pragma: no-cache
+11-04 21:50:10.129 I/System.out( 5742): KtorHttp => -> transfer-encoding: chunked
+11-04 21:50:10.129 I/System.out( 5742): KtorHttp => -> vary: Origin; Access-Control-Request-Method; Access-Control-Request-Headers
+11-04 21:50:10.129 I/System.out( 5742): KtorHttp => -> x-content-type-options: nosniff
+11-04 21:50:10.129 I/System.out( 5742): KtorHttp => -> x-frame-options: DENY
+11-04 21:50:10.129 I/System.out( 5742): KtorHttp => -> x-xss-protection: 0
+11-04 21:50:10.149 I/System.out( 5742): KtorHttp => REQUEST: http://10.0.2.2:8080/api/v1/productos
+11-04 21:50:10.150 I/System.out( 5742): KtorHttp => METHOD: POST
+11-04 21:50:10.150 I/System.out( 5742): KtorHttp => COMMON HEADERS
+11-04 21:50:10.151 I/System.out( 5742): KtorHttp => -> Accept: application/json
+11-04 21:50:10.151 I/System.out( 5742): KtorHttp => -> Authorization: ***
+11-04 21:50:10.151 I/System.out( 5742): KtorHttp => CONTENT HEADERS
+11-04 21:50:10.151 I/System.out( 5742): KtorHttp => -> Content-Length: 84
+11-04 21:50:10.151 I/System.out( 5742): KtorHttp => -> Content-Type: application/json
+11-04 21:50:10.205 I/System.out( 5742): KtorHttp => RESPONSE: 409 
+11-04 21:50:10.205 I/System.out( 5742): KtorHttp => METHOD: POST
+11-04 21:50:10.205 I/System.out( 5742): KtorHttp => FROM: http://10.0.2.2:8080/api/v1/productos
+11-04 21:50:10.205 I/System.out( 5742): KtorHttp => COMMON HEADERS
+11-04 21:50:10.205 I/System.out( 5742): KtorHttp => -> cache-control: no-cache, no-store, max-age=0, must-revalidate
+11-04 21:50:10.205 I/System.out( 5742): KtorHttp => -> connection: keep-alive
+11-04 21:50:10.205 I/System.out( 5742): KtorHttp => -> content-type: application/json
+11-04 21:50:10.205 I/System.out( 5742): KtorHttp => -> date: Wed, 04 Nov 2026 21:50:10 GMT
+11-04 21:50:10.205 I/System.out( 5742): KtorHttp => -> expires: 0
+11-04 21:50:10.205 I/System.out( 5742): KtorHttp => -> keep-alive: timeout=60
+11-04 21:50:10.205 I/System.out( 5742): KtorHttp => -> pragma: no-cache
+11-04 21:50:10.205 I/System.out( 5742): KtorHttp => -> transfer-encoding: chunked
+11-04 21:50:10.205 I/System.out( 5742): KtorHttp => -> vary: Origin; Access-Control-Request-Method; Access-Control-Request-Headers
+11-04 21:50:10.205 I/System.out( 5742): KtorHttp => -> x-content-type-options: nosniff
+11-04 21:50:10.205 I/System.out( 5742): KtorHttp => -> x-frame-options: DENY
+11-04 21:50:10.205 I/System.out( 5742): KtorHttp => -> x-xss-protection: 0
+11-04 21:50:10.282 I/System.out( 5742): Telemetria evento envio_rechazado {motivo=Ya existe un producto con el nombre Paracetamol 500mg}
+11-04 21:50:10.287 I/System.out( 5742): KtorHttp => REQUEST: http://10.0.2.2:8080/api/v1/productos?pagina=0&tamanio=100
+11-04 21:50:10.287 I/System.out( 5742): KtorHttp => METHOD: GET
+11-04 21:50:10.287 I/System.out( 5742): KtorHttp => COMMON HEADERS
+11-04 21:50:10.287 I/System.out( 5742): KtorHttp => -> Accept: application/json
+11-04 21:50:10.287 I/System.out( 5742): KtorHttp => -> Authorization: ***
+11-04 21:50:10.288 I/System.out( 5742): KtorHttp => -> Content-Type: application/json
+11-04 21:50:10.288 I/System.out( 5742): KtorHttp => CONTENT HEADERS
+11-04 21:50:10.288 I/System.out( 5742): KtorHttp => -> Content-Length: 0
+11-04 21:50:10.483 I/System.out( 5742): KtorHttp => RESPONSE: 200 
+11-04 21:50:10.483 I/System.out( 5742): KtorHttp => METHOD: GET
+11-04 21:50:10.483 I/System.out( 5742): KtorHttp => FROM: http://10.0.2.2:8080/api/v1/productos?pagina=0&tamanio=100
+11-04 21:50:10.483 I/System.out( 5742): KtorHttp => COMMON HEADERS
+11-04 21:50:10.483 I/System.out( 5742): KtorHttp => -> cache-control: no-cache, no-store, max-age=0, must-revalidate
+11-04 21:50:10.483 I/System.out( 5742): KtorHttp => -> connection: keep-alive
+11-04 21:50:10.483 I/System.out( 5742): KtorHttp => -> content-type: application/json
+11-04 21:50:10.483 I/System.out( 5742): KtorHttp => -> date: Wed, 04 Nov 2026 21:50:10 GMT
+11-04 21:50:10.483 I/System.out( 5742): KtorHttp => -> expires: 0
+11-04 21:50:10.483 I/System.out( 5742): KtorHttp => -> keep-alive: timeout=60
+11-04 21:50:10.483 I/System.out( 5742): KtorHttp => -> pragma: no-cache
+11-04 21:50:10.483 I/System.out( 5742): KtorHttp => -> transfer-encoding: chunked
+11-04 21:50:10.483 I/System.out( 5742): KtorHttp => -> vary: Origin; Access-Control-Request-Method; Access-Control-Request-Headers
+11-04 21:50:10.483 I/System.out( 5742): KtorHttp => -> x-content-type-options: nosniff
+11-04 21:50:10.483 I/System.out( 5742): KtorHttp => -> x-frame-options: DENY
+11-04 21:50:10.483 I/System.out( 5742): KtorHttp => -> x-xss-protection: 0
+11-04 21:50:10.530 I/System.out( 5742): Telemetria evento sincronizacion {enviadas=1, fallidas=1}
+11-04 21:50:28.644 I/System.out( 6598): Server running on port [ 35135 ]
+11-04 21:50:49.073 I/System.out( 5742): KtorHttp => REQUEST: http://10.0.2.2:8080/api/v1/productos
+11-04 21:50:49.073 I/System.out( 5742): KtorHttp => METHOD: POST
+11-04 21:50:49.073 I/System.out( 5742): KtorHttp => COMMON HEADERS
+11-04 21:50:49.073 I/System.out( 5742): KtorHttp => -> Accept: application/json
+11-04 21:50:49.073 I/System.out( 5742): KtorHttp => -> Authorization: ***
+11-04 21:50:49.073 I/System.out( 5742): KtorHttp => CONTENT HEADERS
+11-04 21:50:49.073 I/System.out( 5742): KtorHttp => -> Content-Length: 83
+11-04 21:50:49.073 I/System.out( 5742): KtorHttp => -> Content-Type: application/json
+11-04 21:50:49.543 I/System.out( 5742): KtorHttp => RESPONSE: 503 Service Unavailable
+11-04 21:50:49.543 I/System.out( 5742): KtorHttp => METHOD: POST
+11-04 21:50:49.543 I/System.out( 5742): KtorHttp => FROM: http://10.0.2.2:8080/api/v1/productos
+11-04 21:50:49.543 I/System.out( 5742): KtorHttp => COMMON HEADERS
+11-04 21:50:49.543 I/System.out( 5742): KtorHttp => -> content-length: 149
+11-04 21:50:49.543 I/System.out( 5742): KtorHttp => -> content-type: application/json
+11-04 21:50:49.543 I/System.out( 5742): KtorHttp => -> date: Wed, 04 Nov 2026 21:50:49 GMT
+11-04 21:50:49.543 I/System.out( 5742): KtorHttp => -> server: BaseHTTP/0.6 Python/3.12.3
+11-04 21:50:51.642 I/System.out( 5742): KtorHttp => REQUEST: http://10.0.2.2:8080/api/v1/productos
+11-04 21:50:51.642 I/System.out( 5742): KtorHttp => METHOD: POST
+11-04 21:50:51.642 I/System.out( 5742): KtorHttp => COMMON HEADERS
+11-04 21:50:51.642 I/System.out( 5742): KtorHttp => -> Accept: application/json
+11-04 21:50:51.642 I/System.out( 5742): KtorHttp => -> Authorization: ***
+11-04 21:50:51.642 I/System.out( 5742): KtorHttp => CONTENT HEADERS
+11-04 21:50:51.642 I/System.out( 5742): KtorHttp => -> Content-Length: 83
+11-04 21:50:51.642 I/System.out( 5742): KtorHttp => -> Content-Type: application/json
+11-04 21:50:52.170 I/System.out( 5742): KtorHttp => RESPONSE: 503 Service Unavailable
+11-04 21:50:52.170 I/System.out( 5742): KtorHttp => METHOD: POST
+11-04 21:50:52.170 I/System.out( 5742): KtorHttp => FROM: http://10.0.2.2:8080/api/v1/productos
+11-04 21:50:52.170 I/System.out( 5742): KtorHttp => COMMON HEADERS
+11-04 21:50:52.170 I/System.out( 5742): KtorHttp => -> content-length: 149
+11-04 21:50:52.170 I/System.out( 5742): KtorHttp => -> content-type: application/json
+11-04 21:50:52.170 I/System.out( 5742): KtorHttp => -> date: Wed, 04 Nov 2026 21:50:52 GMT
+11-04 21:50:52.170 I/System.out( 5742): KtorHttp => -> server: BaseHTTP/0.6 Python/3.12.3
+11-04 21:50:54.180 I/System.out( 5742): KtorHttp => REQUEST: http://10.0.2.2:8080/api/v1/productos?pagina=0&tamanio=100
+11-04 21:50:54.181 I/System.out( 5742): KtorHttp => METHOD: GET
+11-04 21:50:54.181 I/System.out( 5742): KtorHttp => COMMON HEADERS
+11-04 21:50:54.181 I/System.out( 5742): KtorHttp => -> Accept: application/json
+11-04 21:50:54.181 I/System.out( 5742): KtorHttp => -> Authorization: ***
+11-04 21:50:54.181 I/System.out( 5742): KtorHttp => -> Content-Type: application/json
+11-04 21:50:54.181 I/System.out( 5742): KtorHttp => CONTENT HEADERS
+11-04 21:50:54.181 I/System.out( 5742): KtorHttp => -> Content-Length: 0
+11-04 21:50:54.689 I/System.out( 5742): KtorHttp => RESPONSE: 503 Service Unavailable
+11-04 21:50:54.689 I/System.out( 5742): KtorHttp => METHOD: GET
+11-04 21:50:54.689 I/System.out( 5742): KtorHttp => FROM: http://10.0.2.2:8080/api/v1/productos?pagina=0&tamanio=100
+11-04 21:50:54.690 I/System.out( 5742): KtorHttp => COMMON HEADERS
+11-04 21:50:54.690 I/System.out( 5742): KtorHttp => -> content-length: 170
+11-04 21:50:54.690 I/System.out( 5742): KtorHttp => -> content-type: application/json
+11-04 21:50:54.691 I/System.out( 5742): KtorHttp => -> date: Wed, 04 Nov 2026 21:50:54 GMT
+11-04 21:50:54.691 I/System.out( 5742): KtorHttp => -> server: BaseHTTP/0.6 Python/3.12.3
+11-04 21:51:14.428 I/System.out( 6850): Server running on port [ 46205 ]
+11-04 21:51:17.425 I/System.out( 5742): KtorHttp => REQUEST: http://10.0.2.2:8080/api/v1/productos
+11-04 21:51:17.425 I/System.out( 5742): KtorHttp => METHOD: POST
+11-04 21:51:17.425 I/System.out( 5742): KtorHttp => COMMON HEADERS
+11-04 21:51:17.425 I/System.out( 5742): KtorHttp => -> Accept: application/json
+11-04 21:51:17.425 I/System.out( 5742): KtorHttp => -> Authorization: ***
+11-04 21:51:17.425 I/System.out( 5742): KtorHttp => CONTENT HEADERS
+11-04 21:51:17.425 I/System.out( 5742): KtorHttp => -> Content-Length: 83
+11-04 21:51:17.425 I/System.out( 5742): KtorHttp => -> Content-Type: application/json
+11-04 21:51:17.961 I/System.out( 5742): KtorHttp => RESPONSE: 201 
+11-04 21:51:17.961 I/System.out( 5742): KtorHttp => METHOD: POST
+11-04 21:51:17.961 I/System.out( 5742): KtorHttp => FROM: http://10.0.2.2:8080/api/v1/productos
+11-04 21:51:17.961 I/System.out( 5742): KtorHttp => COMMON HEADERS
+11-04 21:51:17.961 I/System.out( 5742): KtorHttp => -> cache-control: no-cache, no-store, max-age=0, must-revalidate
+11-04 21:51:17.961 I/System.out( 5742): KtorHttp => -> connection: keep-alive
+11-04 21:51:17.961 I/System.out( 5742): KtorHttp => -> content-type: application/json
+11-04 21:51:17.961 I/System.out( 5742): KtorHttp => -> date: Wed, 04 Nov 2026 21:51:18 GMT
+11-04 21:51:17.961 I/System.out( 5742): KtorHttp => -> expires: 0
+11-04 21:51:17.961 I/System.out( 5742): KtorHttp => -> keep-alive: timeout=60
+11-04 21:51:17.961 I/System.out( 5742): KtorHttp => -> pragma: no-cache
+11-04 21:51:17.961 I/System.out( 5742): KtorHttp => -> transfer-encoding: chunked
+11-04 21:51:17.961 I/System.out( 5742): KtorHttp => -> vary: Origin; Access-Control-Request-Method; Access-Control-Request-Headers
+11-04 21:51:17.961 I/System.out( 5742): KtorHttp => -> x-content-type-options: nosniff
+11-04 21:51:17.961 I/System.out( 5742): KtorHttp => -> x-frame-options: DENY
+11-04 21:51:17.961 I/System.out( 5742): KtorHttp => -> x-xss-protection: 0
+11-04 21:51:17.976 I/System.out( 5742): KtorHttp => REQUEST: http://10.0.2.2:8080/api/v1/productos?pagina=0&tamanio=100
+11-04 21:51:17.976 I/System.out( 5742): KtorHttp => METHOD: GET
+11-04 21:51:17.976 I/System.out( 5742): KtorHttp => COMMON HEADERS
+11-04 21:51:17.976 I/System.out( 5742): KtorHttp => -> Accept: application/json
+11-04 21:51:17.976 I/System.out( 5742): KtorHttp => -> Authorization: ***
+11-04 21:51:17.976 I/System.out( 5742): KtorHttp => -> Content-Type: application/json
+11-04 21:51:17.976 I/System.out( 5742): KtorHttp => CONTENT HEADERS
+11-04 21:51:17.976 I/System.out( 5742): KtorHttp => -> Content-Length: 0
+11-04 21:51:18.114 I/System.out( 5742): KtorHttp => RESPONSE: 200 
+11-04 21:51:18.114 I/System.out( 5742): KtorHttp => METHOD: GET
+11-04 21:51:18.114 I/System.out( 5742): KtorHttp => FROM: http://10.0.2.2:8080/api/v1/productos?pagina=0&tamanio=100
+11-04 21:51:18.114 I/System.out( 5742): KtorHttp => COMMON HEADERS
+11-04 21:51:18.114 I/System.out( 5742): KtorHttp => -> cache-control: no-cache, no-store, max-age=0, must-revalidate
+11-04 21:51:18.114 I/System.out( 5742): KtorHttp => -> connection: keep-alive
+11-04 21:51:18.114 I/System.out( 5742): KtorHttp => -> content-type: application/json
+11-04 21:51:18.114 I/System.out( 5742): KtorHttp => -> date: Wed, 04 Nov 2026 21:51:18 GMT
+11-04 21:51:18.114 I/System.out( 5742): KtorHttp => -> expires: 0
+11-04 21:51:18.114 I/System.out( 5742): KtorHttp => -> keep-alive: timeout=60
+11-04 21:51:18.114 I/System.out( 5742): KtorHttp => -> pragma: no-cache
+11-04 21:51:18.114 I/System.out( 5742): KtorHttp => -> transfer-encoding: chunked
+11-04 21:51:18.114 I/System.out( 5742): KtorHttp => -> vary: Origin; Access-Control-Request-Method; Access-Control-Request-Headers
+11-04 21:51:18.114 I/System.out( 5742): KtorHttp => -> x-content-type-options: nosniff
+11-04 21:51:18.114 I/System.out( 5742): KtorHttp => -> x-frame-options: DENY
+11-04 21:51:18.114 I/System.out( 5742): KtorHttp => -> x-xss-protection: 0
+11-04 21:51:18.169 I/System.out( 5742): Telemetria evento sincronizacion {enviadas=1, fallidas=1}
+11-04 21:51:28.691 I/System.out( 7070): Server running on port [ 41155 ]

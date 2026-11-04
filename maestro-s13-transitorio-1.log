@@ -1,0 +1,18 @@
+Running on test
+ > Flow s13-transitorio
+Run s13-registro.yaml...
+  Tap on "Nuevo producto"... COMPLETED
+  Tap on "Nombre"... COMPLETED
+  Input text ${NOMBRE}... COMPLETED
+  Tap on "Precio"... COMPLETED
+  Input text ${PRECIO}... COMPLETED
+  Tap on "Stock"... COMPLETED
+  Input text ${STOCK}... COMPLETED
+  Hide Keyboard... COMPLETED
+  Tap on "Registrar producto"... COMPLETED
+  Assert that "${NOMBRE}.*" is visible... COMPLETED
+Run s13-registro.yaml... COMPLETED
+Tap on "Sincronizar"... COMPLETED
+Assert that ".*servidor tuvo un problema.*" is visible... COMPLETED
+Assert that "1 producto pendiente de enviar" is visible... COMPLETED
+Take screenshot c04-fallo-transitorio... COMPLETED

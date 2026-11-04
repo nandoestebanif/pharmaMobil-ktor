@@ -1,0 +1,27 @@
+11-04 21:49:14.532  5742  5742 I System.out: KtorHttp => REQUEST: http://10.0.2.2:8080/api/v1/productos?pagina=0&tamanio=100
+11-04 21:49:14.532  5742  5742 I System.out: KtorHttp => METHOD: GET
+11-04 21:49:14.532  5742  5742 I System.out: KtorHttp => COMMON HEADERS
+11-04 21:49:14.532  5742  5742 I System.out: KtorHttp => -> Accept: application/json
+11-04 21:49:14.532  5742  5742 I System.out: KtorHttp => -> Authorization: ***
+11-04 21:49:14.532  5742  5742 I System.out: KtorHttp => -> Content-Type: application/json
+11-04 21:49:14.532  5742  5742 I System.out: KtorHttp => CONTENT HEADERS
+11-04 21:49:14.532  5742  5742 I System.out: KtorHttp => -> Content-Length: 0
+11-04 21:49:15.519  5742  5742 I System.out: KtorHttp => REQUEST http://10.0.2.2:8080/api/v1/productos?pagina=0&tamanio=100 failed with exception: java.net.ConnectException: Failed to connect to /10.0.2.2:8080
+11-04 21:49:34.351  5742  5742 I System.out: KtorHttp => REQUEST: http://10.0.2.2:8080/api/v1/productos
+11-04 21:49:34.351  5742  5742 I System.out: KtorHttp => METHOD: POST
+11-04 21:49:34.351  5742  5742 I System.out: KtorHttp => COMMON HEADERS
+11-04 21:49:34.352  5742  5742 I System.out: KtorHttp => -> Accept: application/json
+11-04 21:49:34.352  5742  5742 I System.out: KtorHttp => -> Authorization: ***
+11-04 21:49:34.352  5742  5742 I System.out: KtorHttp => CONTENT HEADERS
+11-04 21:49:34.352  5742  5742 I System.out: KtorHttp => -> Content-Length: 81
+11-04 21:49:34.352  5742  5742 I System.out: KtorHttp => -> Content-Type: application/json
+11-04 21:49:34.423  5742  5742 I System.out: KtorHttp => REQUEST http://10.0.2.2:8080/api/v1/productos failed with exception: java.net.ConnectException: Failed to connect to /10.0.2.2:8080
+11-04 21:49:53.733  5742  5742 I System.out: KtorHttp => REQUEST: http://10.0.2.2:8080/api/v1/productos
+11-04 21:49:53.733  5742  5742 I System.out: KtorHttp => METHOD: POST
+11-04 21:49:53.733  5742  5742 I System.out: KtorHttp => COMMON HEADERS
+11-04 21:49:53.733  5742  5742 I System.out: KtorHttp => -> Accept: application/json
+11-04 21:49:53.733  5742  5742 I System.out: KtorHttp => -> Authorization: ***
+11-04 21:49:53.733  5742  5742 I System.out: KtorHttp => CONTENT HEADERS
+11-04 21:49:53.733  5742  5742 I System.out: KtorHttp => -> Content-Length: 84
+11-04 21:49:53.733  5742  5742 I System.out: KtorHttp => -> Content-Type: application/json
+11-04 21:49:53.822  5742  5742 I System.out: KtorHttp => REQUEST http://10.0.2.2:8080/api/v1/productos failed with exception: java.net.ConnectException: Failed to connect to /10.0.2.2:8080

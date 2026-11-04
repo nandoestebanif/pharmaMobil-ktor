@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="pe.edu.upeu.pharmamobil.data.repository.SincronizacionTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2026-11-04T21:41:57.168Z" hostname="runnervm7aw5e" time="0.145">
+  <properties/>
+  <testcase name="unReenvioDespuesDeUnTiempoAgotadoNoDuplicaElProducto" classname="pe.edu.upeu.pharmamobil.data.repository.SincronizacionTest" time="0.025"/>
+  <testcase name="unFalloPermanenteMarcaLaFilaYNoLaReintenta" classname="pe.edu.upeu.pharmamobil.data.repository.SincronizacionTest" time="0.013"/>
+  <testcase name="registrarConElServidorFallandoNoPierdeElProducto" classname="pe.edu.upeu.pharmamobil.data.repository.SincronizacionTest" time="0.006"/>
+  <testcase name="laSesionVencidaNoMarcaFallidoUnProductoValido" classname="pe.edu.upeu.pharmamobil.data.repository.SincronizacionTest" time="0.007"/>
+  <testcase name="sinRedSeDetieneYNoGastaIntentos" classname="pe.edu.upeu.pharmamobil.data.repository.SincronizacionTest" time="0.008"/>
+  <testcase name="corregirUnaFilaFallidaLaDevuelveALaCola" classname="pe.edu.upeu.pharmamobil.data.repository.SincronizacionTest" time="0.01"/>
+  <testcase name="laEsperaCreceEntreIntentosYTieneTope" classname="pe.edu.upeu.pharmamobil.data.repository.SincronizacionTest" time="0.002"/>
+  <testcase name="reintentarDevuelveLasFallidasALaColaYLasEnvia" classname="pe.edu.upeu.pharmamobil.data.repository.SincronizacionTest" time="0.016"/>
+  <testcase name="unFalloTransitorioSumaIntentoYNoMarcaFallida" classname="pe.edu.upeu.pharmamobil.data.repository.SincronizacionTest" time="0.012"/>
+  <testcase name="alAgotarLosIntentosLaFilaQuedaFallidaYNoSeReintentaSola" classname="pe.edu.upeu.pharmamobil.data.repository.SincronizacionTest" time="0.037"/>
+  <testcase name="subirAntesDeBajarNoPierdeLoPendienteAunqueFalle" classname="pe.edu.upeu.pharmamobil.data.repository.SincronizacionTest" time="0.008"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

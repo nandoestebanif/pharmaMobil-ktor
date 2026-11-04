@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="pe.edu.upeu.pharmamobil.data.remote.ProductoRemotoTest" tests="13" skipped="0" failures="0" errors="0" timestamp="2026-11-04T21:41:56.947Z" hostname="runnervm7aw5e" time="0.091">
+  <properties/>
+  <testcase name="registroQueRompeReglasDelDominio_seDescartaSinTumbarLaLista" classname="pe.edu.upeu.pharmamobil.data.remote.ProductoRemotoTest" time="0.007"/>
+  <testcase name="registrar_conNombreDuplicado_lanzaConflictoConElMensajeDelServidor" classname="pe.edu.upeu.pharmamobil.data.remote.ProductoRemotoTest" time="0.007"/>
+  <testcase name="registrar_enviaPostConLosCincoCamposQueExigeElBackend" classname="pe.edu.upeu.pharmamobil.data.remote.ProductoRemotoTest" time="0.007"/>
+  <testcase name="caso3_sinConexion_seTraduceASinConexion" classname="pe.edu.upeu.pharmamobil.data.remote.ProductoRemotoTest" time="0.007"/>
+  <testcase name="caso5_jsonConCampoNuevo_seIgnoraGraciasAIgnoreUnknownKeys" classname="pe.edu.upeu.pharmamobil.data.remote.ProductoRemotoTest" time="0.005"/>
+  <testcase name="caso2_error404_seTraduceANoEncontrado" classname="pe.edu.upeu.pharmamobil.data.remote.ProductoRemotoTest" time="0.005"/>
+  <testcase name="caso5b_sinIgnoreUnknownKeys_seTraduceARespuestaInesperada" classname="pe.edu.upeu.pharmamobil.data.remote.ProductoRemotoTest" time="0.006"/>
+  <testcase name="eliminar_aceptaEl204SinCuerpo" classname="pe.edu.upeu.pharmamobil.data.remote.ProductoRemotoTest" time="0.01"/>
+  <testcase name="caso1_exito200_deserializaLaPaginaYMapeaAlDominio" classname="pe.edu.upeu.pharmamobil.data.remote.ProductoRemotoTest" time="0.007"/>
+  <testcase name="actualizar_conActivoTrue_enviaEstadoTrueParaReactivar" classname="pe.edu.upeu.pharmamobil.data.remote.ProductoRemotoTest" time="0.007"/>
+  <testcase name="obtener_pideElRecursoPorIdYConservaLaCategoria" classname="pe.edu.upeu.pharmamobil.data.remote.ProductoRemotoTest" time="0.006"/>
+  <testcase name="caso4_timeout_seTraduceATiempoAgotado" classname="pe.edu.upeu.pharmamobil.data.remote.ProductoRemotoTest" time="0.009"/>
+  <testcase name="actualizar_enviaPutAlIdYNoPisaLaCategoriaDelProducto" classname="pe.edu.upeu.pharmamobil.data.remote.ProductoRemotoTest" time="0.006"/>
+  <system-out><![CDATA[KtorHttp => REQUEST: http://10.0.2.2:8080/api/v1/productos?pagina=0&tamanio=100
+KtorHttp => METHOD: GET
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Accept: application/json
+KtorHttp => -> Content-Type: application/json
+KtorHttp => CONTENT HEADERS
+KtorHttp => -> Content-Length: 0
+KtorHttp => RESPONSE: 200 OK
+KtorHttp => METHOD: GET
+KtorHttp => FROM: http://10.0.2.2:8080/api/v1/productos?pagina=0&tamanio=100
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Content-Type: application/json
+KtorHttp => REQUEST: http://10.0.2.2:8080/api/v1/productos
+KtorHttp => METHOD: POST
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Accept: application/json
+KtorHttp => CONTENT HEADERS
+KtorHttp => -> Content-Length: 81
+KtorHttp => -> Content-Type: application/json
+KtorHttp => RESPONSE: 409 Conflict
+KtorHttp => METHOD: POST
+KtorHttp => FROM: http://10.0.2.2:8080/api/v1/productos
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Content-Type: application/json
+KtorHttp => REQUEST: http://10.0.2.2:8080/api/v1/productos
+KtorHttp => METHOD: POST
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Accept: application/json
+KtorHttp => CONTENT HEADERS
+KtorHttp => -> Content-Length: 81
+KtorHttp => -> Content-Type: application/json
+KtorHttp => RESPONSE: 201 Created
+KtorHttp => METHOD: POST
+KtorHttp => FROM: http://10.0.2.2:8080/api/v1/productos
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Content-Type: application/json
+KtorHttp => REQUEST: http://10.0.2.2:8080/api/v1/productos?pagina=0&tamanio=100
+KtorHttp => METHOD: GET
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Accept: application/json
+KtorHttp => -> Content-Type: application/json
+KtorHttp => CONTENT HEADERS
+KtorHttp => -> Content-Length: 0
+KtorHttp => REQUEST http://10.0.2.2:8080/api/v1/productos?pagina=0&tamanio=100 failed with exception: java.io.IOException: Failed to connect to /10.0.2.2:8080
+KtorHttp => REQUEST: http://10.0.2.2:8080/api/v1/productos?pagina=0&tamanio=100
+KtorHttp => METHOD: GET
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Accept: application/json
+KtorHttp => -> Content-Type: application/json
+KtorHttp => CONTENT HEADERS
+KtorHttp => -> Content-Length: 0
+KtorHttp => RESPONSE: 200 OK
+KtorHttp => METHOD: GET
+KtorHttp => FROM: http://10.0.2.2:8080/api/v1/productos?pagina=0&tamanio=100
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Content-Type: application/json
+KtorHttp => REQUEST: http://10.0.2.2:8080/api/v1/productos?pagina=0&tamanio=100
+KtorHttp => METHOD: GET
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Accept: application/json
+KtorHttp => -> Content-Type: application/json
+KtorHttp => CONTENT HEADERS
+KtorHttp => -> Content-Length: 0
+KtorHttp => RESPONSE: 404 Not Found
+KtorHttp => METHOD: GET
+KtorHttp => FROM: http://10.0.2.2:8080/api/v1/productos?pagina=0&tamanio=100
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Content-Type: application/json
+KtorHttp => RESPONSE http://10.0.2.2:8080/api/v1/productos?pagina=0&tamanio=100 failed with exception: io.ktor.serialization.JsonConvertException: Illegal input: Fields [status, error, message] are required for type with serial name 'pe.edu.upeu.pharmamobil.data.remote.dto.ErrorResponseDto', but they were missing at path: $
+KtorHttp => REQUEST: http://10.0.2.2:8080/api/v1/productos?pagina=0&tamanio=100
+KtorHttp => METHOD: GET
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Accept: application/json
+KtorHttp => -> Content-Type: application/json
+KtorHttp => CONTENT HEADERS
+KtorHttp => -> Content-Length: 0
+KtorHttp => RESPONSE: 200 OK
+KtorHttp => METHOD: GET
+KtorHttp => FROM: http://10.0.2.2:8080/api/v1/productos?pagina=0&tamanio=100
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Content-Type: application/json
+KtorHttp => RESPONSE http://10.0.2.2:8080/api/v1/productos?pagina=0&tamanio=100 failed with exception: io.ktor.serialization.JsonConvertException: Illegal input: Unexpected JSON token at offset 157: Encountered an unknown key 'fechaCreacion' at path: $.contenido[0]
+KtorHttp => Use 'ignoreUnknownKeys = true' in 'Json {}' builder or '@JsonIgnoreUnknownKeys' annotation to ignore unknown keys.
+KtorHttp => JSON input: .....aNombre":"Analgesicos",
+KtorHttp =>      "fechaCreacion":"2026-09-30T10:.....
+KtorHttp => REQUEST: http://10.0.2.2:8080/api/v1/productos/11
+KtorHttp => METHOD: DELETE
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Accept: application/json
+KtorHttp => -> Content-Type: application/json
+KtorHttp => CONTENT HEADERS
+KtorHttp => -> Content-Length: 0
+KtorHttp => RESPONSE: 204 No Content
+KtorHttp => METHOD: DELETE
+KtorHttp => FROM: http://10.0.2.2:8080/api/v1/productos/11
+KtorHttp => COMMON HEADERS
+KtorHttp => REQUEST: http://10.0.2.2:8080/api/v1/productos?pagina=0&tamanio=100
+KtorHttp => METHOD: GET
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Accept: application/json
+KtorHttp => -> Content-Type: application/json
+KtorHttp => CONTENT HEADERS
+KtorHttp => -> Content-Length: 0
+KtorHttp => RESPONSE: 200 OK
+KtorHttp => METHOD: GET
+KtorHttp => FROM: http://10.0.2.2:8080/api/v1/productos?pagina=0&tamanio=100
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Content-Type: application/json
+KtorHttp => REQUEST: http://10.0.2.2:8080/api/v1/productos/11
+KtorHttp => METHOD: PUT
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Accept: application/json
+KtorHttp => CONTENT HEADERS
+KtorHttp => -> Content-Length: 81
+KtorHttp => -> Content-Type: application/json
+KtorHttp => RESPONSE: 200 OK
+KtorHttp => METHOD: PUT
+KtorHttp => FROM: http://10.0.2.2:8080/api/v1/productos/11
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Content-Type: application/json
+KtorHttp => REQUEST: http://10.0.2.2:8080/api/v1/productos/11
+KtorHttp => METHOD: GET
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Accept: application/json
+KtorHttp => -> Content-Type: application/json
+KtorHttp => CONTENT HEADERS
+KtorHttp => -> Content-Length: 0
+KtorHttp => RESPONSE: 200 OK
+KtorHttp => METHOD: GET
+KtorHttp => FROM: http://10.0.2.2:8080/api/v1/productos/11
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Content-Type: application/json
+KtorHttp => REQUEST: http://10.0.2.2:8080/api/v1/productos?pagina=0&tamanio=100
+KtorHttp => METHOD: GET
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Accept: application/json
+KtorHttp => -> Content-Type: application/json
+KtorHttp => CONTENT HEADERS
+KtorHttp => -> Content-Length: 0
+KtorHttp => REQUEST http://10.0.2.2:8080/api/v1/productos?pagina=0&tamanio=100 failed with exception: io.ktor.client.plugins.HttpRequestTimeoutException: Request timeout has expired [url=productos, request_timeout=15000 ms]
+KtorHttp => REQUEST: http://10.0.2.2:8080/api/v1/productos/11
+KtorHttp => METHOD: PUT
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Accept: application/json
+KtorHttp => CONTENT HEADERS
+KtorHttp => -> Content-Length: 81
+KtorHttp => -> Content-Type: application/json
+KtorHttp => RESPONSE: 200 OK
+KtorHttp => METHOD: PUT
+KtorHttp => FROM: http://10.0.2.2:8080/api/v1/productos/11
+KtorHttp => COMMON HEADERS
+KtorHttp => -> Content-Type: application/json
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

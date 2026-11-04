@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="pe.edu.upeu.pharmamobil.presentation.producto.ProductoViewModelTest" tests="26" skipped="0" failures="0" errors="0" timestamp="2026-11-04T21:41:57.638Z" hostname="runnervm7aw5e" time="0.048">
+  <properties/>
+  <testcase name="el409AlEliminarRefrescaLaListaYMuestraElMensajeDelServidor" classname="pe.edu.upeu.pharmamobil.presentation.producto.ProductoViewModelTest" time="0.004"/>
+  <testcase name="laPantallaRecibeLaHoraDeLaUltimaSincronizacionCorrecta" classname="pe.edu.upeu.pharmamobil.presentation.producto.ProductoViewModelTest" time="0.002"/>
+  <testcase name="editarCargaElFormularioYGuardarActualizaConservandoLaCategoria" classname="pe.edu.upeu.pharmamobil.presentation.producto.ProductoViewModelTest" time="0.003"/>
+  <testcase name="mientrasSeRegistraLaFaseNoVuelveACargando" classname="pe.edu.upeu.pharmamobil.presentation.producto.ProductoViewModelTest" time="0.003"/>
+  <testcase name="elInventarioSeparaLosActivosDeLosDadosDeBaja" classname="pe.edu.upeu.pharmamobil.presentation.producto.ProductoViewModelTest" time="0.001"/>
+  <testcase name="cancelarLaEdicionLimpiaElFormulario" classname="pe.edu.upeu.pharmamobil.presentation.producto.ProductoViewModelTest" time="0.001"/>
+  <testcase name="losErroresDeValidacionCaenEnElFormularioNoEnLaFase" classname="pe.edu.upeu.pharmamobil.presentation.producto.ProductoViewModelTest" time="0.001"/>
+  <testcase name="sinConexionMuestraLaListaGuardadaConElAvisoDeRed" classname="pe.edu.upeu.pharmamobil.presentation.producto.ProductoViewModelTest" time="0.001"/>
+  <testcase name="alEliminarLaListaSigueVisibleYLaOperacionPasaPorEnCurso" classname="pe.edu.upeu.pharmamobil.presentation.producto.ProductoViewModelTest" time="0.002"/>
+  <testcase name="muestraElInventarioConElPrecioYaFormateado" classname="pe.edu.upeu.pharmamobil.presentation.producto.ProductoViewModelTest" time="0.001"/>
+  <testcase name="siElViewModelSeCancelaDuranteUnaOperacionNoSeMuestraNingunError" classname="pe.edu.upeu.pharmamobil.presentation.producto.ProductoViewModelTest" time="0.003"/>
+  <testcase name="arrancaEnSinProductosCuandoElInventarioEstaVacio" classname="pe.edu.upeu.pharmamobil.presentation.producto.ProductoViewModelTest" time="0.001"/>
+  <testcase name="registrarLimpiaElFormularioYRecargaElInventario" classname="pe.edu.upeu.pharmamobil.presentation.producto.ProductoViewModelTest" time="0.002"/>
+  <testcase name="siEliminarFallaSeAvisaSinPerderLaLista" classname="pe.edu.upeu.pharmamobil.presentation.producto.ProductoViewModelTest" time="0.001"/>
+  <testcase name="pasaAFaseErrorCuandoElRepositorioFalla" classname="pe.edu.upeu.pharmamobil.presentation.producto.ProductoViewModelTest" time="0.002"/>
+  <testcase name="laCargaPasaDeCargandoAConProductosConLaListaEsperada" classname="pe.edu.upeu.pharmamobil.presentation.producto.ProductoViewModelTest" time="0.001"/>
+  <testcase name="prepararNuevoDejaElFormularioEnBlancoYSinAvisos" classname="pe.edu.upeu.pharmamobil.presentation.producto.ProductoViewModelTest" time="0.003"/>
+  <testcase name="el409PorUnNombreDadoDeBajaSugiereReactivarlo" classname="pe.edu.upeu.pharmamobil.presentation.producto.ProductoViewModelTest" time="0.001"/>
+  <testcase name="reactivarDevuelveElProductoAlInventarioActivo" classname="pe.edu.upeu.pharmamobil.presentation.producto.ProductoViewModelTest" time="0.002"/>
+  <testcase name="primeraAperturaSinRedEsUnEstadoVacioInformativoYNoUnError" classname="pe.edu.upeu.pharmamobil.presentation.producto.ProductoViewModelTest" time="0.001"/>
+  <testcase name="registrarNoVuelveAPedirLaLista" classname="pe.edu.upeu.pharmamobil.presentation.producto.ProductoViewModelTest" time="0.002"/>
+  <testcase name="siElProductoYaNoExisteAlEditarSeAvisaYSeRefrescaLaLista" classname="pe.edu.upeu.pharmamobil.presentation.producto.ProductoViewModelTest" time="0.002"/>
+  <testcase name="el409AlEliminarNoSeConfundeConUnNombreDuplicadoDelFormulario" classname="pe.edu.upeu.pharmamobil.presentation.producto.ProductoViewModelTest" time="0.001"/>
+  <testcase name="el400DelServidorSeMuestraBajoElCampoYNoComoAvisoGenerico" classname="pe.edu.upeu.pharmamobil.presentation.producto.ProductoViewModelTest" time="0.001"/>
+  <testcase name="el409MuestraElMensajeDelServidorComoOperacionFallida" classname="pe.edu.upeu.pharmamobil.presentation.producto.ProductoViewModelTest" time="0.001"/>
+  <testcase name="elErrorDeValidacionNoCambiaLaFaseAError" classname="pe.edu.upeu.pharmamobil.presentation.producto.ProductoViewModelTest" time="0.003"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

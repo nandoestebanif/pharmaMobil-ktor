@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="pe.edu.upeu.pharmamobil.domain.usecase.CrudProductoUseCasesTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-11-04T21:41:57.477Z" hostname="runnervm7aw5e" time="0.013">
+  <properties/>
+  <testcase name="reactivarVuelveAActivarConservandoSusDatos" classname="pe.edu.upeu.pharmamobil.domain.usecase.CrudProductoUseCasesTest" time="0.002"/>
+  <testcase name="eliminarQuitaElProductoDelInventario" classname="pe.edu.upeu.pharmamobil.domain.usecase.CrudProductoUseCasesTest" time="0.003"/>
+  <testcase name="eliminarDevuelveFailureCuandoElServidorFalla" classname="pe.edu.upeu.pharmamobil.domain.usecase.CrudProductoUseCasesTest" time="0.002"/>
+  <testcase name="obtenerDevuelveElProductoPorSuId" classname="pe.edu.upeu.pharmamobil.domain.usecase.CrudProductoUseCasesTest" time="0.001"/>
+  <testcase name="obtenerUnIdInexistenteDevuelveFailureNoEncontrado" classname="pe.edu.upeu.pharmamobil.domain.usecase.CrudProductoUseCasesTest" time="0.002"/>
+  <testcase name="actualizarCambiaLosDatosYConservaIdYCategoria" classname="pe.edu.upeu.pharmamobil.domain.usecase.CrudProductoUseCasesTest" time="0.002"/>
+  <testcase name="actualizarConDatosInvalidosNoLlegaAlRepositorio" classname="pe.edu.upeu.pharmamobil.domain.usecase.CrudProductoUseCasesTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

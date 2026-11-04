@@ -1,0 +1,5 @@
+Running on test
+ > Flow s13-permiso-ajustes
+Tap on "Abrir Ajustes"... COMPLETED
+Assert that ".*PharmaMobil.*" is visible... COMPLETED
+Take screenshot b06-ajustes-de-notificaciones... COMPLETED

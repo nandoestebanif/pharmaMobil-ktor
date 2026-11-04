@@ -1,0 +1,59 @@
+# Evidencias (android)
+
+- Ejecucion: 5 (id 41917916290)
+- Commit: 999fa21488e7e225909e4de9a56669709bffa296
+- Rama: feature/integrador-13
+- Fecha (UTC): 2026-11-04 21:51:40
+
+## Archivos
+- 99-android-estado-final.png
+- README.md
+- adb-install.log
+- android-version.txt
+- b08-notificacion-de-prueba.png
+- backend-recuperado.txt
+- backend-token-60min.log
+- base-c1-dos-pendientes.txt
+- base-c2-una-fallida.txt
+- base-c4-transitorio.txt
+- base-c5-recuperado.txt
+- base-c6-corregido.txt
+- bitacora-tiempos.txt
+- c03-notificacion-envio-fallido.png
+- db-c1-dos-pendientes
+- db-c2-una-fallida
+- db-c4-transitorio
+- db-c5-recuperado
+- db-c6-corregido
+- entorno.txt
+- gradle-android.log
+- ktor-c1-sin-red.log
+- ktor-c2-sincronizar.log
+- ktor-c4-transitorio.log
+- ktor-c5-recuperado.log
+- ktor-c6-corregido.log
+- ktor-completo.log
+- logcat-app.txt
+- maestro-debug
+- maestro-instalacion.log
+- maestro-s13-corregir-1.log
+- maestro-s13-inicio-1.log
+- maestro-s13-permiso-ajustes-1.log
+- maestro-s13-permiso-concedido-1.log
+- maestro-s13-permiso-rechazar-1.log
+- maestro-s13-primera-sync-1.log
+- maestro-s13-recuperado-1.log
+- maestro-s13-sin-red-1.log
+- maestro-s13-sincronizar-1.log
+- maestro-s13-transitorio-1.log
+- permiso-1-sin-pedir.txt
+- permiso-2-denegado-una-vez.txt
+- permiso-3-denegado-para-siempre.txt
+- permiso-4-concedido.txt
+- pruebas-s11.txt
+- pruebas-shared.log
+- pruebas-xml
+- red-1-modo-avion.txt
+- red-2-reconectado.txt
+- servidor-503.log
+- servidor-503.txt
