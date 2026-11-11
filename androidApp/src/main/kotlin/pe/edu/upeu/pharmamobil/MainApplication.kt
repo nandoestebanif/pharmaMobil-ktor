@@ -17,6 +17,9 @@ class MainApplication : Application() {
         initKoin {
             androidLogger()
             androidContext(this@MainApplication)
+            // Sesion 14: la URL de PharmaSoft elegida al compilar (local.properties). Vacia =
+            // automatica: el platformModule decide entre emulador y adb reverse.
+            properties(mapOf("urlServidor" to getString(R.string.servidor_url)))
         }
     }
 }

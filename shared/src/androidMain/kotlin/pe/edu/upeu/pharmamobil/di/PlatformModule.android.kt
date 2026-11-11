@@ -28,9 +28,13 @@ actual val platformModule: Module = module {
     // 10.0.2.2 = localhost de la PC vista desde el emulador.
     // Sesion 13 (pruebas en dispositivo real): un celular conectado por USB llega a la PC con
     // «adb reverse tcp:8080 tcp:8080», que reenvia su 127.0.0.1:8080 al PharmaSoft de la PC.
+    // Sesion 14: un celular sin cable usa la IP de la PC que se configuro al compilar.
     single {
+        val configurada = getPropertyOrNull<String>("urlServidor").orEmpty()
         ConfiguracionApi(
-            urlBase = if (esEmulador()) "http://10.0.2.2:8080/api/v1/" else "http://127.0.0.1:8080/api/v1/",
+            urlBase = configurada.ifBlank {
+                if (esEmulador()) "http://10.0.2.2:8080/api/v1/" else "http://127.0.0.1:8080/api/v1/"
+            },
             // Bitacoras S7/S8: cambiar a TIEMPO_AGOTADO o JSON_ESTRICTO
             // para provocar cada escenario. Dejar en NINGUNO para el uso normal.
             escenario = EscenarioPrueba.NINGUNO,
