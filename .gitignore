@@ -21,5 +21,9 @@ node_modules/
 # Sesion 13: configuracion de Firebase con la clave del proyecto (queda solo en la PC)
 google-services.json
 
-# Sesion 14: configuracion de red generada por androidApp/build.gradle.kts
+# Sesion 14: firma de entrega (el almacen y sus contrasenas nunca van al repositorio)
+keystore.properties
+*.jks
+*.keystore
+# configuracion de red generada por androidApp/build.gradle.kts
 androidApp/generado/

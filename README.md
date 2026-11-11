@@ -493,3 +493,63 @@ Al abrir sin servidor, `AuthRepositorioRest.sesionGuardada()` no puede consultar
 ### Evidencias
 
 El workflow `.github/workflows/s11-offline.yml` corre con cada push de la rama: levanta PharmaSoft, ejecuta las pruebas y recorre el ciclo offline en un emulador de Android (modo avión con `adb`) y en un simulador de iPhone (PharmaSoft apagado). Copia la base `pharma.db` del emulador en cada paso para mostrar la marca `pendiente` y comprueba en Swagger UI que el producto creado sin red llegó al servidor con su id real. Las evidencias quedan en las ramas `ci-evidencias-android-s11` y `ci-evidencias-ios-s11`.
+
+---
+
+## Firma y versión de entrega (Sesión 14 · rama `feature/builds-14`)
+
+### Firma sin secretos en el repositorio
+
+El almacén de claves (`.jks`) vive **fuera** del proyecto y sus contraseñas en `keystore.properties`,
+en la raíz del proyecto. Ninguno de los dos se sube: `.gitignore` tiene estas tres líneas.
+
+```
+keystore.properties
+*.jks
+*.keystore
+```
+
+Formato de `keystore.properties` (las contraseñas no se escriben aquí):
+
+```
+storeFile=E:/ruta/fuera/del/repo/istana-pharmamobil.jks
+storePassword=********
+keyAlias=pharmamobil
+keyPassword=********
+```
+
+`androidApp/build.gradle.kts` lo lee solo si existe: quien clona el repositorio abre y compila la
+versión de depuración sin él; la de entrega sale sin firmar.
+
+### Servidor en un celular sin cable
+
+El emulador llega a la PC por `10.0.2.2`; un celular conectado por USB, por `adb reverse`. Para
+instalar desde el archivo, sin el entorno conectado, la IP de la PC se escribe en `local.properties`:
+
+```
+pharmasoft.url=http://192.168.1.40:8080/api/v1/
+```
+
+La configuración de red (`androidApp/generado/res/xml/network_security_config.xml`) se genera al
+compilar y permite HTTP en claro **solo** hacia esa IP y los hosts de desarrollo.
+
+### Generar y verificar
+
+| Dato | Valor |
+|---|---|
+| applicationId | `pe.edu.upeu.pharmamobil` (se mantiene: Firebase y los workflows dependen de él) |
+| versionCode | `1` |
+| versionName | `1.0.0` |
+| Reducción de código | R8 activado (`isMinifyEnabled = true`, reglas en `proguard-rules.pro`) |
+
+```powershell
+.\gradlew :androidApp:bundleRelease     # androidApp/build/outputs/bundle/release/androidApp-release.aab
+.\gradlew :androidApp:assembleRelease   # androidApp/build/outputs/apk/release/androidApp-release.apk
+apksigner verify --print-certs androidApp\build\outputs\apk\release\androidApp-release.apk
+```
+
+El workflow **S14 Entrega** genera los dos artefactos con un almacén desechable (solo para probar
+R8) y recorre la versión minificada en el emulador; publica en `ci-evidencias-s14`.
+
+La ficha de integración cerrada y el alcance congelado están en [docs/ficha-integracion-s14.md](docs/ficha-integracion-s14.md).
+

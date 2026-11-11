@@ -15,6 +15,15 @@ if (file("google-services.json").exists()) {
     apply(plugin = "com.google.firebase.crashlytics")
 }
 
+// Sesion 14: la firma de entrega lee sus datos de keystore.properties (raiz del proyecto, fuera
+// de Git). Sin ese archivo el proyecto abre y compila igual: solo la version de entrega sale sin
+// firmar, asi que quien clona el repositorio no necesita las contrasenas.
+val firma = Properties().apply {
+    val f = rootProject.file("keystore.properties")
+    if (f.exists()) f.inputStream().use { load(it) }
+}
+val hayFirma = firma.getProperty("storeFile") != null
+
 // Sesion 14: un celular sin cable (sin adb reverse) llega a PharmaSoft por la IP de la PC en la
 // red local. Se escribe en local.properties, que tampoco va a Git:
 //   pharmasoft.url=http://192.168.1.40:8080/api/v1/
@@ -71,8 +80,18 @@ android {
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
         versionCode = 1
-        versionName = "1.0"
+        versionName = "1.0.0"
         resValue("string", "servidor_url", urlServidor)
+    }
+    signingConfigs {
+        if (hayFirma) {
+            create("release") {
+                storeFile = file(firma.getProperty("storeFile"))
+                storePassword = firma.getProperty("storePassword")
+                keyAlias = firma.getProperty("keyAlias")
+                keyPassword = firma.getProperty("keyPassword")
+            }
+        }
     }
     sourceSets["main"].res.srcDir(redGenerada)
     packaging {
@@ -82,6 +101,7 @@ android {
     }
     buildTypes {
         release {
+            if (hayFirma) signingConfig = signingConfigs.getByName("release")
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
