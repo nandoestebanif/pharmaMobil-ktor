@@ -1,0 +1,27 @@
+$ ls PharmaMobil.xcarchive/Products/Applications
+PharmaMobil.app
+
+$ PlistBuddy Info.plist (identificador y version)
+CFBundleIdentifier           pe.edu.upeu.pharmamobil.PharmaMobil
+CFBundleShortVersionString   1.0.0
+CFBundleVersion              1
+MinimumOSVersion             18.2
+
+$ PlistBuddy PharmaMobil.xcarchive/Info.plist
+Dict {
+    CFBundleShortVersionString = 1.0.0
+    CFBundleIdentifier = pe.edu.upeu.pharmamobil.PharmaMobil
+    Team = 
+    ApplicationPath = Applications/PharmaMobil.app
+    SigningIdentity = 
+    Architectures = Array {
+        arm64
+    }
+    CFBundleVersion = 1
+}
+
+$ codesign -dv PharmaMobil.app
+/Users/runner/work/pharmaMobil-ktor/pharmaMobil-ktor/build/PharmaMobil.xcarchive/Products/Applications/PharmaMobil.app: code object is not signed at all
+
+$ du -sh PharmaMobil.xcarchive
+ 74M	/Users/runner/work/pharmaMobil-ktor/pharmaMobil-ktor/build/PharmaMobil.xcarchive

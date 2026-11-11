@@ -1,0 +1,11 @@
+== sistema
+ProductName:		macOS
+ProductVersion:		26.7.2
+BuildVersion:		25G332
+== xcode
+Xcode 26.6
+Build version 17F113
+== sdk iphoneos
+26.5
+== commit
+3120e6cd4a5c6fde5c3956fe13fe0ee655aaff47 test(s14): matriz de pruebas en dos dispositivos reales y registro de defectos

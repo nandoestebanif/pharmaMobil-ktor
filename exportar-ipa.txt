@@ -1,0 +1,8 @@
+$ xcodebuild -exportArchive -archivePath PharmaMobil.xcarchive -exportOptionsPlist export.plist
+2026-11-11 21:31:00.617 xcodebuild[26780:69926] [MT] IDEDistribution: -[IDEDistributionLogging _createLoggingBundleAtPath:]: Created bundle at path "/var/folders/h5/t85nd63d71x27_8gl5gw3l_w0000gn/T/iosApp_2026-11-11_21-31-00.609.xcdistributionlogs".
+error: exportArchive No Team Found in Archive
+** EXPORT FAILED **
+(codigo de salida: 70)
+
+$ security find-identity -v -p codesigning   # certificados de firma en el equipo
+     0 valid identities found
