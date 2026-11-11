@@ -1,0 +1,126 @@
+# Sesion 14 (rama feature/builds-14): genera el paquete de aplicacion (.aab) y el instalable
+# (.apk) de ENTREGA, verifica la firma y recorre la version minificada en el emulador.
+# La firma de este workflow usa un almacen DESECHABLE creado en cada ejecucion: sirve para
+# probar R8, no es la firma del producto (esa vive solo en la PC, fuera del repositorio).
+# Publica en ci-evidencias-s14.
+name: S14 Entrega
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ feature/builds-14 ]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: s14-entrega-${{ github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  android:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    env:
+      EVID: ${{ github.workspace }}/evidencias
+      RAMA_EVIDENCIAS: ci-evidencias-s14
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Habilitar KVM (aceleracion del emulador)
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+
+      - name: Preparar el entorno
+        run: |
+          mkdir -p "$EVID"
+          chmod +x gradlew
+          echo "sdk.dir=$ANDROID_HOME" > local.properties
+          {
+            echo "== sistema"; lsb_release -ds
+            echo "== java"; java -version
+            echo "== commit"; git log -1 --format='%H %s'
+          } > "$EVID/entorno.txt" 2>&1 || true
+
+      - name: Comprobar que sin keystore.properties el proyecto compila (debug)
+        run: |
+          test ! -f keystore.properties
+          ./gradlew :androidApp:assembleDebug --console=plain -q > "$EVID/sin-firma-debug.log" 2>&1 \
+            && echo "assembleDebug sin keystore.properties: OK" >> "$EVID/sin-firma-debug.log"
+
+      - name: Almacen desechable solo para este CI
+        run: |
+          CLAVE=$(openssl rand -hex 16)
+          echo "::add-mask::$CLAVE"
+          keytool -genkeypair -keystore "$RUNNER_TEMP/ci.jks" -storetype JKS -alias ci \
+            -keyalg RSA -keysize 2048 -validity 30 -storepass "$CLAVE" -keypass "$CLAVE" \
+            -dname "CN=CI PharmaMobil (solo pruebas), OU=GitHub Actions, O=UPeU, C=PE" > /dev/null 2>&1
+          printf 'storeFile=%s\nstorePassword=%s\nkeyAlias=ci\nkeyPassword=%s\n' "$RUNNER_TEMP/ci.jks" "$CLAVE" "$CLAVE" > keystore.properties
+
+      - name: Levantar PharmaSoft (perfil h2 con Flyway)
+        run: |
+          bash .github/ci/preparar-backend.sh
+          bash .github/ci/backend.sh 60 archivo
+
+      - name: Pruebas del modulo shared (commonTest en la JVM)
+        continue-on-error: true
+        run: |
+          ./gradlew :shared:testAndroidHostTest --console=plain > "$EVID/pruebas-shared.log" 2>&1 || true
+          python3 .github/ci/resumen_pruebas.py shared/build/test-results/testAndroidHostTest "$EVID/pruebas.txt"
+          echo "::notice title=Pruebas::$(head -2 "$EVID/pruebas.txt" | tail -1)"
+
+      - name: Generar el .aab y el .apk de entrega (R8 activado)
+        run: |
+          if ! ./gradlew :androidApp:bundleRelease :androidApp:assembleRelease --console=plain > "$EVID/gradle-entrega.log" 2>&1; then
+            ERR=$( (grep -E "^e: |ERROR|What went wrong|^> " "$EVID/gradle-entrega.log" | head -25) | tr '\n' ' ' | cut -c1-3500)
+            echo "::error title=Build de entrega fallo::$ERR"
+            exit 1
+          fi
+          rm -f keystore.properties
+          AAB=androidApp/build/outputs/bundle/release/androidApp-release.aab
+          APK=androidApp/build/outputs/apk/release/androidApp-release.apk
+          ls -l "$AAB" "$APK" | tee "$EVID/artefactos.txt"
+          echo "APK_ENTREGA=$PWD/$APK" >> "$GITHUB_ENV"
+          BT="$ANDROID_HOME/build-tools/$(ls "$ANDROID_HOME/build-tools" | sort -V | tail -1)"
+          {
+            echo "\$ apksigner verify --print-certs androidApp-release.apk"
+            "$BT/apksigner" verify --verbose --print-certs "$APK"
+            echo
+            echo "\$ aapt2 dump badging androidApp-release.apk | head -1"
+            "$BT/aapt2" dump badging "$APK" | head -1
+          } > "$EVID/firma-apksigner.txt" 2>&1
+          {
+            echo "\$ jarsigner -verify -certs androidApp-release.aab (resumen)"
+            jarsigner -verify -certs "$AAB" 2>&1 | grep -E "verified|CN=" | sort -u | head -5
+          } > "$EVID/firma-aab.txt" 2>&1
+          cp androidApp/build/outputs/mapping/release/configuration.txt "$EVID/r8-configuracion.txt" 2>/dev/null || true
+
+      - name: Instalar Maestro
+        run: |
+          curl -fsSL "https://get.maestro.mobile.dev" | bash > "$EVID/maestro-instalacion.log" 2>&1
+          "$HOME/.maestro/bin/maestro" --version | tee -a "$EVID/maestro-instalacion.log"
+
+      - name: Emulador (recorrido de la version de entrega)
+        continue-on-error: true
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 35
+          arch: x86_64
+          target: google_apis
+          profile: pixel_6
+          disable-animations: true
+          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          script: bash .github/ci/s14-entrega.sh
+
+      - name: Publicar en la rama ci-evidencias-s14
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: bash .github/ci/publicar.sh
