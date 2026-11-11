@@ -1,0 +1,15 @@
+2026-11-11 21:27:54 UTC | 16:27:54 Lima | inicio: version de entrega instalada
+2026-11-11 21:28:14 UTC | 16:28:14 Lima | flujo s13a-p01-primera-apertura: completado
+2026-11-11 21:28:47 UTC | 16:28:47 Lima | flujo s13a-p02-login: completado
+2026-11-11 21:28:59 UTC | 16:28:59 Lima | flujo s13a-p03-listado: completado
+2026-11-11 21:29:32 UTC | 16:29:32 Lima | flujo s13a-p04-crear-con-red: completado
+2026-11-11 21:29:40 UTC | 16:29:40 Lima | modo avion: on
+2026-11-11 21:30:06 UTC | 16:30:06 Lima | flujo s13a-p05-crear-sin-red: completado
+2026-11-11 21:30:08 UTC | 16:30:08 Lima | modo avion: off
+2026-11-11 21:30:20 UTC | 16:30:20 Lima | flujo s13a-p06-sincronizar: completado
+2026-11-11 21:30:45 UTC | 16:30:45 Lima | flujo s13a-p07-validacion: completado
+2026-11-11 21:30:53 UTC | 16:30:53 Lima | PharmaSoft reiniciado con tokens de 1 minuto
+2026-11-11 21:31:26 UTC | 16:31:26 Lima | flujo s13a-p09-token-vencido-1: completado
+2026-11-11 21:32:41 UTC | 16:32:41 Lima | token vencido (75 s)
+2026-11-11 21:32:51 UTC | 16:32:51 Lima | flujo s13a-p09-token-vencido-2: completado
+2026-11-11 21:33:19 UTC | 16:33:19 Lima | flujo s13a-p10-cerrar-sesion: completado

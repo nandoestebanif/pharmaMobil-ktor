@@ -1,0 +1,2 @@
+$ jarsigner -verify -certs androidApp-release.aab (resumen)
+jar verified.

@@ -1,0 +1,5 @@
+Running on test
+ > Flow s13a-p01-primera-apertura
+Launch app "${APP_ID}" with clear state... COMPLETED
+Assert that "Ingresar" is visible... COMPLETED
+Take screenshot f01-primera-apertura... COMPLETED

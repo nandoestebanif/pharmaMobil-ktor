@@ -1,0 +1,18 @@
+Running on test
+ > Flow s13a-p04-crear-con-red
+Tap on "Nuevo producto"... COMPLETED
+Tap on "Nombre"... COMPLETED
+Input text Omeprazol 20mg... COMPLETED
+Tap on "Precio"... COMPLETED
+Input text 4.50... COMPLETED
+Tap on "Stock"... COMPLETED
+Input text 40... COMPLETED
+Hide Keyboard... COMPLETED
+Tap on "Registrar producto"... COMPLETED
+Assert that ".*registrado correctamente.*" is visible... COMPLETED
+Take screenshot f04-creado-con-red... COMPLETED
+Scrolling DOWN until "Omeprazol 20mg" is visible with speed 40, visibility percentage 100%, timeout 20000 ms, with centering disabled... COMPLETED
+Tap on "Omeprazol 20mg"... COMPLETED
+Assert that "Compartir" is visible... COMPLETED
+Take screenshot f04b-detalle-id-del-servidor... COMPLETED
+Tap on "Volver"... COMPLETED

@@ -1,0 +1,2 @@
+-rw-r--r-- 1 runner runner 3395689 Nov 11 21:25 androidApp/build/outputs/apk/release/androidApp-release.apk
+-rw-r--r-- 1 runner runner 6675648 Nov 11 21:25 androidApp/build/outputs/bundle/release/androidApp-release.aab

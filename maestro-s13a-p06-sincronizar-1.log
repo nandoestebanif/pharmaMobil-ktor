@@ -1,0 +1,6 @@
+Running on test
+ > Flow s13a-p06-sincronizar
+Tap on "Sincronizar"... COMPLETED
+Assert that "Inventario al día" is visible... COMPLETED
+Assert that "1 producto pendiente de enviar" is not visible... COMPLETED
+Take screenshot f06-sincronizado... COMPLETED

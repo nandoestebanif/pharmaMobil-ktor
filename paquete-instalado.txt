@@ -1,0 +1,6 @@
+$ adb shell dumpsys package pe.edu.upeu.pharmamobil | grep -E 'versionCode|versionName|flags='
+    versionCode=1 minSdk=24 targetSdk=36
+    versionName=1.0.0
+    pkgFlags=[ HAS_CODE ALLOW_CLEAR_USER_DATA ALLOW_BACKUP ]
+$ adb shell run-as pe.edu.upeu.pharmamobil ls   # una version de entrega no es depurable
+run-as: package not debuggable: pe.edu.upeu.pharmamobil

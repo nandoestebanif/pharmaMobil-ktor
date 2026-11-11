@@ -1,0 +1,26 @@
+* Create distribution directories...
+* Downloading...
+#=#=#                                                                          ##O#-#                                                                                                                                                    0.7%######                                                                     8.4%##########                                                                15.0%################                                                          22.9%######################                                                    31.4%############################                                              39.3%################################                                          45.4%######################################                                    53.0%########################################                                  55.9%#############################################                             62.9%#################################################                         68.9%######################################################                    75.5%############################################################              83.9%################################################################          89.9%#####################################################################     96.2%######################################################################## 100.0%
+* Checking archive integrity...
+* Extracting archive...
+* Remove previous installation (if any)
+* Copying archive contents...
+* Cleaning up...
+
+Attempt update of interactive bash profile on regular UNIX...
+Adding maestro to your PATH in /home/runner/.bashrc
+Adding maestro to your PATH in /home/runner/.zshrc
+
+Installation was successful!
+Please open a new terminal OR run the following in the existing one:
+
+    export PATH="$PATH":"$HOME/.maestro/bin"
+
+Then run the following command:
+
+    maestro
+
+Welcome to Maestro!
+Anonymous analytics enabled. To opt out, set MAESTRO_CLI_NO_ANALYTICS environment variable to any value before running Maestro.
+
+2.12.1

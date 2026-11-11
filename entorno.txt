@@ -1,0 +1,9 @@
+== sistema
+Ubuntu 24.04.5 LTS
+== java
+openjdk version "21.0.13" 2026-10-20 LTS
+OpenJDK Runtime Environment Temurin-21.0.13+9 (build 21.0.13+9-LTS)
+OpenJDK 64-Bit Server VM Temurin-21.0.13+9 (build 21.0.13+9-LTS, mixed mode, sharing)
+== commit
+3120e6cd4a5c6fde5c3956fe13fe0ee655aaff47 test(s14): matriz de pruebas en dos dispositivos reales y registro de defectos
+backend: fff44f9 seguridad

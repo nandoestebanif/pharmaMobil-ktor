@@ -1,0 +1,14 @@
+Running on test
+ > Flow s13a-p07-validacion
+Tap on "Nuevo producto"... COMPLETED
+Tap on "Nombre"... COMPLETED
+Input text Ab... COMPLETED
+Tap on "Precio"... COMPLETED
+Input text 2... COMPLETED
+Tap on "Stock"... COMPLETED
+Input text 5... COMPLETED
+Hide Keyboard... COMPLETED
+Tap on "Registrar producto"... COMPLETED
+Assert that ".*entre 3 y 150.*" is visible... COMPLETED
+Take screenshot f07-validacion-bajo-el-campo... COMPLETED
+Tap on "Cancelar"... COMPLETED

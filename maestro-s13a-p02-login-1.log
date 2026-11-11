@@ -1,0 +1,10 @@
+Running on test
+ > Flow s13a-p02-login
+Tap on "Usuario"... COMPLETED
+Input text admin... COMPLETED
+Tap on "Contraseña"... COMPLETED
+Input text Admin123... COMPLETED
+Hide Keyboard... COMPLETED
+Tap on "Ingresar"... COMPLETED
+Assert that ".*Hola,.*" is visible... COMPLETED
+Take screenshot f02-sesion-iniciada... COMPLETED
