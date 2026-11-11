@@ -557,3 +557,5 @@ R8) y recorre la versión minificada en el emulador; publica en `ci-evidencias-s
 
 La ficha de integración cerrada y el alcance congelado están en [docs/ficha-integracion-s14.md](docs/ficha-integracion-s14.md).
 La matriz de pruebas en dos dispositivos reales y el registro de defectos están en [docs/pruebas-dispositivos-s14.md](docs/pruebas-dispositivos-s14.md).
+
+**Guía de instalación y uso** (para instalar el servicio y la app sin conocer el proyecto): [docs/guia-instalacion.md](docs/guia-instalacion.md).
