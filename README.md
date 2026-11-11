@@ -541,6 +541,10 @@ compilar y permite HTTP en claro **solo** hacia esa IP y los hosts de desarrollo
 | versionCode | `1` |
 | versionName | `1.0.0` |
 | Reducción de código | R8 activado (`isMinifyEnabled = true`, reglas en `proguard-rules.pro`) |
+| Titular del certificado | CN=Fernando Esteban Istana Flores, OU=EP Ingeniería de Sistemas, O=UPeU, L=Lima, C=PE |
+| SHA-256 del certificado | `cf4441fc0591244b62424b63f0c209a75eb849ec958d14e47eb48345fe34892d` |
+| Etiqueta de Git | `v1.0-final` |
+| Archivos | `IstanaFlores_ProyectoFinal_Android.aab` y `.apk` (fuera del repositorio) |
 
 ```powershell
 .\gradlew :androidApp:bundleRelease     # androidApp/build/outputs/bundle/release/androidApp-release.aab
@@ -552,4 +556,4 @@ El workflow **S14 Entrega** genera los dos artefactos con un almacén desechable
 R8) y recorre la versión minificada en el emulador; publica en `ci-evidencias-s14`.
 
 La ficha de integración cerrada y el alcance congelado están en [docs/ficha-integracion-s14.md](docs/ficha-integracion-s14.md).
-
+La matriz de pruebas en dos dispositivos reales y el registro de defectos están en [docs/pruebas-dispositivos-s14.md](docs/pruebas-dispositivos-s14.md).
