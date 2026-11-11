@@ -1,0 +1,142 @@
+# Sesion 14, paso 6: firmar y archivar en iOS. No hay Mac ni cuenta de Apple: un runner con
+# macOS de GitHub Actions genera el archivo (.xcarchive) de entrega SIN FIRMA, intenta
+# exportarlo (falla por falta de certificado y perfil: es el limite que se documenta) y arma
+# un .ipa sin firma. Publica la evidencia en ci-evidencias-ios-s14.
+name: S14 iOS
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ feature/builds-14 ]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: s14-ios-${{ github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  ios-archivo:
+    runs-on: macos-latest
+    timeout-minutes: 60
+    env:
+      EVID: ${{ github.workspace }}/evidencias
+      RAMA_EVIDENCIAS: ci-evidencias-ios-s14
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Preparar el entorno
+        run: |
+          mkdir -p "$EVID"
+          chmod +x gradlew
+          {
+            echo "== sistema"; sw_vers
+            echo "== xcode"; xcodebuild -version
+            echo "== sdk iphoneos"; xcrun --sdk iphoneos --show-sdk-version
+            echo "== commit"; git log -1 --format='%H %s'
+          } > "$EVID/entorno.txt" 2>&1 || true
+
+      - name: Android SDK (lo exige Gradle al configurar el modulo shared)
+        run: |
+          SDK="${ANDROID_HOME:-${ANDROID_SDK_ROOT:-}}"
+          if [ -z "$SDK" ] || [ ! -d "$SDK/platforms" ]; then
+            SDK="$HOME/android-sdk"
+            mkdir -p "$SDK/cmdline-tools"
+            curl -sSLo /tmp/clt.zip https://dl.google.com/android/repository/commandlinetools-mac-13114758_latest.zip
+            unzip -q /tmp/clt.zip -d "$SDK/cmdline-tools"
+            mv "$SDK/cmdline-tools/cmdline-tools" "$SDK/cmdline-tools/latest"
+            yes | "$SDK/cmdline-tools/latest/bin/sdkmanager" --sdk_root="$SDK" --licenses > /dev/null || true
+            "$SDK/cmdline-tools/latest/bin/sdkmanager" --sdk_root="$SDK" "platforms;android-36" "build-tools;36.0.0" > /dev/null
+          fi
+          echo "sdk.dir=$SDK" > local.properties
+          echo "ANDROID_HOME=$SDK" >> "$GITHUB_ENV"
+
+      - name: Esquemas del proyecto
+        run: xcodebuild -list -project iosApp/iosApp.xcodeproj > "$EVID/xcodebuild-list.txt" 2>&1 || true
+
+      - name: Product > Archive (Release, Any iOS Device, sin firma)
+        run: |
+          ARCHIVO="$PWD/build/PharmaMobil.xcarchive"
+          if xcodebuild archive -project iosApp/iosApp.xcodeproj -scheme iosApp \
+               -configuration Release -destination 'generic/platform=iOS' \
+               -archivePath "$ARCHIVO" \
+               CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" \
+               > "$EVID/xcodebuild-archive.log" 2>&1; then
+            echo "::notice title=Archivo iOS::PharmaMobil.xcarchive generado (sin firma)"
+          else
+            ERR=$( (grep -E "(^| )error: |^e: |What went wrong|^> " "$EVID/xcodebuild-archive.log" | head -25) | tr '\n' ' ' | cut -c1-3000)
+            echo "::error title=xcodebuild archive fallo::$ERR"
+            exit 1
+          fi
+          tail -3 "$EVID/xcodebuild-archive.log" > "$EVID/archive-resultado.txt"
+          APP=$(find "$ARCHIVO/Products/Applications" -maxdepth 1 -name "*.app" | head -1)
+          {
+            echo "\$ ls PharmaMobil.xcarchive/Products/Applications"; ls "$ARCHIVO/Products/Applications"
+            echo
+            echo "\$ PlistBuddy Info.plist (identificador y version)"
+            for k in CFBundleIdentifier CFBundleShortVersionString CFBundleVersion MinimumOSVersion; do
+              printf '%-28s %s\n' "$k" "$(/usr/libexec/PlistBuddy -c "Print $k" "$APP/Info.plist")"
+            done
+            echo
+            echo "\$ PlistBuddy PharmaMobil.xcarchive/Info.plist"
+            /usr/libexec/PlistBuddy -c "Print ApplicationProperties" "$ARCHIVO/Info.plist"
+            echo
+            echo "\$ codesign -dv PharmaMobil.app"
+            codesign -dv "$APP" 2>&1 || true
+            echo
+            echo "\$ du -sh PharmaMobil.xcarchive"; du -sh "$ARCHIVO"
+          } > "$EVID/archivo-ios.txt" 2>&1
+          echo "ARCHIVO=$ARCHIVO" >> "$GITHUB_ENV"
+          echo "APP=$APP" >> "$GITHUB_ENV"
+
+      - name: Distribuir (exportar el .ipa firmado) - limite documentado
+        run: |
+          cat > /tmp/export.plist <<'PLIST'
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0"><dict>
+            <key>method</key><string>release-testing</string>
+            <key>signingStyle</key><string>automatic</string>
+          </dict></plist>
+          PLIST
+          {
+            echo "\$ xcodebuild -exportArchive -archivePath PharmaMobil.xcarchive -exportOptionsPlist export.plist"
+            xcodebuild -exportArchive -archivePath "$ARCHIVO" -exportOptionsPlist /tmp/export.plist \
+              -exportPath "$PWD/build/export" 2>&1 | grep -vE "^\s*$" | tail -15
+            echo "(codigo de salida: ${PIPESTATUS[0]})"
+            echo
+            echo "\$ security find-identity -v -p codesigning   # certificados de firma en el equipo"
+            security find-identity -v -p codesigning 2>&1
+          } > "$EVID/exportar-ipa.txt" 2>&1 || true
+
+      - name: .ipa sin firma (Payload/PharmaMobil.app)
+        run: |
+          mkdir -p ipa/Payload
+          cp -R "$APP" ipa/Payload/
+          (cd ipa && zip -qry "$EVID/IstanaFlores_ProyectoFinal_iOS_sin_firma.ipa" Payload)
+          {
+            echo "\$ ls -l IstanaFlores_ProyectoFinal_iOS_sin_firma.ipa"
+            ls -l "$EVID/IstanaFlores_ProyectoFinal_iOS_sin_firma.ipa"
+            echo "\$ shasum -a 256"; shasum -a 256 "$EVID/IstanaFlores_ProyectoFinal_iOS_sin_firma.ipa"
+          } > "$EVID/ipa-sin-firma.txt"
+
+      - name: Guardar el .ipa y el archivo como artefactos de la ejecucion
+        uses: actions/upload-artifact@v4
+        with:
+          name: ios-s14
+          path: |
+            ${{ env.EVID }}/IstanaFlores_ProyectoFinal_iOS_sin_firma.ipa
+            build/PharmaMobil.xcarchive
+          retention-days: 30
+
+      - name: Publicar en la rama ci-evidencias-ios-s14
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: bash .github/ci/publicar.sh
