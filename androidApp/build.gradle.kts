@@ -102,7 +102,9 @@ android {
     buildTypes {
         release {
             if (hayFirma) signingConfig = signingConfigs.getByName("release")
-            isMinifyEnabled = false
+            // Sesion 14: R8 reduce y ofusca el codigo; las reglas que lo mantienen funcionando
+            // estan en proguard-rules.pro.
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"

@@ -1,21 +1,18 @@
-# Add project specific ProGuard rules here.
-# You can control the set of applied configuration files using the
-# proguardFiles setting in build.gradle.
+# Sesion 14: reglas de R8 para la version de entrega (isMinifyEnabled = true).
 #
-# For more details, see
-#   http://developer.android.com/guide/developing/tools/proguard.html
+# kotlinx.serialization, Ktor, Koin y SQLDelight traen sus propias reglas dentro de sus
+# librerias (consumer rules) y la version minificada recorre el flujo completo sin cambios
+# (workflow S14 Entrega). Aqui va solo lo que esas reglas no cubren.
 
-# If your project uses WebView with JS, uncomment the following
-# and specify the fully qualified class name to the JavaScript interface
-# class:
-#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
-#   public *;
-#}
+# Crashlytics: numeros de linea legibles en los reportes; el nombre del archivo se oculta.
+-keepattributes SourceFile,LineNumberTable
+-renamesourcefileattribute SourceFile
 
-# Uncomment this to preserve the line number information for
-# debugging stack traces.
-#-keepattributes SourceFile,LineNumberTable
+# Excepciones propias que se registran en la telemetria con su nombre de clase.
+-keepnames class pe.edu.upeu.pharmamobil.** extends java.lang.Throwable
 
-# If you keep the line number information, uncomment this to
-# hide the original source file name.
-#-renamesourcefileattribute SourceFile
+# Modelos de transporte (DTO): los serializadores generados se conservan con la clase.
+-keepclassmembers @kotlinx.serialization.Serializable class pe.edu.upeu.pharmamobil.** {
+    *** Companion;
+    kotlinx.serialization.KSerializer serializer(...);
+}
