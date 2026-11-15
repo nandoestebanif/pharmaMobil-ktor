@@ -20,11 +20,11 @@ Tiempo estimado: 30 a 45 minutos la primera vez (la mayor parte son descargas).
 |---|---|---|
 | Windows | 11 | PC de desarrollo |
 | Git | 2.x | Clonar los repositorios |
-| Docker Desktop | con Docker Compose v2 | PostgreSQL 17 en un contenedor |
+| Docker | 29.5.3 (Docker Desktop, Compose v2) | PostgreSQL 17 en un contenedor |
 | PostgreSQL | 17 (imagen `postgres:17`) | Base de datos del servicio |
-| JDK | 21 (el JBR que trae Android Studio) | Servicio y compilación de la app |
+| JDK | JBR 25.0.2 de Android Studio (Temurin 21 en el CI); el código apunta a Java 21 | Servicio y compilación de la app |
 | Maven | 3.9.16 (incluido como `mvnw`) | Arrancar el servicio |
-| Android Studio | con Android SDK 36 | Solo si compilas la app (paso 4B) |
+| Android Studio | Quail 3 · 2026.1.3, con Android SDK 36 | Solo si compilas la app (paso 4B) |
 | Gradle | 9.1.0 (incluido como `gradlew`) | Compilar la app |
 | Android Gradle Plugin / Kotlin | 9.0.1 / 2.4.10 | Lo descarga Gradle |
 | Celular Android | 7.0 o superior (minSdk 24; probado en Android 16 y 17) | Correr la app |
@@ -193,4 +193,4 @@ compilar con la IP de la PC: `PHARMASOFT_URL=http://192.168.1.40:8080/api/v1/` e
 
 | Quién la siguió | Equipo / curso | Fecha | Hasta dónde llegó sin preguntar | Pasos que hubo que corregir |
 |---|---|---|---|---|
-| (pendiente) | | | | |
+| Victor Adiel Lujan Marallano | Equipo 1 (el curso no tiene equipos) | 14/11/2026 | Hasta el final: levantó el servicio, instaló la app y completó el recorrido | Ninguno |
