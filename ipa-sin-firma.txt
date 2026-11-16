@@ -1,0 +1,4 @@
+$ ls -l IstanaFlores_ProyectoFinal_iOS_sin_firma.ipa
+-rw-r--r--  1 runner  staff  12117096 Nov 16 03:14 /Users/runner/work/pharmaMobil-ktor/pharmaMobil-ktor/evidencias/IstanaFlores_ProyectoFinal_iOS_sin_firma.ipa
+$ shasum -a 256
+2a9410b02827e8387fa5d46526ecc44dcaf5429fbd8e1dc9c48d7bf3270b5294  /Users/runner/work/pharmaMobil-ktor/pharmaMobil-ktor/evidencias/IstanaFlores_ProyectoFinal_iOS_sin_firma.ipa

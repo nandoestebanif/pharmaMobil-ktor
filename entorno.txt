@@ -1,0 +1,11 @@
+== sistema
+ProductName:		macOS
+ProductVersion:		26.7.2
+BuildVersion:		25G332
+== xcode
+Xcode 26.6
+Build version 17F113
+== sdk iphoneos
+26.5
+== commit
+62ce876939a395f324af209cc25f748bc72872b2 docs(s14): versiones reales en la guia y registro de su prueba por un tercero
