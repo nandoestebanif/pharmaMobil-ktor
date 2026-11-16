@@ -1,0 +1,5 @@
+Running on test
+ > Flow s13a-p09-token-vencido-2
+Tap on ".*Ibuprofeno 400mg.*"... COMPLETED
+Assert that "Tu sesión expiró. Vuelve a iniciar sesión." is visible... COMPLETED
+Take screenshot f09-token-vencido... COMPLETED

@@ -1,0 +1,26 @@
+* Create distribution directories...
+* Downloading...
+#=#=#                                                                          ##O#-#                                                                         ####                                                                       6.0%########                                                                  11.5%##########                                                                15.0%###############                                                           21.0%##################                                                        26.1%#####################                                                     29.8%#######################                                                   33.0%###########################                                               38.6%##############################                                            42.0%##################################                                        47.8%#####################################                                     51.8%######################################                                    54.0%###########################################                               59.8%#############################################                             63.0%################################################                          67.6%###################################################                       71.9%#######################################################                   77.5%#########################################################                 80.2%###########################################################               82.2%#############################################################             85.4%################################################################          89.9%##################################################################        92.9%######################################################################    97.5%######################################################################## 100.0%
+* Checking archive integrity...
+* Extracting archive...
+* Remove previous installation (if any)
+* Copying archive contents...
+* Cleaning up...
+
+Attempt update of interactive bash profile on regular UNIX...
+Adding maestro to your PATH in /home/runner/.bashrc
+Adding maestro to your PATH in /home/runner/.zshrc
+
+Installation was successful!
+Please open a new terminal OR run the following in the existing one:
+
+    export PATH="$PATH":"$HOME/.maestro/bin"
+
+Then run the following command:
+
+    maestro
+
+Welcome to Maestro!
+Anonymous analytics enabled. To opt out, set MAESTRO_CLI_NO_ANALYTICS environment variable to any value before running Maestro.
+
+2.12.1

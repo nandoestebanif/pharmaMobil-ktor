@@ -1,0 +1,6 @@
+Running on test
+ > Flow s13a-p03-listado
+Tap on ".*Inventario, precios y stock.*"... COMPLETED
+Assert that "Inventario al día" is visible... COMPLETED
+Assert that ".*Amoxicilina 500mg.*" is visible... COMPLETED
+Take screenshot f03-listado-primera-sincronizacion... COMPLETED

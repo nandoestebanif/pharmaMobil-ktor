@@ -1,0 +1,22 @@
+$ apksigner verify --print-certs androidApp-release.apk
+Verifies
+Verified using v1 scheme (JAR signing): false
+Verified using v2 scheme (APK Signature Scheme v2): true
+Verified using v3 scheme (APK Signature Scheme v3): false
+Verified using v3.1 scheme (APK Signature Scheme v3.1): false
+Verified using v3.2 scheme (APK Signature Scheme v3.2): false
+Verified using v4 scheme (APK Signature Scheme v4): false
+Verified for SourceStamp: false
+Number of signers: 1
+V2 Signer: certificate DN: CN=CI PharmaMobil (solo pruebas), OU=GitHub Actions, O=UPeU, C=PE
+V2 Signer: certificate SHA-256 digest: fe92ef4639c7603d44cecab6d66dab9451f62d44dd3197c92ddb5440171810ab
+V2 Signer: certificate SHA-1 digest: 40cfd34d5686ddf007488fbbafa1e99228800a4f
+V2 Signer: certificate MD5 digest: 500f6f9f63348e1f6361c42657d44f52
+V2 Signer: key algorithm: RSA
+V2 Signer: key size (bits): 2048
+V2 Signer: public key SHA-256 digest: ab7d2867e0c8f02bed1abbb026e335fb59b5c7bf379cf12f15cc58ef3556d932
+V2 Signer: public key SHA-1 digest: 20407456c8cd00d2c961d06cce08a240982dcd66
+V2 Signer: public key MD5 digest: 7c419e3e1e78151577f8477cee5a6cd2
+
+$ aapt2 dump badging androidApp-release.apk | head -1
+package: name='pe.edu.upeu.pharmamobil' versionCode='1' versionName='1.0.0' platformBuildVersionName='16' platformBuildVersionCode='36' compileSdkVersion='36' compileSdkVersionCodename='16'
